@@ -1,0 +1,204 @@
+<div ng-controller="DomainsController">
+<!-- BEGIN MAIN CONTENT -->
+    <div class="row">
+		<div class="col-md-12">
+			<!--div class="note note-danger note-bordered">
+				<p>
+					 NOTE: The below datatable is not connected to a real database so the filter and sorting is just simulated for demo purposes only.
+				</p>
+			</div-->
+			<!-- Begin: life time stats -->
+            <div class="portlet">
+				<div class="portlet-title">
+					<div class="caption"> 
+						<i class="fa fa-group"></i>Restricted Domains
+					</div>
+					<div class="actions">
+						<!--a class="btn green" ui-sref="/domains-add"><i class="fa fa-plus"></i> <span class="hidden-480" > Add Domain </span> </a-->
+                        
+						<div class="btn-group">
+							<a data-toggle="dropdown" href="javascript:;" class="btn green">
+							<i class="fa fa-share"></i>
+							<span class="hidden-480">
+							Tools </span>
+							<i class="fa fa-angle-down"></i>
+							</a>
+							<ul class="dropdown-menu pull-right">
+								<li>
+                                    <a href="javascript: void(0);" ng-click="export_to_excel(fields)" target="_blank"> <!-- ng-click="export_to_excel(fields)" -->
+                                    Export to Excel </a>
+                                </li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="portlet-body">
+					<div class="table-container" style="">
+						<form id="domainAdd" name="frmAdd" class="form-horizontal domain_add" onsubmit="return false">
+							<div class="form-body">
+								<!--h3 class="form-section">Advance validation. <small>Custom radio buttons, checkboxes and Select2 dropdowns</small></h3-->
+								<!--div class="alert alert-danger display-hide">
+									<button class="close" data-close="alert"></button>
+									You have some form errors. Please check below.
+								</div-->
+								<!--div class="alert alert-success display-hide">
+									<button class="close" data-close="alert"></button>
+									   Record added successfully.
+								</div-->
+                                <div class="form-group"></div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2"><i class="fa fa-plus"></i> &nbsp; Domain Name <span class="required"> * </span> </label>
+                                    <div class="col-md-4">
+                                        <input type="text" ng-model="add_fields.v_domain_name" data-error-message="Domain Name" name="v_domain_name" class="form-control required domain" placeholder="Add Restricted Domain" id="add_domain_name" />
+                                        <span class="duplicate_error" id="v_domain_name_error">Domain name already exists.</span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button type="submit" class="btn green" ng-click="submit_frm_add(add_fields, 'Save')">Save</button>
+                                        <button type="button" class="btn default" ng-click="clearFormData('add')">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+							
+						</form>
+                        
+						<div id="datatable_ajax_wrapper" class="dataTables_wrapper dataTables_extended_wrapper no-footer">
+                            <div class="row">
+                                <div class="col-md-7 col-sm-12">
+                                    <div class="dataTables_paginate paging_bootstrap_extended" id="datatable_ajax_paginate">
+                                        <div class="pagination-panel">
+                                        
+                                        <paging page="currentPage" page-size="rpp" total="total" adjacent="@{{adjacent}}" dots=".." active-class="@{{activeClass}}" disabled-class="@{{disabledClass}}" show-prev-next="true" paging-action="DoCtrlPagingAct('Paging Clicked', page )">
+                                        </paging> 
+                                        <a id="reset-paging" href="javascript: void(0);" style="display: none;" ng-click="currentPage = 0">&nbsp;</a>
+                                            
+                                        </div>
+                                    </div>
+                                <div class="dataTables_length" id="datatable_ajax_length">
+                                    <label><span class="seperator">|</span>View 
+                                        <select ng-change="change_record_size(rec_per_page)" ng-model="rec_per_page" name="datatable_ajax_length" aria-controls="datatable_ajax" class="form-control input-xsmall input-sm input-inline"  >
+                                        <option value="10">10</option>
+                                        <option value="20">20</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                    </select> records</label>
+                                </div>
+                                <div class="dataTables_info" id="datatable_ajax_info" role="status" aria-live="polite"><span class="seperator">|</span>Found total {{ total }} records</div></div>
+                                <div class="col-md-5 col-sm-12">
+                                <div style=" padding: 5px 5px 5px 8px;" class=" alert-success display-hide">
+                                    <button class="close" data-close="alert"></button>
+                                   {{success_msg}}
+                                    </div>
+                        </div></div><div class="table-scrollable"><table id="datatable_ajax" class="table table-striped table-bordered table-hover dataTable no-footer" aria-describedby="datatable_ajax_info" role="grid">
+						<thead>
+						<tr class="heading" role="row">
+                            <th width="1%">
+                              <input type="checkbox"  ng-model="selected_record[0]" class="group-checkable" ng-change="check_all(selected_record[0],false)" data-set="#sample_1 .checkboxes" />
+                            </th>
+                            <th width="20%" ng-class="order_field != 'v_domain_name' ? 'sorting' : sort_order == 'desc' ? 'sorting_desc': 'sorting_asc'" ng-click="order_by_name('v_domain_name')" class="sorting" tabindex="0" aria-controls="datatable_ajax" rowspan="1" colspan="1" aria-label="Customer: activate to sort column ascending">
+								Name
+							</th>
+                            
+                            <th width="20%"  tabindex="0" aria-controls="datatable_ajax" rowspan="1" colspan="1" aria-label="Actions: activate to sort column ascending">
+                                 Actions
+                            </th>
+                        </tr>
+                        
+						<tr class="filter" id="frmSearchForm" role="row" ng-enter="filter_data(fields);" >
+                            <td rowspan="1" colspan="1">
+                                
+                            </td>
+                            <td rowspan="1" colspan="1">
+								<input type="text" name="page_name" ng-model="fields.name" class="form-control form-filter input-sm">
+							</td>
+                            <td rowspan="1" colspan="1">
+                                <button class="btn btn-sm yellow filter-submit margin-bottom" ng-click="filter_data(fields)"><i class="fa fa-search"></i> Search</button>
+                                <button class="btn btn-sm greed filter-cancel" ng-click="filterClear()"><i class="fa fa-times"></i> Reset</button> 
+                            </td>
+                            
+                        </tr>
+                        
+						</thead>
+						<tbody>
+                            <tr role="row" class="odd" id="tablerow{{ item.id }}" ng-repeat="(key, item) in items" ng-show="data_loading == false">
+                                <td>
+                                  <input type="checkbox"  ng-model="selected_record[item.id]"  ng-click="enable_button()"   class="checkboxes selected_checkbox" value="1" />
+                                </td>
+                                <td ng-hide="recordEditForm['record_'+item.id]">{{ item.v_domain_name }}</td>      
+                                
+                                <!-- Edit Form-->
+                                <td ng-if="recordEditForm['record_'+item.id] == item.id"> 
+                                    <form id="frmEdit" name="frmEdit" action="javascript:void(0);" class="form-horizontal" ng-submit="submit_frm_edit(edit_data)">
+                                    <input type="text" ng-model="edit_data.v_domain_name" data-error-message="Domain Name" class="form-control required domain"/>
+                                    <input type="hidden"  ng-model="edit_data.id" class="form-control"/>
+                                    <span class="duplicate_error" id="v_domain_name_error_edit">Domain name already exists.</span>
+                                </td>                          
+                                <!-- End Edit Form-->
+                                <td ng-hide="recordEditForm['record_'+item.id]">
+                                    <a class="btn btn-xs default" ng-click="loadEditData(item.v_domain_name, item.id)" ><i class="fa fa-edit"></i> Edit </a> 
+                                    <a class="btn btn-xs default" ng-click="delete_btn(item.id);"  href="javascript:void(0);"><i class="icon-trash"></i> Delete </a> 
+                                </td>
+                                <!-- Edit Form Button -->
+                                <td ng-if="recordEditForm['record_'+item.id] == item.id">
+                                
+                                    <button type="submit" class="btn green" ng-click="submit_frm_edit(edit_data)">Submit</button>
+                                    <button type="button" class="btn default" ng-click="clearFormData('edit')">Cancel</button>
+                                    </form>
+                                </td>
+                                <!-- End Edit Form Button-->
+                            </tr>
+                            <tfoot ng-show="data_loading == false && items.length <= 0">
+                                <tr><td style="border-left: 0; text-align: center;" colspan="6">No record found.</td></tr>
+                            </tfoot>
+                            <tfoot ng-show="data_loading == true">
+                                <tr><td align="center" colspan="6"><img ng-src="{{ GLOBAL.ADMIN_ASSET_URL }}img/loading.gif" /></td></tr>
+                            </tfoot>
+                        </tbody>
+						</table>
+                        </div>
+                        <div class="row">
+                              <div class="col-md-9 col-sm-12">
+                                <div class="dataTables_length">
+                                    <label>
+                                        <select name="bulk_actions" ng-model="bulk_actions" 
+                                          ng-change="bulk_actions_change(bulk_actions)" ng-value="bulk_actions" class="form-control input-small input-sm input-inline">
+                                          <option value="">Select Action</option>
+                                            <option value="del">Delete</option>
+                                        </select>
+                                    </label>
+                                </div>
+                                <div class="dataTables_paginate paging_bootstrap_extended">
+                                    <div class="pagination-panel">
+                                        <paging page="currentPage" page-size="rpp" total="total" adjacent="@{{adjacent}}" dots=".." active-class="@{{activeClass}}" disabled-class="@{{disabledClass}}" show-prev-next="true" paging-action="DoCtrlPagingAct('Paging Clicked', page )">
+                                        </paging> 
+                                        <a id="reset-paging" href="javascript: void(0);" style="display: none;" ng-click="currentPage = 0">&nbsp;</a>
+                                    </div>
+                                </div>
+                                <div class="dataTables_length">
+                                    <label>
+                                        <span class="seperator"> | </span> View
+                                        <select ng-change="change_record_size(rec_per_page)" ng-model="rec_per_page" name="datatable_ajax_length" aria-controls="datatable_ajax" class="form-control input-xsmall input-sm input-inline"  >
+                                            <option value="10">10</option>
+                                            <option value="20">20</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                        </select> records
+                                    </label>
+                                </div>
+                            <div class="dataTables_info">
+                            <span class="seperator"> | </span>
+                            Found total {{ total }} records
+                            </div>
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                            </div>
+                            </div>
+                        </div>
+					</div>
+				</div>
+			</div>
+			<!-- End: life time stats -->
+            
+		</div>
+	</div>
+<!-- END PAGE CONTENT-->
+</div>

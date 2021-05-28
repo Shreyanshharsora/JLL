@@ -1,0 +1,128 @@
+<div ng-controller="CityAssetController"  id="city_asset">
+<!-- BEGIN MAIN CONTENT -->
+    <div class="row">
+		<div class="col-md-12">
+			<!-- Begin edit form -->
+            <div tabindex="-1">
+                <div class="portlet box blue-madison">
+    				<div class="portlet-title">
+    					<div class="caption">
+    						<i class="fa fa-pencil"></i>Edit National Asset
+    					</div>
+    					<div class="tools">
+    						<a href="javascript:;" class=""></a>
+    					</div>
+    				</div>
+    				<div class="portlet-body form">
+    					<!-- BEGIN FORM-->
+    					<form id="frmEdit" name="frmEdit" class="form-horizontal" onsubmit="return false">
+							<div class="form-body">
+								<div class="alert alert-danger display-hide">
+									<button class="close" data-close="alert"></button>
+									You have some form errors. Please check below.
+								</div>
+								<div class="alert alert-success display-hide">
+									<button class="close" data-close="alert"></button>
+									Your form validation is successful!
+								</div>
+                                <div class="form-group"></div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">City <span class="required"> * </span> </label>
+                                    <div class="col-md-4">
+                                        <select data-error-message="City" name="i_city_id" ng-model="edit_fields.i_city_id"  class="form-control bs-select ng-pristine ng-valid required">
+                                            <option value="">Select City</option>
+											<option ng-repeat="(key, value) in city" value="{{ value }}" ng-selected="value == edit_fields.i_city_id">{{ key }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group user-custom-logo">
+                                    <label class="control-label col-md-2">Thumbnail Image<span class="required"> * </span><p>Size:236px X 160px</p></label>
+                                    <div class="col-md-9">
+                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                
+                                                <div ng-if="thumbnailEnable" class="fileinput-new thumbnail preview_image"  ng-show="thumbnailEnable == true">
+                                                    <img  src="{{ thumbnailURI }}" alt="" style="width:236px" />
+                                                </div>
+                                                <div>
+                                                    <span class="btn default btn-file" ng-click="trigger('#thumbInput')">
+                                                        <div ng-class="thumbnailEnable == false ? 'fileinput-new ng-show-inline-block' : 'fileinput-new ng-hide'" ng-show="thumbnailEnable == 'false'" >Select image</div>
+                                                                                                                            
+                                                        <span ng-class="thumbnailEnable == true ? 'ng-show-inline-block' : 'fileinput-exists ng-hide'" ng-if="thumbnailEnable"> Change </span>
+                                                        
+                                                    </span>
+                                                    
+                                                    <a ng-if="thumbnailEnable" href="javascript:;" ng-class="thumbnailEnable == true ? 'btn default fileinput-exists  ng-show-inline-block' : 'btn default fileinput-exists ng-hide'" data-dismiss="fileinput" ng-click="removeImage('thumb')" > Remove </a>
+                                                </div>
+                                                 <input type="hidden" name="full-image-element-edit" id="full-image-element-edit" value="{{ edit_fields.v_thumbnail_url }}" ng-model="edit_fields.v_thumbnail_url" data-error-message="Image" class="form-control required" />   
+                                            </div>
+                                    </div>
+                                </div>
+                                
+                                
+                                <div class="form-group user-custom-logo">
+                                    <label class="control-label col-md-2">Large Image</label>
+                                    <div class="col-md-9">
+                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                <!--div ng-class="largeImgEnable == false ? 'fileinput-new thumbnail ng-show' : 'fileinput-new thumbnail ng-hide'" class="fileinput-new thumbnail"  ng-show="largeImgEnable == false">
+                                                     <img src="http://www.placehold.it/110x110/EFEFEF/AAAAAA&amp;text=no+image" alt="" />
+                                                </div-->
+                                                <!--div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div-->
+                                                <div ng-if="largeImgEnable" class="fileinput-new thumbnail preview_image"  ng-show="largeImgEnable == true">
+                                                    <img  src="{{ largeImgURI }}" alt="" style="max-height: 300px; max-width: 300px;"  />
+                                                    </div>
+                                               <div>
+                                                    <span class="btn default btn-file" ng-click="trigger('#largeInput')">
+                                                        <div ng-class="largeImgEnable == false ? 'fileinput-new ng-show-inline-block' : 'fileinput-new ng-hide'" ng-show="largeImgEnable == 'false'" >Select image</div>
+                                                                                                                            
+                                                        <span ng-class="largeImgEnable == true ? 'ng-show-inline-block' : 'fileinput-exists ng-hide'" ng-if="largeImgEnable"> Change </span>
+                                                        
+                                                    </span>
+                                                    
+                                                    <a ng-if="largeImgEnable" href="javascript:;" ng-class="largeImgEnable == true ? 'btn default fileinput-exists  ng-show-inline-block' : 'btn default fileinput-exists ng-hide'" data-dismiss="fileinput" ng-click="removeImage('large')" > Remove </a>
+                                                </div>
+                                                 <input type="hidden" name="v_large_image" id="full-image-element" value="{{ edit_fields.v_large_image }}" ng-model="edit_fields.v_large_image" data-error-message="Image" class="form-control" />   
+                                            </div>
+                                    </div>
+                                </div>
+                                 
+                                <div class="form-group">
+									<label class="control-label col-md-2">Content </label>
+									<div class="col-md-9">
+										<textarea class="form-control ckeditor" ng-model="edit_fields.t_content" data-error-message="Content or Select large image" name="t_content" rows="6"  id="city_asset_content_editor"></textarea>
+                                       <div id="editor2_error" class="editor2_error help-block"></div>
+                                       
+									</div>
+								</div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Asset Order<span class="required">* </span></label>
+                                    <div class="col-md-4">
+                                        <input class="form-control required digits" ng-model="edit_fields.i_asset_order" name="i_asset_order"  data-error-container=".help-block" data-error-message="Display Order" ng-enter />
+                                    </div>
+                                </div>
+                            </div>
+							<div class="form-actions">
+								<div class="row">
+									<div class="col-md-offset-3 col-md-9">
+                                        <input type="hidden" name="edit_id" ng-model="edit_fields.id" value="{{ edit_fields.id }}" />
+										<button type="submit" class="btn green" ng-click="submit_frm_edit(edit_fields)">Submit</button>
+										<button type="button" class="btn default" ng-click="clearFormData('edit')">Cancel</button>
+									</div>
+								</div>
+							</div>
+						</form>
+                        <!-- END FORM-->
+                        <form id="form_name" action="{{ getSrc('api/employee/upload-for-ie'); }}" method="post" enctype="multipart/form-data">
+                            <input type="file" name="thumb_upload" id="thumbInput" style="display: none;" />
+                            <input type="file" name="large_upload" id="largeInput" style="display: none;" />
+                        </form>
+    				</div>
+    				<!-- END VALIDATION STATES-->
+    			</div>
+            </div>
+            <!-- End edit form -->
+            
+		</div>
+	</div>
+<!-- END PAGE CONTENT-->
+</div>

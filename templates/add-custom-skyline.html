@@ -1,0 +1,20 @@
+<section ng-controller="CityDetailController" id="addNewCustomskyline" class="addNewCustomskyline skylineBuilding register">
+    <section id="contact_us" class="change_password_template">
+        <a class="skylineCloseButton" href="javascript:$.fancybox.close();"></a>
+        <div class="contact_form">
+            <!--<form id="addNewCustomskyline" class="addNewCustomskyline" method="post" action="javascript:void(0);" onsubmit="return false" >-->
+            <form action="javascript:void(0);" id="addNewCustomskyline2">
+                <h3> Create a new skyline</h3><a class="skylineCloseButton" href="javascript:$.fancybox.close();"></a>
+                <div class="error_content" id="error_content_required2" style="display: none;clear:both;"> All fields are required. </div>
+                <div class="full_content">
+                    <input type="text" ng-enter ng-model="addCustomSkyline.v_title" name="v_title" placeholder="Enter Skyline name*" class="required" maxlength="50"/>
+                </div>
+                <div class="full_content">
+                    <textarea ng-model="addCustomSkyline.v_short_desc" rows="4" name="v_short_desc" placeholder="Enter Skyline description(optional)" maxlength="200"></textarea>
+                </div>
+                <p class="required-field">*Required fields</p>
+                <input type="submit" class="red_btn create-skyline-btn" value="Create"  data-ng-click="saveSkyLineHeader(addCustomSkyline)" />
+            </form>
+        </div>
+    </section>
+</section>

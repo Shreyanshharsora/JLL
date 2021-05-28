@@ -1,0 +1,393 @@
+<div id="city_main" class="loca-market" ng-controller="CityDetailController">
+    <div class="overlay"><!----></div>
+    <div class="city_left" style="height: 100%;">
+        <div class="top_ctrl">
+            <h2>{{ items.cities.v_name }}</h2>
+            <div class="align-right">
+                <div class="key_content">
+
+                    <span>Key:</span>
+                    <a ng-repeat="unit in items.unit_assets" href="javascript:void(0);" class="tip" my-data-color="{{ unit.v_color }}" my-data-tip="{{ unit.v_name }}" style="background-color: {{ unit.v_color }}; height: 12px; width: 38px; margin: 5px 8px 0 0;"></a>
+				</div>
+                <select ng-if="GLOBAL.IS_MOBILE == 1" id="building_select" selectric-first data-options="{ maxHeight: 400 }" data-value="{{ selected_items.id }}">
+                    <option value="">Select Building</option>
+                    <option ng-repeat="building in items.cities.building" value="{{ building.id }}">{{ building.v_name }}</option>
+				</select>
+                <select ng-if="GLOBAL.IS_MOBILE != 1" id="building_select" selectric-first data-options="{ maxHeight: 400 }" data-value="{{ selected_items.id }}">
+                    <option ng-repeat="building in items.cities.building" value="{{ building.id }}">{{ building.v_name }}</option>
+				</select>
+			</div>
+            <img ng-src="images/key_img_top.png" class="key_content_img" alt="">
+		</div>
+        <div class="city_lists" id="scrollbar2" ng-mouseout="looseHoverFullGrid()" >
+            <div class="viewport">
+                <div class="bg_temp" ng-if="backgroundImage" ng-style="{'background': 'url( {{backgroundImage}} ) repeat-x scroll 0 0 rgba(0, 0, 0, 0)'}"></div>
+                <div class="overview scrollbar-inner">
+                    <ul style="min-height: 350px !important;">
+                        <li>&nbsp;&nbsp;&nbsp;</li>
+                        <li ng-if="building.v_plain_image != ''" ng-repeat="building in items.cities.building" id="building_{{ building.id }}" ng-click="displayCityData(building.id)" class="first building_list building_{{ building.id }}" data-name="{{ building.v_name }}" scrollleft='' data-id="{{ building.id }}">
+							<!--li ng-if="building.v_plain_image != ''" ng-repeat="building in items.cities.building" id="building_{{ building.id }}" ng-click="displayCityData(building.id)" ng-class="$index == 0 ? 'first first-child building_list building_{{ building.id }}' : 'first building_list building_{{ building.id }}'"  data-name="{{ building.v_name }}" scrollleft='' data-id="{{ building.id }}" -->
+                            <!-- span><p>{{ building.v_name }}</p></span -->
+                            <img ng-mouseover="hoverGrid(building.id)" width="{{building.v_plain_image_w/10}}px" class="plain plain_image_{{ building.id }}" ng-src="{{ GLOBAL.SITE_URL + GLOBAL.BUILDING_PLAIN_IMAGE_PATH + building.v_plain_image }}" alt="" style="height: 350px;" />
+
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+        <div class="bottom_text">
+            <div class="left_btm">
+                <h3>{{ items.cities.v_skyline_title }}<!-- span>review</span --></h3>
+                <p><i>{{ items.cities.v_skyline_tagline }}</i></p>
+			</div>
+            <div class="right_btm">
+                <p>{{ items.cities.t_skyline_body }}</p>
+                <div class="right_lnks">
+                    <!--a href="#" class="grey_btn"><i class="share_icon"></i></a-->
+                    <span class="st_sharethis_custom grey_btn" st_title="{{ items.cities.v_skyline_title | htmlToPlaintext }} - {{ items.cities.v_skyline_tagline | htmlToPlaintext }}" st_url="{{ $rootScope.current_url }}" st_summary="{{ items.cities.t_skyline_body | htmlToPlaintext }}"><i class="share_icon"></i></span>
+                    <!--<a href="javascript: void(0);" ng-click="city_detail_contact_us(items.cities.v_name)" class="red_btn">Contact us</a> <br>-->
+                    <a ng-href="{{GLOBAL.SITE_URL}}contact-us" class="red_btn">CONTACT US</a> <br>
+                    <a href="javascript: void(0);" ng-if="items.cities.v_download_pdf" class="red_btn download-btn" ng-click="downloadPdf(items.cities)">{{items.cities.v_download_button_text}}</a>
+				</div>
+			</div>
+		</div>
+        <div id="city_car">
+            <div class="top_title">
+                <a href="javascript: void(0);" ng-if="items.cities.v_download_pdf" ng-click="downloadPdf(items.cities)" class="red_btn download-btn-mobile">{{items.cities.v_download_button_text}}</a>
+                <div class="about-icon for-mobile">
+                    <span ng-click="aboutIconTooltip()"><img ng-src="{{GLOBAL.SITE_URL}}images/info-icon.png" alt=""></span>
+                    <div class="tooltip-section">
+                        <div class="dis-table">
+							<div class="dis-table-cell">
+                                Statistics are an aggregation of the current Skyline view
+                                <span class="close-btn" ng-click="closeBtn()"><img ng-src="{{GLOBAL.SITE_URL}}images/close-btn-red.png" alt=""></span>
+							</div>
+						</div>
+					</div>
+				</div>
+                <h4>Skyline data
+                    <div class="about-icon">
+                        <span><img ng-src="{{ GLOBAL.SITE_URL}}images/info-icon.png" alt=""></span>
+                        <div class="tooltip-section">
+                            <div class="dis-table">
+								<div class="dis-table-cell">
+                                    Statistics are an aggregation of the current Skyline view
+								</div>
+							</div>
+						</div>
+					</div>
+				</h4>
+			</div>
+            <!-- style="/*height: 106px;*/" -->
+
+            <owl-carousel class="fact-carousel custom-skyline-carousel" data-options="{ loop: false, rewind: false, items:4, margin:15, center: false, autoHeight:false, nav: false, slideBy : 'page', responsive : { 0 : { items:1, center: true, }, 640 : { items:2 }, 768 : { items:3 }, 1100 : { items:5 } } }">
+                <div class="item aggregate-statistic" ng-repeat="aggregate_statistic in items.aggregate">
+
+                    <div class="item-inner" ng-class="$index == (items.aggregate.length - 1) ? 'custom-skyline-carousel-div' : ''" ng-hide="$index == (items.aggregate.length - 1)">
+<!--                        style="{{ aggregate_statistic.font-size != '' ? 'font-size:' + aggregate_statistic.font-size + ';' : '' }}" class="{{ aggregate_statistic.class }}"-->
+                        <h2>{{ aggregate_statistic.prefix + aggregate_statistic.value + aggregate_statistic.postfix }}</h2>
+                        <span>{{ aggregate_statistic.title }}</span>
+                        <span class="sub-title">{{ aggregate_statistic.sub_title }}</span>
+                    </div>
+
+                    <a ng-show="$index == (items.aggregate.length -1)" data-title="TEst" data-url="" data-id="" data-imageurl="{{ GLOBAL.SITE_URL+'images/dummy_image.png' }}" href="{{ GLOBAL.SITE_URL+'images/dummy_image.png' }}" data-dbid="" fancybox-city data-template="" class="a-city-details">
+
+                        <img data-dbid="" ng-src="{{ GLOBAL.SITE_URL+'images/dummy_image.png' }}"  alt="" class="a_item_carousel custom-skyline-carousel-img"/>
+
+                        <img ng-if="$index == 0" imageonload id="" ng-src="{{ GLOBAL.SITE_URL+'images/dummy_image.png' }}" alt="" style="width: 100%; height: 100%;" data-dbid="" class="hiddendiv_carousel" />
+                        <img ng-if="$index > 0" id="image__" ng-src="{{ GLOBAL.SITE_URL+'images/dummy_image.png'}}" alt="" style="width: 100%; height: 100%;" class="hiddendiv_carousel" data-dbid="" />
+                    </a>
+                </div>
+            </owl-carousel>
+		</div>
+	</div>
+
+    <div class="city_right city_right_local mobile_hide">
+		<div id="city_right_inner_div">
+            <div class="social_wrap hidden">
+				<div class="social_bar">
+					<a href="#"><img ng-src="images/fb.png" alt=""></a>
+					<a href="#"><img ng-src="images/tw.png" alt=""></a>
+					<a href="#"><img ng-src="images/gp.png" alt=""></a>
+					<a href="#"><img ng-src="images/li.png" alt=""></a>
+					<a href="#"><img ng-src="images/pin.png" alt=""></a>
+				</div>
+			</div>
+            <div class="close_btn"><!----></div>
+            <!--<a class="" ng-click="openNewBuilding()">OpenNew</a>-->
+            <div class="drop-down-skyline heart-cell">
+                <a class="red_btn" href="javascript:;" city-custom-skyline-dropdown >Add this building to mySkylines<span class="arrow"></span></a>
+                <div class="dropdown-list">
+                    <div class="all-skyline">
+                        <ul>
+                            <li ng-repeat="skyline in items.userCustomSkylines" ng-if="skyline.i_user_id == current_login_id">
+                                <a href="javascript:void(0)" ng-click="addSkyLine(skyline)">{{skyline.v_title}}</a>
+							</li>
+                            <li>
+                                <!--<a fancybox-skyline ng-click="openFancybox('templates/add-custom-skyline.html')" href="javascript:void(0)">+ Create a new mySKYLINE</a>-->
+                                <a ng-click="openAddNewSkyline()" href="javascript:void(0)">+ Create a new mySKYLINE</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+            <div class="city_detail scrollbar-inner" style="min-height: 480px;">
+                <h3 class="city-name-title">{{ selected_items.v_name }}</h3>
+                <p>{{ selected_items.address }} </p>
+                <ul>
+
+                    <li>
+                        <div> Status</div>
+                        <div ng-bind-html="selected_items.b_status != '' ? selected_items.b_status : 'N/A'"></div>
+					</li>
+                    <li>
+                        <div> Number of Floors</div>
+                        <div>{{ selected_items.i_display_no_of_floors }}</div>
+					</li>
+                    <li>
+                        <div> Year built/renovated </div>
+                        <div ng-bind-html="selected_items.i_year_built != '' ? selected_items.i_year_built : 'N/A'"></div>
+					</li>
+                    <li>
+                        <div> Submarket </div>
+                        <div ng-bind-html="selected_items.v_submarket != '' ? selected_items.v_submarket : 'N/A'"></div>
+					</li>
+                    <li>
+                        <div> Class </div>
+                        <div ng-bind-html="selected_items.e_class != '' ? selected_items.e_class : 'N/A'"></div>
+					</li>
+                    <li>
+                        <div> RBA (s.f.) </div>
+                        <div>{{ selected_items.i_rba | customNumber }}</div>
+					</li>
+                    <li>
+                        <div> Avg. floor plate (s.f.) </div>
+                        <div>{{ selected_items.i_avg_floor_plate | customNumber }}</div>
+					</li>
+                    <li>
+                        <div> Total vacant (s.f.) </div>
+                        <div>{{ selected_items.i_total_vacant_sf | customNumber }}</div>
+					</li>
+                    <li>
+                        <div> Occupied (%) </div>
+                        <div ng-bind-html="selected_items.i_occupied != '' && selected_items.i_occupied != '0' ? (selected_items.i_occupied).replace('%', '') +'%' : 'N/A'" ></div>
+					</li>
+                    <li>
+                        <div> Direct vacant (s.f.) </div>
+                        <div>{{ selected_items.i_direct_vacant_sf | customNumber }}</div>
+					</li>
+                    <li>
+                        <div> Leased (%) </div>
+                        <div ng-bind-html="selected_items.i_leased != '' && selected_items.i_leased != '0' ? (selected_items.i_leased).replace('%', '') +'%' : 'N/A'"  ></div>
+					</li>
+                    <li>
+                        <div> Direct rent (FS) </div>
+                        <div ng-bind-html="((selected_items.d_rent != '' && selected_items.d_rent != 'N/A')?((selected_items.d_rent == '-' || selected_items.d_rent == 'Withheld' || selected_items.d_rent == 'Fully Leased' || selected_items.d_rent == 'TBD')? selected_items.d_rent:'$'+(selected_items.d_rent).replace('$', '')):'N/A')" ></div>
+					</li>
+                    <li>
+                        <div>Owner</div>
+                        <div ng-bind-html="selected_items.v_owner != '' ? selected_items.v_owner : 'N/A'"></div>
+					</li>
+                    <li>
+                        <div>LEED</div>
+                        <div ng-if="selected_items.i_leed == 1">Yes</div>
+                        <div ng-if="selected_items.i_leed == 0">No</div>
+					</li>
+                    <li>
+                        <div>LEED certification</div>
+                        <div ng-bind-html="selected_items.e_leed_cert != '' ? selected_items.e_leed_cert : 'N/A'"></div>
+					</li>
+                    <li>
+                        <div>Last updated</div>
+                        <div>{{ selected_items.formatted_updated_at }}</div>
+					</li>
+				</ul>
+			</div>
+            <div class="clear"></div>
+            <div class="building_map" id="building_map" style="min-height: 245px; margin-bottom: 15px; margin-top: 25px; padding: 0; bottom: 0; vertical-align: bottom;"></div>
+		</div>
+	</div>
+    <div class="clear"><!----></div>
+
+</div>
+
+
+<section id="viewcustomskyline" class="viewcustomskyline skylineBuilding" style="display: none;">
+    <section id="change_password" class="change_password_template">
+        <h3 ng-bind="responseSuccess.message"></h3>
+        <a class="skylineCloseButton" href="javascript:$.fancybox.close();"></a>
+
+
+        <button class="red_btn button" ng-click="gotoUrl(newSkylineLink.link)" style="{{ items.otherSkyline.length <= 0 ? 'max-width: 98% !important;' : '' }}" >View your skyline</button>
+
+        <div class="dropdown-red local" ng-show="items.otherSkyline.length > 0">
+            <a class="red_btn" href="javascript:;">View my other Skylines</a>
+            <div class="dropdown-list">
+                <div class="all-skyline local scrollbar-inner">
+                    <ul class="">
+                        <li ng-repeat="skyline in items.otherSkyline" ng-if="skyline.i_user_id == current_login_id">
+							<a href="javascript:void(0)" ng-click="gotoUrl(skyline.v_slug)">{{skyline.v_title}}</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+</section>
+
+<section id="addBuildingToSkyline" class="addBuildingToSkyline skylineBuilding" style="display: none;">
+    <section id="change_password" class="change_password_template">
+        <h3>Are you sure you want to add this building to your "{{addBuildingItem.v_title}}"?</h3>
+        <a class="skylineCloseButton" href="javascript:$.fancybox.close();"></a>
+        <div class="buttons-div">
+            <button class="red_btn button confirm" ng-click="Confirm(addBuildingItem)">Yes</button>
+            <button class="red_btn button" ng-click="cancelConfirm()">Cancel</button>
+		</div>
+	</section>
+</section>
+
+<section id="errroFancyBox" class="errroFancyBox skylineBuilding" style="display: none;">
+    <section id="error_fancy_box" class="errroFancyBox">
+        <h3>{{responseError.message}}</h3>
+        <a class="skylineCloseButton" href="javascript:$.fancybox.close();"></a>
+        <a class="red_btn button"  href="javascript:$.fancybox.close();">Ok</a>
+	</section>
+</section>
+
+<section ng-controller="CityDetailController" id="addNewCustomskyline" class="addNewCustomskyline skylineBuilding register" style="display: none;">
+    <section id="contact_us" class="change_password_template">
+        <a class="skylineCloseButton" ng-click="cancelConfirm()"></a>
+        <div class="contact_form">
+            <!--<form id="addNewCustomskyline" class="addNewCustomskyline" method="post" action="javascript:void(0);" onsubmit="return false" >-->
+            <form action="javascript:void(0);" id="addNewCustomskyline">
+                <h3> Create a new MySkyline</h3>
+                <div class="error_content" id="error_content_required" style="display: none;clear:both;"> Please enter skyline name.</div>
+                <div class="full_content">
+                    <input type="text" ng-enter ng-model="addCustomSkyline.v_title" name="v_title" placeholder="Enter Skyline name*" class="required" maxlength="50"/>
+				</div>
+                <div class="full_content">
+                    <textarea ng-model="addCustomSkyline.v_short_desc" rows="4" name="v_short_desc" placeholder="Enter Skyline description(optional)" maxlength="200"></textarea>
+				</div>
+                <p class="required-field">*Required fields</p>
+                <input type="submit" class="red_btn create-skyline-btn" value="Create"  data-ng-click="saveSkyLine(addCustomSkyline)" />
+			</form>
+		</div>
+	</section>
+</section>
+
+<script type="text/javascript">
+    var mapLoaded = 0;
+    document.onkeydown = fkey;
+    document.onkeypress = fkey
+    document.onkeyup = fkey;
+    var wasPressed = false;
+    function fkey(e){
+        e = e || window.event;
+		if( wasPressed ) return;
+
+		/*if (e.keyCode == 116) {
+			location.reload();
+			wasPressed = true;
+		}*/
+	}
+
+
+    $(document).ready(function(){
+
+        $('#building_map').css({'opacity':'0', 'position': 'relative'});
+        /* Show right panel on city click */
+        $('body').on('click', '.city_right .close_btn', function(){
+            $(this).parents('.city_right').addClass('mobile_hide');
+            $('.overlay').fadeOut();
+		});
+
+        $('body').on('mouseover', '#city_main .city_left .top_ctrl .selectric .label', function() {
+            $('.selectric .button').css('color','#BC141A');
+			}).mouseout(function() {
+            $('.selectric .button').css('color','');
+		});
+        $('#scrollbar2 ul li').on('touchstart', this, nextEvent);
+        function nextEvent() {
+            var touchStartObj = $(this);
+            //behaviour for end
+            $(this).on('touchend', function(eve){
+                $(this).off('touchend');
+
+                $('.city_right').removeClass('mobile_hide');
+                $('.overlay').fadeIn();
+                var thisObj = $(this);
+                if(IS_MOBILE == 1){
+                    setTimeout(function(e){
+                        var data_id = thisObj.attr('data-id');
+                        $('#city_main .city_left .city_lists ul li').each(function(){
+                            touchStartObj.css('opacity','0.3').removeClass('on');
+                            //$(this).find('.graph').removeClass('display-none');
+                            //$(this).find('.plain').addClass('display-none');
+						});
+                        thisObj.css('opacity','1').addClass('on');
+                        var element = angular.element(thisObj);
+                        var scope = element.scope();
+                        //as this happends outside of angular you probably have to notify angular of the change by wrapping your function call in $apply
+                        scope.$apply(function(){
+                            scope.displayCityData(data_id);
+						});
+					}, 100);
+				}
+			});
+            //behaviour for move
+            $(this).on('touchmove', function(e){
+                $(this).off('touchend');
+			});
+		}
+
+        if(mapLoaded == 0){
+            setTimeout(function(){
+                $('#building_map').css('height', $('#city_car').height());
+                $('#building_map').css('opacity', '1');
+                var element = angular.element('#building_map');
+                var scope = element.scope();
+                //as this happends outside of angular you probably have to notify angular of the change by wrapping your function call in $apply
+                scope.$apply(function(){
+                    scope.generateMap();
+                    mapLoaded = 1;
+				});
+			}, 500);
+		}
+	});
+
+    $( window ).on( "orientationchange", function( event ) {
+		setTimeout(function(){
+            $('.city_detail').css({'overflow': 'hidden !important;'});
+            $('.scrollbar-inner.scroll-content').css({'overflow': 'hidden !important;'});
+            $('#building_map').css('height', $('#city_car').height());
+            $('#building_map').css('opacity', '1');
+            $('#sb-info').append($('.social_wrap').html());
+
+            var element = angular.element('#building_map');
+            var scope = element.scope();
+            //owlCarouselSetHeight();
+		}, 300);
+	});
+
+//    window.addEventListener("orientationchange", function() {
+//        owlCarouselSetHeight();
+//    });
+
+    $(window).load(function(){
+        var element = angular.element('#building_map');
+        var scope = element.scope();
+        if(scope.items.cities.city_asset.length == 0){
+            angular.element('.city_right').css('min-height',parseInt(angular.element('.city_right').css('min-height').match(/\d+/)[0])+parseInt(angular.element('#building_map').css('min-height').match(/\d+/)[0]) );
+		}
+        $('#sb-info').append($('.social_wrap').html());
+
+       owlCarouselSetHeight();
+	})
+    $(window).resize(function(){
+        //setTimeout(function(){owlCarouselSetHeight()},500);
+        /* ADJUST RIGHT PANEL HEIGHT */
+        //$('.city_right').css('min-height',$('.city_left').height());
+
+        //owlCarouselSetHeight();
+	});
+</script>

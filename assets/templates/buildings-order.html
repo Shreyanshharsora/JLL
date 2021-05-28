@@ -1,0 +1,199 @@
+<div ng-controller="BuildingsOrderController" id="buildings">
+<!-- BEGIN MAIN CONTENT -->
+    <div class="row">
+		<div class="col-md-12">
+			<!--div class="note note-danger note-bordered">
+				<p>
+					 NOTE: The below datatable is not connected to a real database so the filter and sorting is just simulated for demo purposes only.
+				</p>
+			</div-->
+			<!-- Begin: life time stats -->
+            <div class="portlet">
+				<div class="portlet-title">
+					<div class="caption">
+						<i class="fa fa-retweet"></i> Set list order of Buildings
+					</div>
+					<!--div class="actions">
+						<a class="btn default yellow-stripe" ui-sref="/buildings-add"><i class="fa fa-plus"></i> <span class="hidden-480" > Add Building Information </span> </a>
+                        
+						<div class="btn-group">
+							<a data-toggle="dropdown" href="javascript:;" class="btn default yellow-stripe">
+    							<i class="fa fa-share"></i>
+    							<span class="hidden-480">Tools </span>
+    							<i class="fa fa-angle-down"></i>
+							</a>
+							<ul class="dropdown-menu pull-right">
+								<li>
+                                    <a href="javascript: void(0);" ng-click="export_to_excel(fields)" target="_blank"> 
+                                    Export to Excel </a>
+                                </li>
+                                <li>
+                                    <a href="javascript: void(0);" ng-click="import_to_excel('#import_excel')" target="_blank"> 
+                                    Import to Excel </a>
+                                </li>
+							</ul>
+						</div>
+					</div-->
+				</div>
+				<div class="portlet-body">
+                <form id="frmOrder">
+					<div class="table-container" style="">
+						<div id="datatable_ajax_wrapper" class="dataTables_wrapper dataTables_extended_wrapper no-footer">
+                            <div class="row">
+                                <div class="col-md-2 col-xs-5">
+                                    <select class="form-control form-filter input-sm" name="v_city_name" ng-model="fields.v_city_name"  >
+            							<option value="">Select City</option>
+            						    <option ng-repeat="value in cities" value="{{ value.id }}" >{{ value.v_name }}</option>
+            					     </select> 
+                                </div>
+                                <div class="col-md-1 col-xs-2">
+                                    <a class="btn green" href="javascript:void(0);" ng-click="change_city()"><span> Search </span> </a>
+                                </div>
+                                
+                                
+                                <div class="col-md-5 col-sm-12">
+                                    <div style=" padding: 5px 5px 5px 8px;" class=" alert-success display-hide">
+                                        <button class="close" data-close="alert"></button>
+                                       {{success_msg}}
+                                    </div>
+                                </div>
+                                <div class="col-md-2 pull-right" style="text-align: right;" ng-if="save_button">
+                                    <a class="btn default yellow-stripe" href="javascript:void(0);" ng-click="save_all(fields.v_city_name)"><span> Save All </span> </a>
+                                </div>
+                            </div>
+                            <div class="table-scrollable">
+                            
+                            <table id="datatable_ajax" class="table table-striped table-bordered table-hover dataTable no-footer" aria-describedby="datatable_ajax_info" role="grid">
+						  <thead>
+						  <tr class="heading" role="row">
+                            <!--th width="1%">
+                              <input type="checkbox"  ng-model="selected_record[0]" class="group-checkable" ng-change="check_all(selected_record[0],false)" data-set="#sample_1 .checkboxes" />
+                            </th>
+                            <th width="20%" ng-class="order_field != 'buildings.v_name' ? 'sorting' : sort_order == 'desc' ? 'sorting_desc': 'sorting_asc'" ng-click="order_by_name('buildings.v_name')" class="sorting" tabindex="0" aria-controls="datatable_ajax" rowspan="1" colspan="1" aria-label="Customer: activate to sort column ascending">
+								Name
+							</th>
+                            <th width="5%" ng-class="order_field != 'i_order' ? 'sorting' : sort_order == 'desc' ? 'sorting_desc': 'sorting_asc'" ng-click="order_by_name('i_order')" class="sorting" tabindex="0" aria-controls="datatable_ajax" rowspan="1" colspan="1" aria-label="Customer: activate to sort column ascending">
+                                Order No
+                            </th>
+                            <th width="10%" ng-class="order_field != 'i_floor_number' ? 'sorting' : sort_order == 'desc' ? 'sorting_desc': 'sorting_asc'" ng-click="order_by_name('i_floor_number')" class="sorting" tabindex="0" aria-controls="datatable_ajax" rowspan="1" colspan="1" aria-label="Customer: activate to sort column ascending">
+                                Number of Floors
+                            </th>
+                             <th width="15%" ng-class="order_field != 'e_source' ? 'sorting' : sort_order == 'desc' ? 'sorting_desc': 'sorting_asc'" ng-click="order_by_name('e_source')" class="sorting" tabindex="0" aria-controls="datatable_ajax" rowspan="1" colspan="1" aria-label="Customer: activate to sort column ascending">
+                                Source
+                            </th-->
+                            
+                            <th width="20%">Name</th>
+                            <th width="5%">Order Number</th>
+                            <th width="10%">Number of Floors</th>
+                            <!--th width="15%">Source</th-->
+                            
+                            
+                            
+                            <!--th width="20%"  tabindex="0" aria-controls="datatable_ajax" rowspan="1" colspan="1" aria-label="Actions: activate to sort column ascending">
+                                 Actions
+                            </th-->
+                        </tr>
+                        
+						</thead>
+						<tbody>
+                            
+                                <tr role="row" class="odd" id="tablerow{{ item.id }}" ng-repeat="(key, item) in items" ng-show="data_loading == false">
+                                    <!--td>
+                                      <input type="checkbox"  ng-model="selected_record[item.id]" ng-click="enable_button()" class="checkboxes" value="1" />
+                                    </td-->
+                                    <!--input type="hidden" name="data[id][{{ item.id }}]" value="" /-->
+                                    <td>{{ item.v_name }}</td>
+                                    <td><input class="order_value form-control required only_digit_number unique" data-error-message="order number" name="data[i_order][{{ item.id }}]" value="{{ item.i_order }}" id="i_order[{{ item.id }}]" /></td>
+                                    <td>{{ item.i_floor_number }}</td>
+                                    <!--td>{{ item.e_source }}</td-->
+                                    
+                                    <!--td>
+                                        <a class="btn btn-xs default" ng-click="loadEditData(item)" ><i class="fa fa-edit"></i> Edit </a> 
+                                        <a class="btn btn-xs default" ng-click="delete_btn(item.id);"  href="javascript:void(0);"><i class="icon-trash"></i> Delete </a> 
+                                    </td-->
+                                </tr>
+                            
+                            <tfoot ng-show="data_loading == false && items.length <= 0">
+                                <tr><td style="border-left: 0; text-align: center;" colspan="8">No record found.</td></tr>
+                            </tfoot>
+                            <tfoot ng-show="city_status == false && data_loading == false">
+                                <tr><td style="border-left: 0; text-align: center;" colspan="8">Please select city.</td></tr>
+                            </tfoot>
+                            <tfoot ng-show="data_loading == true && fields.v_city_name <= 0">
+                                <tr><td align="center" colspan="8"><img ng-src="{{ GLOBAL.ADMIN_ASSET_URL }}img/loading.gif" /></td></tr>
+                            </tfoot>
+                        </tbody>
+						</table>
+                        
+                        </div>
+                        </div>
+					</div>
+                    </form>
+				</div>
+			</div>
+			<!-- End: life time stats -->
+            <script type="text/javascript">
+            $(document).ready(function(){
+                $(document).on('keyup','.order_value', function(ev){
+                    var save_flag = 0;
+                    var curr_obj = $(this);
+                    
+                    var changed_val = curr_obj.val();
+                    $('.order_value').not(this).each(function(){
+                        $(this).css('border','1px solid #e5e5e5');
+                        if(changed_val == $(this).val()){
+                            $(this).addClass('duplicate_value_error');
+                            curr_obj.addClass('duplicate_value_error');
+                            save_flag = 1;
+                        }
+                    });
+                    
+                    var element = angular.element(curr_obj);
+                    var scope = element.scope();
+                    //as this happends outside of angular you probably have to notify angular of the change by wrapping your function call in $apply
+                    scope.$apply(function(){
+                        if(save_flag == 1){
+                            scope.updateSaveButton(false);
+                        } else {
+                            curr_obj.removeClass('duplicate_value_error');
+                            scope.updateSaveButton(true);
+                        }
+                    });
+                    
+                    check_validation();
+                });
+                                
+                function check_validation(){
+                    var valid = 1; 
+                    var textValues = [];
+                    $('.order_value').each(function(){
+                        if ($(this).val() !== "") {
+                            var doesExisit = ($.inArray($(this).val(), textValues) === -1) ? false : true;
+                            if (doesExisit === false) {
+                                textValues.push($(this).val());
+                            } else {
+                                valid = 0;
+                                return false;
+                            }
+                        }
+                        
+                    });
+                    
+                    var element = angular.element($('.order_value'));
+                    var scope = element.scope();
+                    //as this happends outside of angular you probably have to notify angular of the change by wrapping your function call in $apply
+                    scope.$apply(function(){
+                        if(valid == 0){
+                            scope.updateSaveButton(false);
+                        } else {
+                            $('.order_value').removeClass('duplicate_value_error');
+                            scope.updateSaveButton(true);
+                        }
+                    });
+                }
+            });
+            </script>
+		</div>
+	</div>
+<!-- END PAGE CONTENT-->
+</div>

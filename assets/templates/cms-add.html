@@ -1,0 +1,189 @@
+<div ng-controller="CmsAddController" id="cms">
+<!-- BEGIN MAIN CONTENT -->
+    <div class="row">
+		<div class="col-md-12">
+			<!-- Begin add form -->
+            <div tabindex="-1">
+
+                <div class="portlet box blue-madison">
+					<div class="portlet-title">
+						<div class="caption">
+							<i class="fa fa-plus"></i>Add Page
+						</div>
+						<div class="tools">
+							<a href="javascript:;" class=""></a>
+						</div>
+					</div>
+					<div class="portlet-body form">
+						<!-- BEGIN FORM-->
+						<form id="frmAdd" name="frmAdd" class="form-horizontal" onsubmit="return false">
+							<div class="form-body">
+								<!--h3 class="form-section">Advance validation. <small>Custom radio buttons, checkboxes and Select2 dropdowns</small></h3-->
+								<div class="alert alert-danger display-hide">
+									<button class="close" data-close="alert"></button>
+									You have some form errors. Please check below.
+								</div>
+								<div class="alert alert-success display-hide">
+									<button class="close" data-close="alert"></button>
+									  Record added successfully.
+								</div>
+                                <div class="form-group"></div>
+								<div class="form-group">
+									<label class="control-label col-md-2">Title <span class="required"> * </span> </label>
+									<div class="col-md-4">
+										<input type="text" ng-enter ng-model="add_fields.v_title" name="v_title" data-error-message="title" class="form-control required" ng-keyup="urlGenerate($event)"/>
+									</div>
+								</div>
+                                <div class="form-group">
+									<label class="control-label col-md-2">Page Title <span class="required"> * </span> </label>
+									<div class="col-md-4">
+										<input type="text" ng-enter ng-model="add_fields.v_page_title" name="v_page_title" data-error-message="page title" class="form-control required" />
+									</div>
+								</div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Slug (Page Url) <span class="required"> * </span> </label>
+                                    <div class="col-md-4">
+                                        <input type="text" ng-enter ng-model="add_fields.v_slug" name="v_slug" data-error-message="Slug (Page Url)" class="form-control required page_url unique" id="v_slug" rel="{{ add_fields.id }}" ng-keyup="urlGenerate($event)"/>
+                                        <div id="SlugUrlLink">{{ SITE_URL }}</div>
+                                        <span class="duplicate_error" id="v_slug_error">Slug url already exists.</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+									<label class="control-label col-md-2">External Link </label>
+									<div class="col-md-4">
+										<input type="text" ng-enter ng-model="add_fields.v_external_link" name="v_external_link" data-error-message="External Link" class="form-control url" />
+									</div>
+								</div>
+                                <div class="form-group">
+									<label class="control-label col-md-2">Order <span class="required"> * </span> </label>
+									<div class="col-md-4">
+										<input type="text" ng-enter ng-model="add_fields.i_order" name="i_order" data-error-message="order" class="form-control required number" />
+									</div>
+								</div>
+
+                                <div class="form-group last">
+									<label class="control-label col-md-2">Content <span class="required">* </span> <br />(Add keyword [IMAGE-WIDGET] in between content of page to display widget on that position.)
+									</label>
+									<div class="col-md-9">
+										<textarea class="form-control required ckeditor" ng-model="add_fields.t_content" data-error-message="Content" name="t_content" rows="6" data-error-container=".help-block" id="cms_content_editor"></textarea>
+                                       <div id="editor2_error" class="editor2_error help-block"></div>
+
+									</div>
+								</div>
+
+                                <div class="form-group last">
+									<label class="control-label col-md-2">Image Widget </label>
+									<div class="col-md-9">
+										<span ng-click="trigger('#fileInput')" class="btn default btn-file">
+                                            <div class="fileinput-new ng-show-inline-block">Select Images</div>
+
+                                        </span>
+                                        <div id="uploaded_images">
+                                            <!--div class="cms_images"><label class="images_name">testing.html</label><div class="col-md-2 images_text"><input type="text" class="form-control images_text" name="images[]" value="testing" /></div><a href="#" class="images_delete"><img src="{{ SITE_URL }}assets/images/remove-icon-small.png" alt="Remove" /></a></div-->
+                                        </div>
+									</div>
+								</div>
+                                <style>
+                                .cms_images .images_name { float: left; line-height: 34px; }
+                                .cms_images .images_text { float: left; }
+                                .cms_images .images_delete { float: left; line-height: 34px; }
+                                .cms_images { margin: 5px 0; }
+                                </style>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Meta Title <span class="required"> * </span> </label>
+                                    <div class="col-md-4">
+                                        <input type="text" ng-enter ng-model="add_fields.v_meta_title" name="v_meta_title" data-error-message="meta title" class="form-control required"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group last">
+                                    <label class="control-label col-md-2">Meta Keywords </label>
+                                    <div class="col-md-9">
+                                        <textarea class="form-control" ng-model="add_fields.v_meta_keywords" name="v_meta_keywords" rows="6"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group last">
+                                    <label class="control-label col-md-2">Meta Description </label>
+                                    <div class="col-md-9">
+                                        <textarea class="form-control" ng-model="add_fields.v_meta_description" name="v_meta_description" rows="6"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group last">
+                                    <label class="control-label col-md-2">Page Type </label>
+                                    <div class="col-md-4">
+                                        <select data-error-message="Page Type" name="e_page_type" ng-model="add_fields.e_page_type"  class="form-control bs-select add_e_page_type select">
+                                            <option value="Parent">Select Page Type</option>
+											<option value="U.S. Key Themes">U.S. Key Themes</option>
+                                            <option value="Canada Key Themes">Canada Key Themes</option>
+										</select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group last">
+                                    <label class="control-label col-md-2">Show on Flyout Menu <span class="required"> * </span></label>
+                                    <div class="col-md-4">
+                                        <select data-error-message="Show on Flyout Menu" name="e_show_in_menu" ng-model="add_fields.e_show_in_menu"  class="form-control bs-select add_e_status required select">
+                                            <option value="">Select Option</option>
+                                            <option select="selected" value="1">Yes</option>
+                                            <option value="0">No</option>
+										</select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group last">
+                                    <label class="control-label col-md-2">Show on Footer <span class="required"> * </span></label>
+                                    <div class="col-md-4">
+                                        <select data-error-message="Show on Footer" name="e_show_in_footer" ng-model="add_fields.e_show_in_footer"  class="form-control bs-select add_e_status required select">
+                                            <option value="">Select Option</option>
+											<option value="1">Yes</option>
+                                            <option value="0">No</option>
+										</select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group last">
+                                    <label class="control-label col-md-2">Status <span class="required"> * </span></label>
+                                    <div class="col-md-4">
+                                        <select data-error-message="Status" name="status" ng-model="add_fields.status"  class="form-control bs-select add_e_status required">
+                                            <option value="">Select status</option>
+											<option value="1">Active</option>
+                                            <option value="0">Inactive</option>
+										</select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+								<div class="row">
+									<div class="col-md-offset-3 col-md-9">
+										<button type="submit" class="btn green" ng-click="submit_frm_add(add_fields)">Submit</button>
+                                        <button type="submit" class="btn green" ng-click="submit_frm_add(add_fields, 'New')">Submit and Add New</button>
+										<button type="button" class="btn default" ng-click="clearFormData()">Cancel</button>
+									</div>
+								</div>
+							</div>
+						</form>
+                        <form id="form_name" action="{{ GLOBAL.API_URL+'/cms/upload-for-ie' }}" method="post" enctype="multipart/form-data">
+                            <input type="file" name="file_upload" id="fileInput" style="display: none;" multiple="multiple"/>
+                        </form>
+                        <!-- END FORM-->
+					</div>
+					<!-- END VALIDATION STATES-->
+				</div>
+
+            </div>
+            <script type="text/javascript">
+            $(document).ready(function(){
+                $('body').on('click','.images_delete', function(){
+                    $(this).parent('.cms_images').remove();
+                });
+            });
+            </script>
+            <!-- End add form -->
+
+		</div>
+	</div>
+<!-- END PAGE CONTENT-->
+</div>

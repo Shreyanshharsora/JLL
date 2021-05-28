@@ -1,0 +1,31 @@
+<section id="jll_facts" class="mb80" ng-controller="ViewAllController">
+    <div class="title">
+        Share All JLL <i>#RealEstateFacts</i>
+    </div>
+    <div class="mobile_slider">
+        <fact-carousel class="fact-carousel">
+            <div class="item" ng-repeat="item in items">
+                <a href="javascript: void(0)" fancybox data-template="{{ item.t_content}}"><img ng-src="{{ GLOBAL.SITE_URL+GLOBAL.NATIONAL_ASSET_IMAGE_PATH+item.v_thumbnail_url }}" alt="" /></a>
+            </div>
+        </fact-carousel>
+    </div>
+    <div id="container_mas">
+
+        <div class="col_left">
+            <a ng-repeat="leftData in view_left_column_data" ng-href="{{ GLOBAL.SITE_URL+GLOBAL.NATIONAL_ASSET_IMAGE_PATH+leftData.v_thumbnail_url }}" fancybox data-template="{{ leftData.t_content}}"><img ng-src="{{ GLOBAL.NATIONAL_ASSET_IMAGE_PATH+leftData.v_thumbnail_url}}" alt="" /></a>
+        </div>
+        <div class="col_center">
+            <a ng-repeat="middleData in view_middle_column_data" ng-href="{{ GLOBAL.SITE_URL+GLOBAL.NATIONAL_ASSET_IMAGE_PATH+middleData.v_thumbnail_url }}" fancybox data-template="{{ middleData.t_content}}"><img ng-src="{{ GLOBAL.NATIONAL_ASSET_IMAGE_PATH+middleData.v_thumbnail_url}}" alt="" /></a>                   
+        </div>
+        <div class="col_right">
+            <a ng-repeat="rightData in view_right_column_data" ng-href="{{ GLOBAL.SITE_URL+GLOBAL.NATIONAL_ASSET_IMAGE_PATH+rightData.v_thumbnail_url }}" fancybox data-template="{{ rightData.t_content}}"><img ng-src="{{ GLOBAL.NATIONAL_ASSET_IMAGE_PATH+rightData.v_thumbnail_url}}" alt="" /></a>                         
+        </div>
+        <!--<img src="images/img1.jpg" alt="">-->
+        <div class="clear"><!----></div>
+    </div>
+    <script type="text/javascript">
+    $(window).load(function(){
+        $('#full_wrapper').css('min-height', $(window).height());
+    })
+    </script>
+</section>

@@ -1,0 +1,141 @@
+<div ng-controller="HomePageAddContentController">
+<!-- BEGIN MAIN CONTENT -->
+    <div class="row">
+		<div class="col-md-12">
+			<!-- Begin add form -->
+            <div tabindex="-1">
+
+                <div class="portlet box blue-madison">
+					<div class="portlet-title">
+						<div class="caption">
+							<i class="fa fa-plus"></i>Add Home Page Content Box
+						</div>
+						<div class="tools">
+							<a href="javascript:;" class=""></a>
+						</div>
+					</div>
+					<div class="portlet-body form">
+						<!-- BEGIN FORM-->
+						<form id="frmAdd" name="frmAdd" class="form-horizontal" onsubmit="return false">
+							<div class="form-body">
+								<!--h3 class="form-section">Advance validation. <small>Custom radio buttons, checkboxes and Select2 dropdowns</small></h3-->
+								<div class="alert alert-danger display-hide">
+									<button class="close" data-close="alert"></button>
+									You have some form errors. Please check below.
+								</div>
+								<div class="alert alert-success display-hide">
+									<button class="close" data-close="alert"></button>
+									   Record added successfully.
+								</div>
+                                <div class="form-group"></div>
+
+                                <div class="form-group">
+									<label class="control-label col-md-2">Title <span class="required"> * </span></label>
+									<div class="col-md-4">
+										<input class="form-control required" ng-model="add_fields.v_title" data-error-message="Title" name="v_title" id="v_title" maxlength=50>
+									</div>
+								</div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-2"> Image  <span class="required"> * </span></label>
+                                    <div class="col-md-4">
+                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <div class="fileinput-preview-gird" ng-class="enableCropGrid == true ? 'default thumbnail' : 'default fileinput-exists ng-hide'" style="width: 200px; border: none; padding: 0px;">
+                                                <img style="height: auto !important; max-width: 200px !important;" id="img2" src="" />
+                                            </div>
+                                            <div>
+                                                <!--div ng-show="enableCropGrid" id="image_name" style="display: inline-block; margin-right: 5px;"></div-->
+                                                <span class="btn default btn-file" ng-click="trigger('#fileInputGrid')">
+                                                    <div ng-class="enableCropGrid == false ? 'fileinput-new ng-show-inline-block' : 'fileinput-new ng-hide'" ng-show="enableCropGrid == false" >Select image</div>
+                                                    <span ng-if="enableCropGrid"> Change </span>
+                                                </span>
+                                                <a ng-if="enableCropGrid" href="javascript:;" ng-class="enableCropGrid == true ? 'btn default fileinput-exists  ng-show-inline-block' : 'btn default fileinput-exists ng-hide'" data-dismiss="fileinputgrid" ng-click="removeImageGrid()" > Remove </a>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="v_image" ng-model="add_fields.v_image" id="full-grid-image-element" value="{{ add_fields.v_image }}" data-error-message="Image" />
+                                        <input type="hidden" id="transparent_background_image" name="transparent_background_image" value="" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+									<label class="control-label col-md-2">YouTube Video Link  <span class="required"> * </span></label>
+									<div class="col-md-4">
+										<input class="form-control" ng-model="add_fields.v_video" data-error-message="Video" name="v_video" id="v_video">
+									</div>
+								</div>
+
+                                <div class="form-group">
+									<label class="control-label col-md-2">Description  <span class="required"> * </span> </label>
+									<div class="col-md-4">
+										<textarea class="form-control required" ng-model="add_fields.v_desc" data-error-message="Description" name="v_desc" rows="6" id="v_desc" maxlength=200></textarea>
+									</div>
+								</div>
+
+                                <div class="form-group">
+									<label class="control-label col-md-2">Button Text </label>
+									<div class="col-md-4">
+										<input class="form-control" ng-model="add_fields.v_button_text" data-error-message="Button Text" name="Button Text" id="v_button_text" maxlength="15">
+									</div>
+								</div>
+
+                                <div class="form-group">
+									<label class="control-label col-md-2">Button Link </label>
+									<div class="col-md-4">
+										<input class="form-control"   ng-class="{'required': (add_fields.v_button_text !='' && add_fields.v_button_text !=NULL)}" ng-model="add_fields.v_link" data-error-message="Tag Line" name="v_link" id="v_link" maxlength="255">
+									</div>
+								</div>
+
+                                <div class="form-group last">
+                                    <label class="control-label col-md-2">Type <span class="required"> * </span></label>
+                                    <div class="col-md-4">
+                                        <select data-error-message="Status" name="status" ng-model="add_fields.e_type"  class="form-control bs-select add_e_status ng-pristine ng-valid required">
+                                            <option value="">Select Type</option>
+											<option value="LoggedOut">Logged Out</option>
+                                            <option value="LoggedIn">Logged In</option>
+										</select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group last">
+                                    <label class="control-label col-md-2">Status <span class="required"> * </span></label>
+                                    <div class="col-md-4">
+                                        <select data-error-message="Status" name="status" ng-model="add_fields.e_status"  class="form-control bs-select add_e_status ng-pristine ng-valid required">
+                                            <option value="">Select status</option>
+											<option value="1">Active</option>
+                                            <option value="0">Inactive</option>
+										</select>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-actions">
+								<div class="row">
+									<div class="col-md-offset-3 col-md-9">
+										<button type="submit" class="btn green" ng-click="submit_frm_add(add_fields)">Submit</button>
+                                        <button type="submit" class="btn green" ng-click="submit_frm_add(add_fields, 'New')">Submit and Add New</button>
+										<button type="button" class="btn default" ng-click="clearFormData()">Cancel</button>
+									</div>
+								</div>
+							</div>
+						</form>
+                        <!-- END FORM-->
+                        <form id="form_name" action="{{ GLOBAL.API_URL+'/employee/upload-for-ie' }}" method="post" enctype="multipart/form-data">
+                            <input type="file" name="file_upload" id="fileInput" style="display: none;" />
+                        </form>
+
+                        <form id="form_name_grid" action="{{ GLOBAL.API_URL+'/employee/upload-for-ie' }}" method="post" enctype="multipart/form-data">
+                            <input type="file" name="file_upload_grid" id="fileInputGrid" style="display: none;" />
+                        </form>
+					</div>
+					<!-- END VALIDATION STATES-->
+				</div>
+
+            </div>
+            <!-- End add form -->
+
+		</div>
+	</div>
+    <canvas id="canvas1"></canvas>
+<!-- END PAGE CONTENT-->
+</div>

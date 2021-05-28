@@ -1,0 +1,161 @@
+<div ng-controller="HomePageBannerAddController">
+<!-- BEGIN MAIN CONTENT -->
+    <div class="row">
+		<div class="col-md-12">
+			<!-- Begin add form -->
+            <div tabindex="-1">
+
+                <div class="portlet box blue-madison">
+					<div class="portlet-title">
+						<div class="caption">
+							<i class="fa fa-plus"></i>Add Home Page Banner
+						</div>
+						<div class="tools">
+							<a href="javascript:;" class=""></a>
+						</div>
+					</div>
+					<div class="portlet-body form">
+						<!-- BEGIN FORM-->
+						<form id="frmAdd" name="frmAdd" class="form-horizontal" onsubmit="return false">
+							<div class="form-body">
+								<!--h3 class="form-section">Advance validation. <small>Custom radio buttons, checkboxes and Select2 dropdowns</small></h3-->
+								<div class="alert alert-danger display-hide">
+									<button class="close" data-close="alert"></button>
+									You have some form errors. Please check below.
+								</div>
+								<div class="alert alert-success display-hide">
+									<button class="close" data-close="alert"></button>
+									   Record added successfully.
+								</div>
+                                <div class="form-group"></div>
+
+                                <div class="form-group">
+									<label class="control-label col-md-2">Title <span class="required"> * </span> </label>
+									<div class="col-md-4">
+										<input type="text" ng-enter ng-model="add_fields.v_title" name="v_title" data-error-message="Title" class="form-control required" id="v_title" maxlength="85"/>
+									</div>
+								</div>
+
+                                <div class="form-group">
+									<label class="control-label col-md-2">Tag Line</label>
+									<div class="col-md-4">
+										<input class="form-control" ng-model="add_fields.v_subtext" data-error-message="Tag Line" name="v_subtext" id="v_subtext" maxlength=100>
+                                        <!--<textarea class="form-control required" ng-model="add_fields.v_subtext" data-error-message="Tag Line" name="v_subtext" rows="6" id="v_subtext" maxlength=100></textarea>-->
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="control-label col-md-2">List Order<span class="required"> * </span> </label>
+									<div class="col-md-4">
+										<input type="text" ng-enter ng-model="add_fields.i_order" name="i_order" data-error-message="Order" class="form-control required" id="i_order" />
+                                        <span class="duplicate_error" id="i_order_error">This Order has already been taken.Please changes it.</span>
+									</div>
+								</div>
+
+                                <!--div class="form-group">
+                                    <label class="control-label col-md-2">Image<span class="required"> * </span> <p>Size:110px X 110px</p></label>
+                                    <div class="col-md-4">
+                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <div class="fileinput-preview" ng-class="enableCrop == true ? 'default ng-show-inline-block thumbnail' : 'default fileinput-exists ng-hide'" >
+                                            <img src="" style="width: 110px; height: 110px;" /></div>
+                                            <div>
+                                                <span class="btn default btn-file" ng-click="trigger('#fileInput')">
+                                                    <div ng-class="enableCrop == false ? 'fileinput-new ng-show-inline-block' : 'fileinput-new ng-hide'" ng-show="enableCrop == false" >Select image</div>
+                                                    <span ng-if="enableCrop"> Change </span>
+                                                </span>
+                                                <a ng-if="enableCrop" href="javascript:;" ng-class="enableCrop == true ? 'btn default fileinput-exists  ng-show-inline-block' : 'btn default fileinput-exists ng-hide'" data-dismiss="fileinput" ng-click="removeImage()" > Remove </a>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="v_image_url" ng-model="add_fields.v_image_url" id="full-image-element" value="{{ add_fields.v_image_url }}" class="required" data-error-message="Image" />
+                                    </div>
+                                </div-->
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-2"> Image<span class="required"> * </span> <p>(Preferred Width x Height (px): 1090x490)</p></label>
+                                    <div class="col-md-4">
+                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <div class="fileinput-preview-gird" ng-class="enableCropGrid == true ? 'default thumbnail' : 'default fileinput-exists ng-hide'" style="width: 200px; border: none; padding: 0px;">
+                                                <img style="height: auto !important; max-width: 200px !important;" id="img2" src="" />
+                                            </div>
+                                            <div>
+                                                <!--div ng-show="enableCropGrid" id="image_name" style="display: inline-block; margin-right: 5px;"></div-->
+                                                <span class="btn default btn-file" ng-click="trigger('#fileInputGrid')">
+                                                    <div ng-class="enableCropGrid == false ? 'fileinput-new ng-show-inline-block' : 'fileinput-new ng-hide'" ng-show="enableCropGrid == false" >Select image</div>
+                                                    <span ng-if="enableCropGrid"> Change </span>
+                                                </span>
+                                                <a ng-if="enableCropGrid" href="javascript:;" ng-class="enableCropGrid == true ? 'btn default fileinput-exists  ng-show-inline-block' : 'btn default fileinput-exists ng-hide'" data-dismiss="fileinputgrid" ng-click="removeImageGrid()" > Remove </a>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="v_image" ng-model="add_fields.v_image" id="full-grid-image-element" value="{{ add_fields.v_image }}" class="required" data-error-message="Image" />
+                                        <input type="hidden" id="transparent_background_image" name="transparent_background_image" value="" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group last">
+                                    <label class="control-label col-md-2">Button<span class="required"> * </span></label>
+                                    <div class="col-md-4">
+                                        <select data-error-message="Status" name="e_dropdown_button" id="e_dropdown_button" ng-model="add_fields.e_dropdown_button"  class="form-control bs-select add_e_status ng-pristine ng-valid required">
+                                            <option value="">Select Options</option>
+											<option value="SkylineDropdown">Skyline Dropdown</option>
+                                            <option value="Button">Button</option>
+										</select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" ng-if="add_fields.e_dropdown_button == 'Button' ">
+                                    <label class="control-label col-md-2">Button Text <span class="required"> * </span> </label>
+                                    <div class="col-md-4">
+                                        <input type="text" ng-enter ng-model="add_fields.v_button_text" name="v_button_text" data-error-message="Button Text" class="form-control required" maxlength=20/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" ng-if="add_fields.e_dropdown_button == 'Button' ">
+                                    <label class="control-label col-md-2">Button Link  <span class="required"> * </span></label>
+                                    <div class="col-md-4">
+                                        <input type="text" ng-enter ng-model="add_fields.v_button_link" name="v_button_link" data-error-message="Button Link" class="form-control required" maxlength=512/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group last">
+                                    <label class="control-label col-md-2">Status <span class="required"> * </span></label>
+                                    <div class="col-md-4">
+                                        <select data-error-message="Status" name="status" ng-model="add_fields.e_status"  class="form-control bs-select add_e_status ng-pristine ng-valid required">
+                                            <option value="">Select status</option>
+											<option value="1">Active</option>
+                                            <option value="0">Inactive</option>
+										</select>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="form-actions">
+								<div class="row">
+									<div class="col-md-offset-3 col-md-9">
+										<button type="submit" class="btn green" ng-click="submit_frm_add(add_fields)">Submit</button>
+                                        <button type="submit" class="btn green" ng-click="submit_frm_add(add_fields, 'New')">Submit and Add New</button>
+										<button type="button" class="btn default" ng-click="clearFormData()">Cancel</button>
+									</div>
+								</div>
+							</div>
+						</form>
+                        <!-- END FORM-->
+                        <form id="form_name" action="{{ GLOBAL.API_URL+'/employee/upload-for-ie' }}" method="post" enctype="multipart/form-data">
+                            <input type="file" name="file_upload" id="fileInput" style="display: none;" />
+                        </form>
+
+                        <form id="form_name_grid" action="{{ GLOBAL.API_URL+'/employee/upload-for-ie' }}" method="post" enctype="multipart/form-data">
+                            <input type="file" name="file_upload_grid" id="fileInputGrid" style="display: none;" />
+                        </form>
+					</div>
+					<!-- END VALIDATION STATES-->
+				</div>
+
+            </div>
+            <!-- End add form -->
+
+		</div>
+	</div>
+    <canvas id="canvas1"></canvas>
+<!-- END PAGE CONTENT-->
+</div>

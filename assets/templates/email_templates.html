@@ -1,0 +1,429 @@
+<div ng-controller="EmailTemplatesController">
+<!-- BEGIN MAIN CONTENT -->
+    <div class="row">
+		<div class="col-md-12">
+			<!--div class="note note-danger note-bordered">
+				<p>
+					 NOTE: The below datatable is not connected to a real database so the filter and sorting is just simulated for demo purposes only.
+				</p>
+			</div-->
+			<!-- Begin: life time stats -->
+            <div class="portlet">
+				<div class="portlet-title">
+					<div class="caption">
+						<i class="icon-envelope"></i>Email Templates
+					</div>
+					<div class="actions">
+						<!--a class="btn default yellow-stripe" href="javascript: void(0);" data-target="#addModal" data-toggle="modal" ng-click="frm_add_open(parent_items);"><i class="fa fa-plus"></i> <span class="hidden-480" > Add Email Template </span> </a-->
+                        
+						<div class="btn-group">
+							<a data-toggle="dropdown" href="javascript:;" class="btn default yellow-stripe">
+							<i class="fa fa-share"></i>
+							<span class="hidden-480">
+							Tools </span>
+							<i class="fa fa-angle-down"></i>
+							</a>
+							<ul class="dropdown-menu pull-right">
+								<li>
+									<a href="{{ GLOBAL.SITE_URL }}files/exported_file.xls" target="_blank"> <!-- ng-click="export_to_excel(fields)" -->
+                                    Export to Excel </a>
+								</li>
+								<!--li>
+									<a href="javascript: void(0);" > Export to CSV </a>
+								</li>
+								<li>
+									<a href="javascript:;">
+									Export to XML </a>
+								</li>
+								<li class="divider">
+								</li>
+								<li>
+									<a href="javascript:;">
+									Print Invoices </a>
+								</li-->
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="portlet-body">
+					<div class="table-container" style="">
+						
+						<div id="datatable_ajax_wrapper" class="dataTables_wrapper dataTables_extended_wrapper no-footer">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="dataTables_paginate paging_bootstrap_extended" id="datatable_ajax_paginate">
+                                        <div class="pagination-panel">
+                                        
+                                        <paging page="currentPage" page-size="rpp" total="total" adjacent="@{{adjacent}}" dots=".." active-class="@{{activeClass}}" disabled-class="@{{disabledClass}}" show-prev-next="true" paging-action="DoCtrlPagingAct('Paging Clicked', page )">
+                                        </paging> 
+                                        <a id="reset-paging" href="javascript: void(0);" style="display: none;" ng-click="currentPage = 0">&nbsp;</a>
+                                            
+                                        </div>
+                                    </div>
+                                <div class="dataTables_length" id="datatable_ajax_length">
+                                    <label><span class="seperator">|</span>View 
+                                        <select ng-change="change_record_size(rec_per_page)" ng-model="rec_per_page" name="datatable_ajax_length" aria-controls="datatable_ajax" class="form-control input-xsmall input-sm input-inline"  >
+                                        <option value="10">10</option>
+                                        <option value="20">20</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                    </select> records</label>
+                                </div>
+                                <div class="dataTables_info" id="datatable_ajax_info" role="status" aria-live="polite"><span class="seperator">|</span>Found total {{ total }} records</div></div><div class="col-md-6 col-sm-12">
+                                <div style=" padding: 5px 5px 5px 8px;" class=" alert-success display-hide">
+                                    <button class="close" data-close="alert"></button>
+                                   {{success_msg}}
+                                    </div>
+                        </div></div><div class="table-scrollable"><table id="datatable_ajax" class="table table-striped table-bordered table-hover dataTable no-footer" aria-describedby="datatable_ajax_info" role="grid">
+						<thead>
+						<tr class="heading" role="row">
+                            <th width="85%" ng-class="order_field != 'v_template_title' ? 'sorting' : sort_order == 'desc' ? 'sorting_desc': 'sorting_asc'" ng-click="order_by_name('v_template_title')" class="sorting" tabindex="0" aria-controls="datatable_ajax" rowspan="1" colspan="1" aria-label="Customer: activate to sort column ascending">
+								 Title
+							</th>
+                            <th width="15%"  tabindex="0" aria-controls="datatable_ajax" rowspan="1" colspan="1" aria-label="Actions: activate to sort column ascending">
+								 Actions
+							</th>
+                        </tr>
+                        
+						<tr class="filter" id="frmSearchForm" role="row" ng-enter="filter_data(fields);" >
+                            <td rowspan="1" colspan="1">
+								<input type="text" name="page_name" ng-model="fields.v_template_title" class="form-control form-filter input-sm">
+							</td>
+                            <td rowspan="1" colspan="1">
+								<div class="margin-bottom-5">
+									<button class="btn btn-sm yellow filter-submit margin-bottom" ng-click="filter_data(fields)"><i class="fa fa-search"></i> Search</button>
+								</div>
+								<button class="btn btn-sm greed filter-cancel" ng-click="filterClear()"><i class="fa fa-times"></i> Reset</button>
+							</td>
+                            </form>
+                        </tr>
+                        
+						</thead>
+						<tbody>
+                            <tr role="row" class="odd" id="tablerow{{ item.id }}" ng-repeat="(key, item) in items" ng-show="data_loading == false">
+                                <td>{{ item.v_template_title }}</td>
+                                <td>
+                                    <a class="btn btn-xs default" data-target="#editModal" data-toggle="modal" ng-click="frm_edit_open(item);"  href="javascript:void(0);"><i class="fa fa-edit"></i> Edit </a> 
+                                    <!--a class="btn btn-xs default" data-target="#viewModal" data-toggle="modal" ng-click="frm_view_open(item);"  href="javascript:void(0);"><i class="fa fa-edit"></i> View </a-->
+                                </td>
+                            </tr>
+                            <tfoot ng-show="data_loading == false && items.length <= 0">
+                                <tr><td style="border-left: 0; text-align: center;" colspan="2">No record found.</td></tr>
+                            </tfoot>
+                            <tfoot ng-show="data_loading == true">
+                                <tr><td align="center" colspan="2"><img ng-src="{{ GLOBAL.ADMIN_ASSET_URL }}img/loading.gif" /></td></tr>
+                            </tfoot>
+                        </tbody>
+						</table>
+                        </div>
+                        <div class="row">
+                              <div class="col-md-8 col-sm-12">
+                                <div class="dataTables_paginate paging_bootstrap_extended">
+                                    <div class="pagination-panel">
+                                        <paging page="currentPage" page-size="rpp" total="total" adjacent="@{{adjacent}}" dots=".." active-class="@{{activeClass}}" disabled-class="@{{disabledClass}}" show-prev-next="true" paging-action="DoCtrlPagingAct('Paging Clicked', page )">
+                                        </paging> 
+                                        <a id="reset-paging" href="javascript: void(0);" style="display: none;" ng-click="currentPage = 0">&nbsp;</a>
+                                    </div>
+                                </div>
+                                <div class="dataTables_length">
+                                    <label>
+                                        <span class="seperator"> | </span> View
+                                        <select ng-change="change_record_size(rec_per_page)" ng-model="rec_per_page" name="datatable_ajax_length" aria-controls="datatable_ajax" class="form-control input-xsmall input-sm input-inline"  >
+                                            <option value="10">10</option>
+                                            <option value="20">20</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                        </select> records
+                                    </label>
+                                </div>
+                            <div class="dataTables_info">
+                            <span class="seperator"> | </span>
+                            Found total {{ total }} records
+                            </div>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                            </div>
+                            </div>
+                        </div>
+					</div>
+				</div>
+			</div>
+			<!-- End: life time stats -->
+            
+            <!-- Begin add form -->
+            <div id="addModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true" data-modal-popup-info>
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="portlet box green">
+        						<div class="portlet-title">
+        							<div class="caption">
+        								<i class="fa fa-plus"></i>Add Email Template
+        							</div>
+        							<div class="tools">
+        								<a href="javascript:;" class="collapse"></a>
+        								<a ng-click="clearFormData()" class="close" >
+        								</a>
+        							</div>
+        						</div>
+        						<div class="portlet-body form">
+        							<!-- BEGIN FORM-->
+        							<form id="frmAdd" name="frmAdd" class="form-horizontal" onsubmit="return false">
+        								<div class="form-body">
+        									<!--h3 class="form-section">Advance validation. <small>Custom radio buttons, checkboxes and Select2 dropdowns</small></h3-->
+        									<div class="alert alert-danger display-hide">
+        										<button class="close" data-close="alert"></button>
+        										You have some form errors. Please check below.
+        									</div>
+        									<div class="alert alert-success display-hide">
+        										<button class="close" data-close="alert"></button>
+        										Your form validation is successful!
+        									</div>
+                                            <div class="form-group"></div>
+        									<div class="form-group">
+        										<label class="control-label col-md-2">Title <span class="required"> * </span> </label>
+        										<div class="col-md-9">
+        											<input type="text" ng-enter ng-model="add_fields.v_template_title" name="v_template_title" data-error-message="template title" class="form-control required"/>
+        										</div>
+        									</div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-2">Subject <span class="required"> * </span> </label>
+                                                <div class="col-md-9">
+                                                    <input type="text" ng-enter ng-model="add_fields.v_template_subject" name="v_template_subject" data-error-message="template subject" class="form-control required"/>
+                                                </div>
+                                            </div>                                            
+                                            <div class="form-group last">
+        										<label class="control-label col-md-2">Email Content<span class="required">
+        										* </span>
+        										</label>
+        										<div class="col-md-9">
+        											<textarea class="ckeditor form-control required" ng-model="add_fields.t_email_content" data-error-message="email content" name="t_email_content" id="faq_content_editor_add" rows="6" data-error-container=".help-block"></textarea>
+                                                   <div id="editor2_error" class="editor2_error help-block"></div>
+        										</div>
+        									</div>
+        								</div>
+        								<div class="form-actions">
+        									<div class="row">
+        										<div class="col-md-offset-3 col-md-9">
+        											<button type="submit" class="btn green" ng-click="submit_frm_add(add_fields)">Submit</button>
+        											<button type="button" class="btn default" ng-click="clearFormData()">Cancel</button>
+        										</div>
+        									</div>
+        								</div>
+        							</form>
+                                    
+                                        
+        							<!-- END FORM-->
+        						</div>
+        						<!-- END VALIDATION STATES-->
+        					</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End add form -->
+            
+            <!-- Begin edit form -->
+            <div id="editModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true" data-modal-popup-info>
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="portlet box green">
+        						<div class="portlet-title">
+        							<div class="caption">
+        								<i class="fa fa-pencil"></i>Edit Email Template
+        							</div>
+        							<div class="tools">
+        								<a href="javascript:;" class="collapse"></a>
+        								<a ng-click="clearFormData()" class="close" >
+        								</a>
+        							</div>
+        						</div>
+        						<div class="portlet-body form">
+        							<!-- BEGIN FORM-->
+        							<form id="frmEdit" name="frmEdit" class="form-horizontal" onsubmit="return false">
+        								<div class="form-body">
+        									<!--h3 class="form-section">Advance validation. <small>Custom radio buttons, checkboxes and Select2 dropdowns</small></h3-->
+        									<div class="alert alert-danger display-hide">
+        										<button class="close" data-close="alert"></button>
+        										You have some form errors. Please check below.
+        									</div>
+        									<div class="alert alert-success display-hide">
+        										<button class="close" data-close="alert"></button>
+        										Your form validation is successful!
+        									</div>
+                                            <div class="form-group"></div>
+        									<div class="form-group">
+                                                <label class="control-label col-md-2">Title <span class="required"> * </span> </label>
+                                                <div class="col-md-9">
+                                                    <input type="text" ng-enter ng-model="edit_fields.v_template_title" name="v_template_title" data-error-message="template title" class="form-control required"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-2">Subject <span class="required"> * </span> </label>
+                                                <div class="col-md-9">
+                                                    <input type="text" ng-enter ng-model="edit_fields.v_template_subject" name="v_template_subject" data-error-message="template subject" class="form-control required"/>
+                                                </div>
+                                            </div>                                            
+                                            <div class="form-group last">
+                                                <label class="control-label col-md-2">Email Content<span class="required">
+                                                * </span>
+                                                </label>
+                                                <div class="col-md-9">
+                                                    <textarea class="ckeditor form-control required" ng-model="edit_fields.t_email_content" data-error-message="email content" name="t_email_content" id="faq_content_editor_edit" rows="6" data-error-container=".help-block"></textarea>
+                                                   <div id="editor2_error" class="editor2_error help-block"></div>
+                                                </div>
+                                            </div>
+        								</div>
+        								<div class="form-actions">
+        									<div class="row">
+        										<div class="col-md-offset-3 col-md-9">
+                                                    <input type="hidden" name="edit_id" ng-model="edit_fields.id" value="{{ edit_fields.id }}" />
+        											<button type="submit" class="btn green" ng-click="submit_frm_edit(edit_fields)">Submit</button>
+        											<button type="button" class="btn default" ng-click="clearFormData()">Cancel</button>
+        										</div>
+        									</div>
+        								</div>
+        							</form>
+                                    
+        							<!-- END FORM-->
+        						</div>
+        						<!-- END VALIDATION STATES-->
+        					</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End edit form -->
+            
+            
+            <!-- Begin view form -->
+            <div id="viewModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true" data-modal-popup-info>
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="portlet box green">
+        						<div class="portlet-title">
+        							<div class="caption">
+        								<i class="fa fa-plus"></i>View Email Template
+        							</div>
+        							<div class="tools">
+        								<a href="javascript:;" class="collapse"></a>
+        								<a href="javascript:;" class="close" data-dismiss="modal">
+        								</a>
+        							</div>
+        						</div>
+        						<div class="portlet-body form">
+        							<div class="">     
+                                        <a ng-click="previous_record(view_data)" ng-hide="prev_record" href="javascript:void(0);" class="view_pre"><i class="icon-arrow-left"></i></a>
+                                        <a ng-click="next_record(view_data)" ng-hide="nexts_record" href="javascript:void(0);" class="view_next"><i class="icon-arrow-right"></i></a>
+                                        <table class="table table-borderless" style="margin: 0 !important;" >
+                                            <tbody>
+                                                <tr>
+                                                    <td class="span2" style="width: 20%">Title:</td>
+                                                    <td class="ng-binding" style="width: 80%">{{ view_data.v_template_title }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="span2">Subject:</td>
+                                                    <td class="ng-binding">{{ view_data.v_template_subject }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="span2">Email Content:</td>
+                                                    <td class="ng-binding" ng-bind-html="view_data.t_email_content"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+    								</div>
+    								
+        						</div>
+        					</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+            $(document).ready(function(){
+                iframer = function (options, formID){
+                    var options = $.extend({
+                    },{
+                    iframe: 'iframer_iframe',
+                    returnType: 'html',
+                    onSubmit: function()
+                    {
+                        return false;
+                    },
+                    onComplete: function()
+                    {
+                    }
+                    }, options);
+                    
+                    var $theframe = $('<iframe name=' + options.iframe + ' id="' + options.iframe + '" width="0" height="0" frameborder="0" style="border: none; display: none; visibility: hidden;"></iframe>');
+                    
+                    angular.element(formID).append($theframe).attr('target', options.iframe);
+                    angular.element(formID).submit();
+                    angular.element('#' + options.iframe).load(function()
+                    {
+                        var data = $('#' + options.iframe).contents().find('body').html();
+                        if (options.returnType.toLowerCase() == 'json') eval('data=' + data);
+                        options.onComplete(data);
+                        
+                        angular.element('#' + options.iframe).contents().find('body').html('').empty();
+                        angular.element('#' + options.iframe).unbind('load');
+                    });
+                    return true;
+                }
+                if($(".ie9").length > 0) 
+                {
+                    $(".dropzone").css("height","225px");
+                    $(".dropzone").css("width","300px");
+                    var h_v_img = '<input type="hidden" id="h_v_img" name="h_v_img" />';
+                    var v_img_values = '<input type="hidden" id="v_img_values" name="v_img_values" />';
+                    
+                    angular.element(document.querySelector('#v_img')).on('change',function() 
+                	{
+                	    temp_input = this;
+                		$(this).remove();
+                        $("#frm_v_img").html('');
+                        $("#frm_v_img").append(temp_input);
+                        $("#frm_v_img").append(h_v_img);
+                        $("#frm_v_img").append(v_img_values);
+                		
+                		options = {
+                		        iframe: 'iframer_iframe', returnType: 'html',
+                                onSubmit: function()
+                                {
+                                    return false;
+                                },
+                                onComplete: function(responseText) 
+                        		{
+                    			     responseText = $.trim(responseText);
+                        			 if (responseText != '0') 
+                                     {
+                            			 setTimeout(function()
+                            			 {
+                            			     $("#v_img_values").val(responseText);
+                            			     $("#h_v_img").val(responseText);
+                            			     $('form')[0].reset();
+                            			 },500);
+                        	         } 
+                                     else 
+                                     {
+                        	           return false;
+                        	         }
+                                }
+                        };
+                        iframer(options, '#frm_v_img'); //submitting file                
+                	});   
+                }
+                else
+                {
+                    $(".dropzone").removeAttr("style");
+                    $('.dropzone').html5imageupload();    
+                    $("#frm_v_img").prependTo("#upload_background_image");
+                }
+            });
+            </script>
+		</div>
+	</div>
+<!-- END PAGE CONTENT-->
+</div>

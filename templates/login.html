@@ -1,0 +1,62 @@
+<div class="main-block">
+    <section ng-if="GLOBAL.checkId.toString() == 'false'">
+        <section ng-controller="LoginController" id="jll_facts" class="mb80 login-page" ng-class="forgot_password == true ? 'req-pass':''">
+            <!--- Login --->
+            <div class="login" ng-hide="forgot_password == true">
+                <h1 ng-hide="register_success" class="login-text">
+        			<span>Login here or <a href="{{ GLOBAL.SITE_URL }}register"  class="register-link">register</a> to enter</span>
+        		</h1>
+
+                <span class="thanks-page" ng-animate="'highlight'" ng-show="register_success" ng-class="register_success==true ? 'show':''"><h1>Thank you for registering. </br><em>Login</em> here</h1></span>
+
+                <h5 ng-bind-html="setting_data.v_login_form_content | nl2br"></h5>
+                <section id="contact_us">
+                    <div class="contact_form">
+                        <form action="javascript:void(0);" id="login_form" ng-submit="submitLogin(login_data)">
+                            <div class="half_content">
+                                <div id="password_reset_success" class="success_content_login" style="display: none;"><span style="color: black;">A new password has been sent to the email address provided.</span></div>
+                                <div class="error_content_login" id="error_content_login" style="display: none;"> All fields are required. </div>
+                                <div class="error_content_login" id="error_content_invalid" style="display: none;"> Invalid email and password. </div>
+
+                                <input type="text" name="email" placeholder="email" id="email" class="required" ng-model="login_data.v_username" />
+
+                                <input type="password" name="required" placeholder="password" id="required" class="required" ng-model="login_data.v_password" />
+                                <input type="submit" class="red_btn" value="Login" />
+                            </div>
+                            <div class="clear">
+                                <!---->
+                            </div>
+                        </form>
+                        <a href="javascript:void(0);" ng-click="change_reset_page(true)" class="forgot_pass">Forgot password?</a>
+                    </div>
+                </section>
+            </div>
+
+            <!--- Forgot Password --->
+            <div class="login" ng-show="forgot_password == true">
+                <h1><span>Request new password</span></h1>
+                <h5 ng-if="setting_data.v_reset_pass_form_content != ''" ng-bind-html="setting_data.v_reset_pass_form_content | nl2br"></h5>
+
+                <section id="contact_us">
+                    <div class="contact_form forgot">
+                        <form action="" id="reset_password" ng-submit="submit_reset_password(reset_password)">
+                            <div id="error_content_resetpass" class="error_content_login" style="display: none;"></div>
+                            <div id="password_reset_success" class="success_content_reset" style="display: none; color: black; ">A new password has been sent to the email address provided.</div>
+                            <div id="error_email_invalid" class="error_content_login" style="display: none;"> Please enter registered email.</div>
+                            <div class="half_content">
+                                <input type="text" name="email" placeholder="Your email address" id="email" class="required email" data-error-message="Email" ng-model="reset_password.email" />
+                                <input type="submit" class="red_btn" value="Request password" />
+                            </div>
+                            <div class="clear">
+                                <!---->
+                            </div>
+                        </form>
+                        <a class="forgot_pass" ng-click="change_reset_page(false)" href="javascript:void(0);">Back to login</a>
+                    </div>
+                </section>
+            </div>
+            <!-- Page Content -->
+
+        </section>
+    </section>
+</div>

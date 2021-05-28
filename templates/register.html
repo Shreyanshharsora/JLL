@@ -1,0 +1,118 @@
+<script type="text/javascript">
+    window._tfa = window._tfa || [];
+    _tfa.push({notify:"action", name: 'skyline_register_page_view'});
+</script>
+<script src="//cdn.taboola.com/libtrc/jllusa-sc/tfa.js"></script>
+<section>
+    <section ng-controller="RegisterController" id="jll_facts" class="mb80 main-block login-page register register-page" >
+        <section id="register_section" ng-hide="forgot_password == true">
+        	<section id="contact_us" class="register_section">
+            	<div class="title">
+        			Register here
+        		</div>
+        		<div class="contact_form">
+        			<form action="javascript:void(0);" ng-submit="submitRegistration(registration)" id="user_registration">
+                        <div class="error_content" id="error_content_required" style="display: none;"> All fields are required.</div>
+                        <div class="error_content" id="error_content_registration" style="display: none;"> All fields are required.</div>
+                        <div class="error_content" id="error_content_email" style="display: none;"> Email already exits. </div>
+                        <div class="error_content" id="error_content_restricted" style="display: none;">{{ GLOBAL.RESTRICT_EMAIL_MSG }} </div>
+
+                        <div class="half_content">
+        					<input type="text" name="fname" class="required" data-error-message="First Name" placeholder="First Name" id="fname" ng-model="registration.fname" />
+        					<input type="text" name="lname" class="required" data-error-message="Last Name" placeholder="Last Name" id="lname" ng-model="registration.lname" />
+        				</div>
+                        <div class="full_content">
+        				    <input type="text" name="v_company_name" class="required" placeholder="Company" id="v_company_name" ng-model="registration.v_company_name" data-error-message="Company Name" />
+                        </div>
+                        
+                        <div class="full_content">
+        				    <input type="text" name="v_title" class="required" placeholder="Title" id="v_title" ng-model="registration.v_title" data-error-message="Title"/>
+                        </div>
+                        
+                        <div class="full_content">
+                            <select selectric data-options="{ maxHeight: 400 }" id="register_industry" name="v_industry" class="option_txt required" ng-model="registration.v_industry" data-error-message="Industry">
+                                <option class="option_txt" value="">-- Select industry --</option>
+                                <option ng-repeat="industrie in industries" class="option_txt" value="{{ industrie }}">{{ industrie }}</option>
+                            </select>
+                        </div>
+                        
+                        <div class="full_content">
+                            <input type="text" name="v_city" class="required" placeholder="City" id="v_city" ng-model="registration.v_city" data-error-message="City"/>
+                        </div>
+                        
+                        <div class="full_content">    
+                            <input type="text" name="email" class="required email" data-error-message="Email" placeholder="Email" id="email" ng-model="registration.email" data-error-message="Email" />
+                        </div>
+                        
+        				<div class="half_content">
+        					<input type="password" class="required validate_password" data-error-message="Password" name="password" placeholder="Password" id="password" ng-model="registration.password" />
+        					<input type="password" class="required" name="rpassword" equalto="#password" placeholder="Confirm-password" id="rpassword" ng-model="registration.rpassword" data-error-message="Confirm Password"/>
+        				</div>
+                        
+                        <div class="clear"></div>
+                        <div class="terms-conditions cf">
+                            <div class="text-area scrollbar-inner">
+                                <div class="viewport">
+                                    <div class="overview">
+                                        <p><strong>JLL Skyline Terms of Service</strong></p>
+                                        <br/>
+                                        <p>Effective: June 2, 2015</p>
+                                        <p>These Terms of Service ("Terms") govern your access to and use of the services, websites, and applications offered by JLL Skyline (the "Service"). The Service is a privately owned commercial service owned and operated by Jones Lang LaSalle IP, Inc. (“JLL”) and your access to and use of the Service is subject to JLL’s permission in its absolute discretion.  Any access and use that is granted by JLL is conditioned on your acceptance of and compliance with these Terms. By accessing or using the Service you agree to be bound by these Terms.  The Service is intended for JLL clients and prospective clients.</p>
+                                        <p>&nbsp;</p>
+                                        <p><strong>Use of the Service</strong></p>
+                                        <p>&nbsp;</p>
+                                        <p>You may use the Service only if you can form a binding contract with JLL that accepts these Terms, and only in compliance with these Terms and all applicable local, state, national, and international laws, rules and regulations. You must provide us accurate information, including your real name, when you register for an account on JLL Skyline.  JLL is not obligated to grant you access to the Service or approval for an account on JLL Skyline.</p>
+                                        <p>JLL may, without prior notice and for any or no reason in its discretion, change the Service; stop providing the Service or features of the Service, to you or to users generally; create usage limits for the Service; or block or deny you access to the Service at any time without notice.</p>
+                                        <p>You are responsible for safeguarding the password that you use to access the Service and for any activities or actions under your password. We encourage you to use "strong" passwords (that use a combination of upper and lower case letters, numbers and symbols) with your account. JLL will not be liable for any loss or damage arising from your failure to comply with this instruction</p>
+                                        <p>&nbsp;</p>
+                                        <p><strong>Rules</strong></p>
+                                        <p>&nbsp;</p>
+										<p>Subject to these Terms, JLL gives you a personal, worldwide, royalty-free, revocable, non-assignable and non-exclusive license to use the Service as it is provided to you by JLL.</p>
+										<p>You must not do any of the following while accessing or using the Service: (i) use the Service for any unlawful purposes or for promotion of illegal activities; (ii) access or tamper with non-public areas of the Service, JLL’s computer systems, or the technical delivery systems of JLL’s providers; (iii) probe, scan, or test the vulnerability of any system or network or breach or circumvent any security or authentication measures; (iv) access or search or attempt to access or search the Service by any means (automated or otherwise) other than through the currently available, published interfaces that are provided by JLL (and only pursuant to those terms and conditions); (v) crawl or scrape the Service without the prior consent of JLL; or (vi) interfere with or disrupt (or attempt to do so) the access of any user, host or network, including, without limitation, sending a virus, overloading, flooding, spamming, or mail-bombing the Service.</p>
+                                        <p>&nbsp;</p>
+                                        <p><strong>Proprietary Rights</strong></p>
+                                        <p>&nbsp;</p>
+										<p>The text, information, graphics and other data (the “Content”)  presented in the Service was and is compiled, selected, and arranged by JLL through the application of methods and judgment developed and applied with the expenditure of substantial time, effort and money, and constitutes valuable intellectual property and trade secrets of JLL or its licensors.  The Service and its Content are protected by copyright, trademark, and other laws and treaties of both the United States and foreign countries.  Nothing in the Terms gives you a right to use the JLL name or any of the JLL trademarks, logos, domain names, and other distinctive brand features.  Except as otherwise expressly provided in the Service, you will not, without the prior written consent of JLL, sell, transfer, assign, publish, distribute, disseminate, allow access to or convey the Service, or any part, derivation, revision or combination thereof, or republish any portion of the Content on any Internet, Intranet or extranet site or incorporate the Content in any database, compilation, archive or cache. Notwithstanding the foregoing, you may download or copy the Content and may share it with others by means of social media and otherwise, but only for your company’s own use and business purposes, provided that you maintain all copyright and other notices contained therein. Copying or storing of any Content for other than your company’s use and business purposes is expressly prohibited without prior written permission of JLL. You are solely responsible for any such use of the Content.  You will do nothing to imperil the copyright, trade secret, or other proprietary rights in the Service.  Without limitation, you may not make all or any part of the Service available, or permit its availability, to third party search engines.  Any feedback, comments, or suggestions you may provide regarding the Service is entirely voluntary and we will be free to use such feedback, comments or suggestions as we see fit and without any obligation to you.</p>
+                                        <p>&nbsp;</p>
+                                        <p><strong>Links</strong></p>
+                                        <p>&nbsp;</p>
+										<p>The Service may contain links to third-party websites or resources. You acknowledge and agree that we are not responsible or liable for: (i) the availability or accuracy of such websites or resources; or (ii) the content, products, or services on or available from such websites or resources. Links to such websites or resources do not imply any endorsement by JLL of such websites or resources or the content, products, or services available from such websites or resources. You acknowledge sole responsibility for and assume all risk arising from your use of any such websites or resources.</p>
+										<p>&nbsp;</p>
+                                        <p><strong>Disclaimers; Indemnity</strong></p>
+                                        <p>&nbsp;</p>
+										<p>Your access to and use of the Service or any Content is at your own risk. You understand and agree that the Service is provided to you on an "AS IS" and "AS AVAILABLE" basis. Without limiting the foregoing, JLL AND ITS PARTNERS DISCLAIM ANY WARRANTIES, EXPRESS OR IMPLIED, OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.  All information contained in the Service is from sources deemed reliable; however, JLL makes no warranty and disclaim all responsibility and liability for the completeness, accuracy, availability, timeliness, security or reliability of the Service or any Content thereon.  JLL will not be responsible or liable for any harm to your computer system, loss of data, or other harm that results from your access to or use of the Service, or any Content.  We make no warranty that the Service will meet your requirements or be available on an uninterrupted, secure, or error-free basis.  No advice or information, whether oral or written, obtained from JLL or through the Service, will create any warranty not expressly made herein.</p>
+                                        <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, JLL AND ITS AFFILIATES, OFFICERS, EMPLOYEES, AGENTS, PARTNERS AND LICENSORS WILL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL OR PUNITIVE DAMAGES, INCLUDING WITHOUT LIMITATION, LOSS OF PROFITS, DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES, RESULTING FROM (i) YOUR ACCESS TO OR USE OF OR INABILITY TO ACCESS OR USE THE SERVICE; (ii) ANY CONDUCT OR CONTENT OF ANY THIRD PARTY ON THE SERVICE, INCLUDING WITHOUT LIMITATION, ANY DEFAMATORY, OFFENSIVE OR ILLEGAL CONDUCT OF OTHER USERS OR THIRD PARTIES; (iii) ANY CONTENT OBTAINED FROM THE SERVICE; AND (iv) UNAUTHORIZED ACCESS, USE OR ALTERATION OF YOUR TRANSMISSIONS OR CONTENT, WHETHER BASED ON WARRANTY, CONTRACT, TORT (INCLUDING NEGLIGENCE) OR ANY OTHER LEGAL THEORY, WHETHER OR NOT JLL HAS BEEN INFORMED OF THE POSSIBILITY OF SUCH DAMAGE, AND EVEN IF A REMEDY SET FORTH HEREIN IS FOUND TO HAVE FAILED OF ITS ESSENTIAL PURPOSE.</p>
+                                        <p>Some jurisdictions do not allow the exclusion of certain warranties or the exclusion or limitation of liability for consequential or incidental damages, so the limitations above may not apply to you.</p>
+										<p>If anyone brings a claim against us related to your actions or content on the Service, or actions or content by or from someone using your account, you will indemnify and hold us harmless from and against all damages, losses, and expenses of any kind (including reasonable legal fees and costs) related to such claim.</p>
+										<p>&nbsp;</p>
+                                        <p><strong>General Terms</strong></p>
+                                        <p>&nbsp;</p>
+										<p>These Terms and any action related thereto will be governed by the laws of the State of Illinois without regard to or application of its conflict of law provisions or your state or country of residence. Unless submitted to arbitration as set forth in the following paragraph, all claims, legal proceedings or litigation arising in connection with the Service will be brought solely in Cook County, Illinois, and you consent to the jurisdiction of and venue in such courts and waive any objection as to inconvenient forum.</p>
+										<p>For any claim (excluding claims for injunctive or other equitable relief) under these Terms where the total amount of the award sought is less than $10,000, the party requesting relief may elect to resolve the dispute through binding non-appearance-based arbitration. The party electing such arbitration shall initiate the arbitration through an established alternative dispute resolution ("ADR") provider mutually agreed upon by the parties. The ADR provider and the parties must comply with the following rules: a) the arbitration shall be conducted by telephone, online and/or be solely based on written submissions, as selected by the party initiating the arbitration; b) the arbitration shall not involve any personal appearance by the parties or witnesses unless otherwise mutually agreed by the parties; and c) any judgment on the award rendered by the arbitrator may be entered in any court of competent jurisdiction.</p>
+										<p>These Terms are the entire and exclusive agreement between JLL and you regarding the Service (excluding any services for which you have a separate agreement with JLL that is explicitly in addition or in place of these Terms), and these Terms supersede and replace any prior agreements between JLL and you regarding the Service.</p>
+                                        <p>The failure of JLL to enforce any right or provision of these Terms will not be deemed a waiver of such right or provision. In the event that any provision of these Terms is held to be invalid or unenforceable, the remaining provisions of these Terms will remain in full force and effect.</p>
+										<p>We may revise these Terms from time to time. The most current version will always be on this page (or such other page as the Service may indicate). If the revision, in our sole discretion, is material we will notify you via posting to our website or e-mail to the email associated with your account. By continuing to access or use the Service after those revisions become effective, you agree to be bound by the revised Terms.</p>
+										<p>The Service is operated and provided by Jones Lang LaSalle IP, Inc., If you have questions about these Terms, please contact us at <a href="mailto:scott.hays@am.jll.com">scott.hays@am.jll.com</a></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="align-left content">
+                                <input type="checkbox" name="accept_terms" id="accept_terms" class="css-checkbox required" placeholder="accept terms & conditions" data-error-message="accept terms & conditions" value="1" />
+                                <label for="accept_terms" class="css-label">&nbsp;I accept the terms and conditions</label>
+                            </div>
+                        </div>
+
+                        <p style="text-align:left; margin:20px 0 0 30px;">By clicking <strong>"Create account"</strong> you agree to our Terms of Service and Privacy Policy.</p>
+
+                        <input type="submit" class="red_btn" value="Create account" />
+                        <span class="register_text_bottum">* Jones Lang LaSalle reserves the right to deny access to the Skyline website.</span>
+        				<div class="clear">
+        					<!---->
+        				</div>
+        			</form>
+        		</div>
+        	</section>
+         </section>
+    </section>
+</section>

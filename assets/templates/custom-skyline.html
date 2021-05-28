@@ -1,0 +1,194 @@
+<div ng-controller="CustomSkylineController" id="custom-skyline">
+<!-- BEGIN MAIN CONTENT -->
+    <div class="row">
+		<div class="col-md-12">
+            <div class="portlet">
+
+                <div class="portlet-title">
+					<div class="caption">
+						<i class="fa fa-building-o"></i>Custom Skyline
+					</div>
+					<div class="actions">
+						<!--<a class="btn green" ui-sref="/cities-add"><i class="fa fa-plus"></i> <span class="hidden-480" > Add Custom Skyline </span> </a>
+
+						<div class="btn-group">
+							<a data-toggle="dropdown" href="javascript:;" class="btn green">
+    							<i class="fa fa-share"></i>
+    							<span class="hidden-480">Tools </span>
+    							<i class="fa fa-angle-down"></i>
+							</a>
+							<ul class="dropdown-menu pull-right">
+								<li>
+                                    <a href="javascript: void(0);" ng-click="export_to_excel(fields)" target="_blank">
+                                    Export to Excel </a>
+                                </li>
+							</ul>-->
+						</div>
+					</div>
+				</div>
+
+                <div class="portlet-body">
+					<div class="table-container" style="">
+						<div id="datatable_ajax_wrapper" class="dataTables_wrapper dataTables_extended_wrapper no-footer">
+                            <div class="row">
+                                <div class="col-md-7 col-sm-12">
+                                    <div class="dataTables_paginate paging_bootstrap_extended" id="datatable_ajax_paginate">
+                                        <div class="pagination-panel">
+
+                                        <paging page="currentPage" page-size="rpp" total="total" adjacent="@{{adjacent}}" dots=".." active-class="@{{activeClass}}" disabled-class="@{{disabledClass}}" show-prev-next="true" paging-action="DoCtrlPagingAct('Paging Clicked', page )">
+                                        </paging>
+                                        <a id="reset-paging" href="javascript: void(0);" style="display: none;" ng-click="currentPage = 0">&nbsp;</a>
+
+                                        </div>
+                                    </div>
+                                <div class="dataTables_length" id="datatable_ajax_length">
+                                    <label><span class="seperator">|</span>View
+                                        <select ng-change="change_record_size(rec_per_page)" ng-model="rec_per_page" name="datatable_ajax_length" aria-controls="datatable_ajax" class="form-control input-xsmall input-sm input-inline"  >
+                                        <option value="10">10</option>
+                                        <option value="20">20</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                    </select> records</label>
+                                </div>
+                                <div class="dataTables_info" id="datatable_ajax_info" role="status" aria-live="polite"><span class="seperator">|</span>Found total {{ total }} records</div></div>
+                                <div class="col-md-5 col-sm-12">
+									<div style=" padding: 5px 5px 5px 8px;" class=" alert-success display-hide">
+										<button class="close" data-close="alert"></button>
+										{{success_msg}}
+									</div>
+								</div>
+                              </div><div class="table-scrollable"><table id="datatable_ajax" class="table table-striped table-bordered table-hover dataTable no-footer" aria-describedby="datatable_ajax_info" role="grid">
+						<thead>
+						<tr class="heading" role="row">
+	                       <th width="1%">
+        						<input type="checkbox"  ng-model="selected_record[0]" class="group-checkable" ng-change="check_all(selected_record[0],false)" data-set="#sample_1 .checkboxes" />
+        					</th>
+                            <th width="20%" ng-class="order_field != 'users.fname' ? 'sorting' : sort_order == 'desc' ? 'sorting_desc': 'sorting_asc'" ng-click="order_by_name('users.fname')" class="sorting" >
+								User Name
+							</th>
+                            <th width="20%" ng-class="order_field != 'users.v_company_name' ? 'sorting' : sort_order == 'desc' ? 'sorting_desc': 'sorting_asc'" ng-click="order_by_name('users.v_company_name')" class="sorting" >
+								Company Name
+							</th>
+                            <th width="20%" ng-class="order_field != 'v_title' ? 'sorting' : sort_order == 'desc' ? 'sorting_desc': 'sorting_asc'" ng-click="order_by_name('v_title')" class="sorting" >
+								Skyline Name
+							</th>
+                            <th width="20%" ng-class="order_field != 'totalBuildings' ? 'sorting' : sort_order == 'desc' ? 'sorting_desc': 'sorting_asc'" ng-click="order_by_name('totalBuildings')" class="sorting" tabindex="0">
+                                No. of buildings
+                            </th>
+                            <th width="20%" ng-class="order_field != 'totalShared' ? 'sorting' : sort_order == 'desc' ? 'sorting_desc': 'sorting_asc'" ng-click="order_by_name('totalShared')" class="sorting" tabindex="0">
+                                No. of Shared
+                            </th>
+                            <th width="20%" ng-class="order_field != 'skylines.created_at' ? 'sorting' : sort_order == 'desc' ? 'sorting_desc': 'sorting_asc'" ng-click="order_by_name('skylines.created_at')" class="sorting" tabindex="0">
+                                Created Date
+                            </th>
+                            
+                            <!--<th width="20%" ng-class="order_field != 'skylines.updated_at' ? 'sorting' : sort_order == 'desc' ? 'sorting_desc': 'sorting_asc'" ng-click="order_by_name('skylines.updated_at')" class="sorting" tabindex="0">
+                                Last Updated
+                            </th>-->
+                            <th width="25%">
+                                 Action
+                            </th>
+
+                        </tr>
+
+						<tr class="filter" id="frmSearchForm" role="row" ng-enter="filter_data(fields);" >
+                            <td rowspan="1" colspan="1"></td>
+                            <td rowspan="1" colspan="1">
+								<input type="text" name="i_user_id" ng-model="fields.i_user_id" class="form-control form-filter input-sm">
+							</td>
+                            <td rowspan="1" colspan="1">
+								<input type="text" name="v_company_name" ng-model="fields.v_company_name" class="form-control form-filter input-sm">
+							</td>
+                            <td rowspan="1" colspan="1">
+								<input type="text" name="v_title" ng-model="fields.v_title" class="form-control form-filter input-sm">
+							</td>                            
+                            <td rowspan="1" colspan="1"><input type="text" name="totalBuildings" ng-model="fields.totalBuildings" class="form-control form-filter input-sm"></td>
+                            <td rowspan="1" colspan="1"><input type="text" name="totalShared" ng-model="fields.totalShared" class="form-control form-filter input-sm"></td>
+                            <td rowspan="1" colspan="1"><input type="text" name="created_at" ng-model="fields.created_at" class="form-control form-filter input-sm"></td>
+                            <!--<td rowspan="1" colspan="1"><input type="text" name="updated_at" ng-model="fields.updated_at" class="form-control form-filter input-sm"></td>-->
+                            
+                              <td rowspan="1" colspan="1">
+                                <button class="btn btn-sm yellow filter-submit margin-bottom" ng-click="filter_data(fields)" ><i class="fa fa-search"></i> Search</button>
+                                <button class="btn btn-sm greed filter-cancel" ng-click="filterClear()"><i class="fa fa-times"></i> Reset</button>
+                            </td>
+                        </tr>
+
+						</thead>
+						<tbody>
+                            <tr role="row" class="odd" id="tablerow{{ item.id }}" ng-repeat="(key, item) in items" ng-show="data_loading == false">
+                                <td>
+									<input type="checkbox"  ng-model="selected_record[item.id]"  ng-click="enable_button()"   class="checkboxes" value="1" />
+								</td>
+                                <td>{{ item.fname }}</td>
+                                
+								<td>{{ item.v_company_name  }}</td>
+                                <td><a class="default pb5" href="{{GLOBAL.SITE_URL +'my-skyline/'+item.v_slug }}" target="_blank" >{{ item.v_title }}</a></td>                                
+                                <td>{{ item.totalBuildings }}</td>
+                                <td>{{ item.totalShared}}</td>
+                                <td>{{ item.formatted_created_at }}</td>
+                                <!--<td>{{ item.formatted_updated_at }}</td>-->
+                                
+                                <td>
+                                    <a class="btn btn-xs default pb5" ng-click="loadEditData(item)"><i class="fa fa-file-text-o"></i> View Details </a>
+                                    <a class="btn btn-xs default" ng-click="delete_btn(item.id);"  href="javascript:void(0);"><i class="icon-trash"></i> Delete </a>
+                                </td>
+                            </tr>
+                            <tfoot ng-show="data_loading == false && items.length <= 0">
+                                <tr><td style="border-left: 0; text-align: center;" colspan="9">No record found.</td></tr>
+                            </tfoot>
+                            <tfoot ng-show="data_loading == true">
+                                <tr><td align="center" colspan="9"><img ng-src="{{ GLOBAL.ADMIN_ASSET_URL }}img/loading.gif" /></td></tr>
+                            </tfoot>
+                        </tbody>
+						</table>
+                        </div>
+                        <div class="row">
+								<div class="col-md-9 col-sm-12">
+									<div class="dataTables_length">
+										<label>
+											<select name="bulk_actions" ng-model="bulk_actions" 
+											ng-change="bulk_actions_change(bulk_actions)" ng-value="bulk_actions" class="form-control input-small input-sm input-inline">
+												<option value="">Select Action</option>
+												<option value="del">Delete</option>
+											</select>
+										</label>
+									</div>
+									
+									<div class="dataTables_paginate paging_bootstrap_extended">
+										<div class="pagination-panel">
+											<paging page="currentPage" page-size="rpp" total="total" adjacent="@{{adjacent}}" dots=".." active-class="@{{activeClass}}" disabled-class="@{{disabledClass}}" show-prev-next="true" paging-action="DoCtrlPagingAct('Paging Clicked', page )">
+											</paging> 
+											<a id="reset-paging" href="javascript: void(0);" style="display: none;" ng-click="currentPage = 0">&nbsp;</a>
+										</div>
+									</div>
+									
+									<div class="dataTables_length">
+										<label>
+											<span class="seperator"> | </span> View
+											<select ng-change="change_record_size(rec_per_page)" ng-model="rec_per_page" name="datatable_ajax_length" aria-controls="datatable_ajax" class="form-control input-xsmall input-sm input-inline"  >
+												<option value="10">10</option>
+												<option value="20">20</option>
+												<option value="50">50</option>
+												<option value="100">100</option>                                            
+											</select> records
+										</label>
+									</div>
+									
+									<div class="dataTables_info">
+										<span class="seperator"> | </span>
+										Found total {{ total }} records
+									</div>
+								</div>
+								
+								<div class="col-md-3 col-sm-12"></div>
+								
+							</div>
+                        </div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+<!-- END PAGE CONTENT-->
+</div>

@@ -1,0 +1,73 @@
+<div ng-controller="UnitStatusAddController" id="unit_status">
+<!-- BEGIN MAIN CONTENT -->
+    <div class="row">
+		<div class="col-md-12">
+			<!-- Begin add form -->
+            <div tabindex="-1">
+                
+                <div class="portlet box blue-madison">
+					<div class="portlet-title">
+						<div class="caption">
+							<i class="fa fa-plus"></i>Add Unit Status
+						</div>
+						<div class="tools">
+							<a href="javascript:;" class=""></a>
+						</div>
+					</div>
+					<div class="portlet-body form">
+						<!-- BEGIN FORM-->
+						<form id="frmAdd" name="frmAdd" class="form-horizontal" onsubmit="return false">
+							<div class="form-body">
+								<!--h3 class="form-section">Advance validation. <small>Custom radio buttons, checkboxes and Select2 dropdowns</small></h3-->
+								<div class="alert alert-danger display-hide">
+									<button class="close" data-close="alert"></button>
+									You have some form errors. Please check below.
+								</div>
+								<div class="alert alert-success display-hide">
+									<button class="close" data-close="alert"></button>
+									   Record added successfully.
+								</div>
+                                <div class="form-group"></div>
+                                <div class="form-group">
+									<label class="control-label col-md-2">Name <span class="required"> * </span> </label>
+									<div class="col-md-4">
+										<input type="text" ng-enter ng-model="add_fields.v_name" name="v_name" data-error-message="Name" class="form-control required" id="v_name"/>
+									</div>
+								</div>
+                                
+                                <div class="form-group">
+									<label class="control-label col-md-2">Short Name <span class="required"> * </span><p>(it uses, while importing record from Excel)</p></label>
+									<div class="col-md-4">
+										<input type="text" ng-enter ng-model="add_fields.v_short_name" name="v_short_name" data-error-message="Short Name" class="form-control required" id="v_short_name"/>
+									</div>
+								</div>
+                                
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Color <span class="required"> * </span> </label>
+                                    <div class="col-md-4">
+                                        <input type="text" ng-enter ng-model="add_fields.v_color" name="v_color" data-error-message="Color" class="form-control required colorpicker-default color-hex" id="v_color"/>
+                                    </div>
+                                </div>
+                            </div>
+							
+                            <div class="form-actions">
+								<div class="row">
+									<div class="col-md-offset-3 col-md-9">
+										<button type="submit" class="btn green" ng-click="submit_frm_add(add_fields)">Submit</button>
+                                        <button type="submit" class="btn green" ng-click="submit_frm_add(add_fields, 'New')">Submit and Add New</button>
+										<button type="button" class="btn default" ng-click="clearFormData()">Cancel</button>
+									</div>
+								</div>
+							</div>
+						</form>
+                        <!-- END FORM-->
+                    </div>
+					<!-- END VALIDATION STATES-->
+				</div>
+                        
+            </div>
+            <!-- End add form -->
+        </div>
+	</div>
+<!-- END PAGE CONTENT-->
+</div>

@@ -1,0 +1,73 @@
+<div ng-controller="MyProfileController" id="profile">
+<!-- BEGIN MAIN CONTENT -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet box blue-madison">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-user"></i>Edit My Profile
+                    </div>
+                </div>
+                <div class="portlet-body form">
+					<!-- BEGIN FORM-->
+					<form id="frmEdit" name="frmEdit" class="form-horizontal" onsubmit="return false">
+						<div class="form-body">
+							<!--h3 class="form-section">Advance validation. <small>Custom radio buttons, checkboxes and Select2 dropdowns</small></h3-->
+							<div class="alert alert-danger display-hide">
+								<button class="close" data-close="alert"></button>
+								You have some form errors. Please check below.
+							</div>
+							<div class="alert alert-success display-hide">
+								<button class="close" data-close="alert"></button>
+								Profile updated successfully.
+							</div>
+                            <div class="form-group"></div>
+							<div class="form-group">
+								<label class="control-label col-md-2">First Name <span class="required"> * </span> </label>
+								<div class="col-md-4">
+									<input type="text" ng-enter ng-model="items.fname" name="fname" data-error-message="First Name" class="form-control required"/>
+								</div>
+							</div>
+                            <div class="form-group">
+								<label class="control-label col-md-2">Last Name <span class="required"> * </span> </label>
+								<div class="col-md-4">
+									<input type="text" ng-enter ng-model="items.lname" name="lname" data-error-message="Last Name" class="form-control required"/>
+								</div>
+							</div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Email Id<span class="required"> * </span> </label>
+                                <div class="col-md-4">
+                                    <input type="text" ng-enter ng-model="items.email" id="email" rel="{{ items.id }}" name="email" data-error-message="Email Id" class="form-control required email"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Password </label>
+                                <div class="col-md-4">
+                                    <input type="password" ng-enter name="password" id="password" data-error-message="password" class="form-control validate_password"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Confirm Password </label>
+                                <div class="col-md-4">
+                                    <input type="password" ng-enter name="cpassword" data-error-message="confirm password" equalTo="#password" class="form-control"/>
+                                </div>
+                            </div>
+                            
+						</div>
+						<div class="form-actions">
+							<div class="row">
+								<div class="col-md-offset-2 col-md-9">
+									<button type="submit" class="btn blue-madison" ng-click="submit_frm_edit(items)">Submit</button>
+                                     <button ui-sref="/dashboard" class="btn default " type="button">Cancel</button>
+								</div>
+							</div>
+						</div>
+					</form>
+                    
+                        
+					<!-- END FORM-->
+				</div>
+            </div>
+        </div>
+    </div>
+</div>

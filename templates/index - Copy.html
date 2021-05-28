@@ -1,0 +1,313 @@
+<!-- //http://jsbin.com/egatas/latest -->
+<section ng-if="GLOBAL.checkId == true">
+    <section id="home_top" ng-controller="HomeController" >
+        <h1>Pick your Skyline</h1>
+        
+        <select selectric-first data-options="{ maxHeight: 400 }" id="pick_your_city" name="pick_your_city" ng-model="home.pick_you_city" ng-change="get_city_detail_by_id(home.pick_you_city)" class="option_txt">
+            <option class="option_txt" value="">-- Select --</option>
+            <option ng-repeat="city in cities" class="option_txt"  value="{{ city.id }}">{{ city.v_name }}</option>        
+        </select>
+        <span class="arrow bounce animated"></span>
+        <div class="clear"></div>
+        
+        <div class="content">
+            <img src="images/buildings-structure-jll.jpg" usemap="#usa" style="width:100%;" img-mapster />
+            <map id="usa_image_map" name="usa">
+                <area alt="" title="" id="map1" state="{{ formattedCityArray[98] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('98')" shape="poly" coords="27,271,6,269,5,262,6,249,8,246,22,246,38,246,50,247,54,247,58,247,57,261,55,269,30,273,30,314,30,337,28,358,29,367,26,365,21,367,16,379,11,382,10,427,12,436,21,439,40,439,52,437,58,429,66,424,70,423,72,423,74,405,72,397,57,395,45,391,36,389,36,384,30,375" />
+                <area alt="" title="" id="map2" state="{{ formattedCityArray[88] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('88')" shape="poly" coords="62,207,41,207,34,208,33,191,57,189,85,190,94,190,94,203,93,207,64,206,63,244,63,258,64,285,63,298,63,303,56,302,44,313,40,324,39,354,40,374,40,389,54,395,63,396,70,397,76,397,76,388,84,380,88,378,88,317,74,301,69,303,65,301" />
+                <area alt="" title="" id="map3" state="{{ formattedCityArray[92] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('92')" shape="poly" coords="88,261,68,262,67,243,86,243,101,244,113,244,113,260,92,262,89,292,90,330,91,352,90,371,74,411,75,422,81,432,84,433,88,432,98,432,105,430,106,422,107,399,108,386,104,380,90,379" />
+                <area alt="" title="" id="map4" state="{{ formattedCityArray[94] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('94')" shape="poly" coords="112,164,81,164,80,137,108,137,137,138,150,138,149,162,149,164,116,165,116,225,117,256,115,279,92,289,92,367,93,376,106,380,107,407,106,419,108,428,117,424,117,384,122,366,129,358,128,313,122,303,123,293,117,278" />
+                <area alt="" title="" id="map5" state="{{ formattedCityArray[103] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('103')" shape="poly" coords="133,200,117,200,117,179,131,178,151,178,161,178,161,199,137,202,136,286,135,339,133,348,125,360,118,370,116,399,123,427,132,428,140,435,143,437,153,436,157,424,156,382,148,367,143,361,136,348" />
+                <area alt="" title="" id="map6" state="{{ formattedCityArray[67] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('67')" shape="poly" coords="154,237,138,237,137,211,139,205,153,205,172,205,181,206,182,234,160,239,157,284,153,284,148,247,141,281,137,285,136,324,138,347,156,385,157,427,158,439,166,441,170,441,176,427,162,320,161,287,159,282" />
+                <area alt="" title="" id="map7" state="{{ formattedCityArray[65] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('65')" shape="poly" coords="182,174,157,174,157,146,210,146,210,174,185,174,185,224,184,271,183,292,178,298,172,296,166,307,165,326,164,330,176,424,187,438,195,436,204,433,202,376,206,371,206,324,203,322,202,303,187,292" />
+                <area alt="" title="" id="map8" state="{{ formattedCityArray[57] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('57')" shape="poly" coords="210,266,186,265,188,241,237,243,239,264,215,268,212,308,212,337,212,366,207,370,201,412,206,432,210,439,233,433,232,376,214,368" />
+                <area alt="" title="" id="map9" state="{{ formattedCityArray[87] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('87')" shape="poly" coords="239,179,219,180,219,164,263,165,262,181,241,180,240,230,240,301,225,303,217,321,214,340,214,366,232,373,236,430,242,432,242,392,249,388,256,389,257,303,241,299" />
+                <area alt="" title="" id="map10" state="{{ formattedCityArray[105] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('105')" shape="poly" coords="257,279,244,279,244,256,282,257,281,277,261,283,261,327,262,374,260,388,250,386,240,390,240,420,244,431,249,433,256,433,264,432,267,430,265,389" />
+                <area alt="" title="" id="map11" state="{{ formattedCityArray[96] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('96')" shape="poly" coords="282,213,262,214,262,197,292,197,306,197,306,214,284,213,285,247,285,284,285,311,282,339,265,339,264,386,268,395,268,411,270,432,276,435,283,433,293,438,297,439,304,436,311,435,312,433,312,404,298,398,296,340,288,337" />
+                <area alt="" title="" id="map12" state="{{ formattedCityArray[75] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('75')" shape="poly" coords="306,151,273,151,272,134,344,132,343,151,308,154,309,183,309,217,310,253,308,270,303,267,297,268,293,276,292,281,291,284,281,288,280,309,278,333,280,337,296,336,300,395,307,396,305,353,311,344,318,344,324,354,329,356,331,356,333,282,328,272,320,273,313,275,310,272" />
+                <area alt="" title="" id="map13" state="{{ formattedCityArray[72] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('72')" shape="poly" coords="330,232,312,232,311,203,357,205,359,231,336,233,333,256,333,280,333,320,333,353,325,352,321,349,318,343,314,343,307,345,304,357,305,367,308,388,309,397,314,404,314,420,316,430,319,435,324,439,329,439,338,436,340,401,350,389,353,386,354,352,353,344,348,344,344,347,341,351,337,356,335,353" />
+                <area alt="" title="" id="map14" state="{{ formattedCityArray[64] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('64')" shape="poly" coords="359,112,340,112,340,95,384,95,383,113,363,111,362,125,361,184,362,220,362,265,362,295,362,331,362,371,362,388,356,387,351,386,346,391,341,397,338,431,341,437,350,438,354,433,366,432,377,432,377,429,377,393,365,385" />
+                <area alt="" title="" id="map15" state="{{ formattedCityArray[52] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('52')" shape="poly" coords="375,133,358,133,358,118,399,117,399,133,377,134,377,143,374,143,373,157,373,177,371,190,367,220,359,232,356,234,354,244,353,250,349,275,349,344,354,346,354,371,358,378,358,386,362,387,366,387,368,386,368,375,380,368,380,317,386,311,393,306,397,304,397,272,396,248,392,244,392,240,389,235,380,223" />
+                <area alt="" title="" id="map16" state="{{ formattedCityArray[95] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('95')" shape="poly" coords="396,204,378,203,378,188,418,188,418,204,398,203,397,250,397,280,397,307,397,364,396,373,384,367,378,371,369,375,368,384,375,389,375,392,378,400,377,426,381,433,388,432,394,428,399,425,400,416,400,407,402,402,408,401,408,390,403,384,397,377" />
+                <area alt="" title="" id="map17" state="{{ formattedCityArray[76] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('76')" shape="poly" coords="418,150,400,150,400,134,442,135,442,152,420,148,421,181,420,227,420,297,417,300,405,303,395,306,385,308,384,316,380,329,378,335,379,368,381,365,385,365,389,368,393,370,398,372,401,379,405,384,410,398,412,396,423,396,425,317,420,299" />
+                <area alt="" title="" id="map18" state="{{ formattedCityArray[107] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('107')" shape="poly" coords="440,236,421,236,422,212,467,213,466,237,442,235,442,338,441,399,434,395,424,394,412,393,407,397,401,404,398,422,400,428,404,429,412,425,424,428,431,429,438,429,446,430,456,433,465,436,478,436,485,439,493,439,497,435,509,430,525,430,539,427,550,425,552,425,553,419,556,416,554,407,552,399,551,396,539,394,517,395,509,399,500,404,488,409,484,419,482,423,475,423,472,423,467,409,453,404,443,398" />
+                <area alt="" title="" id="map19" state="{{ formattedCityArray[59] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('59')" shape="poly" coords="465,87,445,88,446,73,466,71,489,73,489,88,468,85,468,143,468,197,468,255,468,297,445,261,437,276,438,284,430,296,428,394,442,396,447,401,446,371,459,367,458,361,462,359,464,351,474,341,480,319,474,306,469,299" />
+                <area alt="" title="" id="map20" state="{{ formattedCityArray[69] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('69')" shape="poly" coords="488,48,468,47,467,30,519,30,518,48,494,47,493,96,493,148,493,256,493,341,491,333,488,334,487,331,484,330,482,334,478,343,475,344,469,349,468,365,452,371,449,375,451,399,462,405,468,405,475,421,482,422,488,408,512,397,510,391,508,375,504,356,501,351,500,339,492,335" />
+                <area alt="" title="" id="map21" state="{{ formattedCityArray[66] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('66')" shape="poly" coords="516,95,499,94,496,87,498,67,519,67,539,67,553,69,550,94,521,92,521,112,521,219,518,219,518,158,503,142,486,146,484,227,479,231,476,307,480,329,491,330,500,335,502,339,506,358,511,386,514,394,519,392,534,392,535,227,525,218,523,218" />
+                <area alt="" title="" id="map22" state="{{ formattedCityArray[54] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('54')" shape="poly" coords="549,157,530,157,530,142,573,142,573,158,552,157,552,185,552,243,541,250,542,393,550,393,557,412,561,419,569,416,574,413,574,360,574,281,574,241,567,238,565,241,564,244,561,241,558,222,556,225,556,239,553,239" />
+                <area alt="" title="" id="map23" state="{{ formattedCityArray[71] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('71')" shape="poly" coords="587,197,559,198,557,172,617,173,617,197,591,197,590,272,581,292,580,301,581,320,579,321,579,389,576,391,576,415,579,433,591,440,597,428,604,426,605,413,608,409,608,386,613,376,613,313,609,308,609,291,606,287,606,284,602,280,594,269,592,273" />
+                <area alt="" title="" id="map24" state="{{ formattedCityArray[100] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('100')" shape="poly" coords="610,233,592,234,593,211,638,213,638,233,616,230,615,254,614,283,616,359,609,380,612,430,616,431,635,428,644,428,644,395,637,380,625,365,617,357" />
+                <area alt="" title="" id="map25" state="{{ formattedCityArray[106] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('106')" shape="poly" coords="644,159,624,160,623,140,669,141,669,159,649,157,648,212,648,234,637,235,634,238,634,257,629,260,628,290,626,293,624,360,637,375,643,390,646,395,669,396,669,297,664,292,665,262,658,252,659,239,648,232" />
+                <area alt="" title="" id="map26" state="{{ formattedCityArray[36] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('36')" shape="poly" coords="670,216,650,216,650,200,697,201,696,217,674,217,673,351,673,398,646,398,642,398,647,427,658,427,670,427,695,428,718,431,762,433,761,396,729,397,674,396" />
+                <area alt="" title="" id="map27" state="{{ formattedCityArray[63] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('63')" shape="poly" coords="696,186,676,186,675,171,675,167,717,167,722,168,721,186,698,187,698,232,698,283,694,276,690,263,686,262,680,275,674,283,671,296,671,323,676,340,673,366,672,394,694,396,705,394,702,325,697,296" />
+                <area alt="" title="" id="map28" state="{{ formattedCityArray[84] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('84')" shape="poly" coords="724,231,701,230,702,204,754,204,750,233,728,230,727,285,722,278,719,301,709,316,707,324,707,395,726,395,741,395,741,324,738,318,736,312,728,305,729,286" />
+                <area alt="" title="" id="map29" state="{{ formattedCityArray[93] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('93')" shape="poly" coords="756,315,738,313,737,294,778,295,778,317,758,312,757,363,752,379,752,393,758,394,764,416,765,432,780,440,795,438,796,378,792,362,778,347,775,354,770,357,763,356,760,355" />
+                <area alt="" title="" id="map30" state="{{ formattedCityArray[68] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('68')" shape="poly" coords="793,214,774,215,774,196,818,197,817,215,795,213,796,283,795,330,792,337,791,348,790,357,794,373,797,390,798,412,797,432,800,441,822,437,822,403,833,395,832,347,822,337,821,323,809,305,800,311,797,309" />
+                <area alt="" title="" id="map31" state="{{ formattedCityArray[77] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('77')" shape="poly" coords="817,186,798,186,797,161,841,162,842,186,820,185,820,255,801,258,801,254,790,251,787,253,788,303,782,304,780,348,787,354,790,339,793,307,801,307,807,303,821,318,825,338,834,344,836,366,846,364,855,364,858,339,864,326,875,323,892,320,902,323,903,362,911,364,917,374,918,339,924,326,925,293,922,290,917,282,906,279,896,282,884,286,882,293,881,316,872,319,865,318,868,254,865,251,857,242,845,238,837,243,834,253,821,252" />
+                <area alt="" title="" id="map32" state="{{ formattedCityArray[99] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('99')" shape="poly" coords="841,153,821,153,822,138,865,138,866,153,843,151,845,231,842,397,837,395,831,393,824,403,820,435,824,440,832,441,853,441,856,441,857,407,846,398" />
+                <area alt="" title="" id="map33" state="{{ formattedCityArray[55] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('55')" shape="poly" coords="865,207,846,208,849,191,889,191,890,208,869,206,868,365,837,364,830,376,829,391,840,395,857,404,859,429,877,426,877,390,884,387,882,373,870,365" />
+                <area alt="" title="" id="map34" state="{{ formattedCityArray[97] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('97')" shape="poly" coords="888,276,870,276,872,248,911,249,911,276,890,275,889,317,864,329,856,360,866,364,875,365,883,375,882,384,893,379,903,366,900,326,896,321,892,319" />
+                <area alt="" title="" id="map35" state="{{ formattedCityArray[80] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('80')" shape="poly" coords="910,245,884,245,882,218,949,219,948,245,915,243,915,376,908,365,901,368,893,382,877,392,878,422,884,425,898,423,906,425,921,431,922,385,916,372" />
+                <area alt="" title="" id="map36" state="{{ formattedCityArray[104] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('104')" shape="poly" coords="937,285,920,285,918,269,964,269,963,286,940,283,940,327,928,326,918,332,916,353,920,379,922,387,923,405,923,427,928,433,941,437,949,436,947,355,942,328" />
+                <area alt="" title="" id="map37" state="{{ formattedCityArray[83] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('83')" shape="poly" coords="964,211,945,212,946,176,986,177,986,213,967,212,966,271,965,303,952,368,948,381,949,429,957,425,965,425,971,431,972,399,976,396,981,388,981,334,988,325,996,325,988,295,974,281,970,302,967,302" />
+                <area alt="" title="" id="map38" state="{{ formattedCityArray[91] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('91')" shape="poly" coords="988,267,970,265,972,247,1011,247,1010,271,992,265,992,384,984,388,970,400,976,433,992,435,1007,437,1010,436,1008,391,994,383" />
+                <area alt="" title="" id="map39" state="{{ formattedCityArray[53] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('53')"  shape="poly" coords="1012,237,990,237,990,200,1048,200,1043,236,1017,235,1017,331,1014,330,1009,319,1002,327,987,323,981,331,979,388,991,381,1006,388,1013,419,1029,421,1027,332,1022,328,1018,328" />
+                <area alt="" title="" id="map40" state="{{ formattedCityArray[62] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('62')"  shape="poly" coords="1044,307,1026,308,1026,291,1072,291,1070,308,1046,305,1048,340,1039,352,1032,355,1030,401,1033,417,1034,429,1045,436,1056,439,1069,435,1072,417,1070,358,1064,353,1060,342,1053,338,1049,332" />
+                <area alt="" title="" id="map41" state="{{ formattedCityArray[101] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('101')" shape="poly" coords="1076,290,1060,287,1060,262,1100,263,1101,292,1080,289,1081,395,1077,399,1075,420,1080,440,1090,432,1100,430,1107,427,1106,407,1101,388,1086,387,1082,390" />
+                <area alt="" title="" id="map42" state="{{ formattedCityArray[81] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('81')"  shape="poly" coords="1103,249,1080,248,1079,221,1125,222,1125,251,1106,247,1105,321,1090,320,1086,320,1086,325,1077,328,1078,392,1099,386,1108,408,1110,404,1121,399,1126,399,1128,333,1122,328,1120,325,1107,322" />
+                <area alt="" title="" id="map43" state="{{ formattedCityArray[56] }}" href="javascript: void(0);" ng-click="get_city_detail_by_id('56')"  shape="poly" coords="1126,313,1108,313,1107,280,1146,280,1146,313,1126,310,1128,400,1116,399,1111,402,1109,425,1116,435,1125,441,1141,440,1142,435,1143,405,1129,397" />
+    
+            </map>
+        </div>
+        <div class="top_content">
+            <a href="javascript: void(0);" ng-click="scrollTo('contact_us')" class="red_btn">Contact us</a>
+            <span class="st_sharethis_custom grey_btn" st_title="{{ GLOBAL.SITE_NAME }}" st_url="{{ GLOBAL.SITE_URL }}" st_image="{{ GLOBAL.SITE_URL }}images/mob_build.jpg" st_summary="{{ cms.t_content | htmlToPlaintext }}"><i class="share_icon"></i>Share</span>
+            <p ng-bind-html="cms.t_content"></p>
+        </div>
+    </section>
+    <section id="jll_facts">
+        <div class="title">
+            5 key themes shaping the U.S. skyline
+        </div>
+        <div class="mobile_slider">
+            <fact-carousel class="fact-carousel">
+                <div class="item" ng-repeat="item in items">
+                    <a ng-href="{{ GLOBAL.SITE_URL+GLOBAL.NATIONAL_ASSET_IMAGE_PATH+item.v_thumbnail_url }}" fancybox data-template="{{ item.t_content }}"><img ng-src="{{ GLOBAL.SITE_URL+GLOBAL.NATIONAL_ASSET_IMAGE_PATH+item.v_thumbnail_url }}" alt="" /></a>
+                    
+                    <img style="display: none;" ng-src="{{ GLOBAL.SITE_URL+GLOBAL.NATIONAL_ASSET_IMAGE_PATH+item.v_thumbnail_url }}" alt="" />
+                </div>
+            </fact-carousel>
+        </div>
+        <div id="container_mas">
+            <div class="col_left"> 
+                <a ng-repeat="leftData in left_column_data" db_id="{{leftData.db_id}}" ng-href="{{ GLOBAL.SITE_URL+GLOBAL.NATIONAL_ASSET_IMAGE_PATH+leftData.v_thumbnail_url }}" fancybox data-template="{{ leftData.t_content}}"><img ng-src="{{ GLOBAL.NATIONAL_ASSET_IMAGE_PATH+leftData.v_thumbnail_url}}" alt="" /></a>
+                <img style="display: none;" ng-src="{{ GLOBAL.NATIONAL_ASSET_IMAGE_PATH+leftData.v_thumbnail_url}}" alt="" />            
+            </div>
+            <div class="col_left">
+                <a ng-repeat="middleData in middle_column_data" db_id="{{middleData.db_id}}" ng-href="{{ GLOBAL.SITE_URL+GLOBAL.NATIONAL_ASSET_IMAGE_PATH+middleData.v_thumbnail_url }}" fancybox data-template="{{ middleData.t_content}}"><img ng-src="{{ GLOBAL.NATIONAL_ASSET_IMAGE_PATH+middleData.v_thumbnail_url}}" alt="" /></a>  
+                <img style="display: none;" ng-src="{{ GLOBAL.NATIONAL_ASSET_IMAGE_PATH+middleData.v_thumbnail_url}}" alt="" />                 
+            </div>
+            <div class="col_right">
+                <a ng-repeat="rightData in right_column_data" db_id="{{rightData.db_id}}" ng-href="{{ GLOBAL.SITE_URL+GLOBAL.NATIONAL_ASSET_IMAGE_PATH+rightData.v_thumbnail_url }}" fancybox data-template="{{ rightData.t_content}}"><img ng-src="{{ GLOBAL.NATIONAL_ASSET_IMAGE_PATH+rightData.v_thumbnail_url}}" alt="" /></a>  
+                <img style="display: none;" ng-src="{{ GLOBAL.NATIONAL_ASSET_IMAGE_PATH+rightData.v_thumbnail_url}}" alt="" />                       
+            </div>
+            <!--<img src="images/img1.jpg" alt="">-->
+            <div class="clear"><!----></div>
+        </div>
+        <!-- a ui-sref="/view-all" class="red_btn">View all</a -->
+        <a href="javascript: void(0);" ng-click="redirect_clicked_location(home_page_learn_more_link)" class="red_btn">Learn more</a>  
+    </section>
+    <section id="contact_us">
+        <div class="title">
+            Want to know how these insights impact your business? Ask a JLL expert.
+        </div>
+        <div class="contact_form">
+            <div class="success_content" id="success_content" style="display: none;"> Your contact detail submitted successfully. </div>
+            <div class="error_content" id="error_content" style="display: none;"> All fields are required. </div>
+            <div class="error_content" id="bot_content" style="display: none;"> You are a bot! </div> 
+            <div class="error_content" id="error_content_email" style="display: none;">Please enter valid email id.</div>    
+            
+            <form id="contactFrm" method="post" onsubmit="return false">
+                <select selectric data-options="{ maxHeight: 400 }" id="contact_market" name="contact[market]" class="option_txt required" ng-model="contacts.market">
+                    <option class="option_txt" value="">-- Select your market --</option>
+                    <option ng-repeat="city in cities" class="option_txt" value="{{ city.v_name }}">{{ city.v_name }}</option>
+                </select>
+                <input type="text" name="contact[contact_name]" placeholder="Name" id="" ng-model="contacts.contact_name" class="required" />
+                <input type="text" name="contact[title]" placeholder="Title" id="" ng-model="contacts.title" class="required" />
+                <div class="half_content">
+                    <input type="text" name="contact[email]" placeholder="Email" id="contact_email" ng-model="contacts.email" class="required email" />
+                    <input type="text" name="contact[phone]" placeholder="Phone" id="" ng-model="contacts.phone" class="required" />
+                </div>
+                <input type="text" name="contact[company]" placeholder="Company" id="" ng-model="contacts.company" class="required" />
+                <!--input type="text" name="contact[industry]" placeholder="Industry" id="" ng-model="contacts.industry" class="required" /-->
+                <select selectric-last data-options="{ maxHeight: 400 }" id="contact_industry" name="contact[industry]" class="option_txt required" ng-model="contacts.industry">
+                    <option class="option_txt" value="">-- Industry --</option>
+                    <option ng-repeat="(key, val) in industryDataArray" class="option_txt" value="{{ val }}">{{ val }}</option>
+                </select>
+                <div> <!-- class="align-left content">
+                    <input type="checkbox" name="contact[print_version]" id="checkboxG6" class="css-checkbox" ng-model="contacts.print_version" value="Yes" />
+                    <label for="checkboxG6" class="css-label">&nbsp;Send me a print version</label> -->
+                </div>
+
+                <p style="text-align:left; margin:20px 0 0 30px;">By clicking <strong>"Submit"</strong> you agree to our Terms of Service and Privacy Policy.</p>
+
+                <input type="hidden" name="contact[page_url]" value="{{ current_url }}" />
+                <input type="text" name="contact[fname]" class="fname" id="fname" />
+                <input type="submit" class="red_btn" value="Submit" ng-click="submit_contact_form(contacts)" />
+                <div class="clear"><!----></div>
+            </form>
+        </div>
+    </section>
+    
+</section>
+
+<section ng-if="GLOBAL.checkId == false" >
+    <section ng-controller="LoginController" id="jll_facts" class="mb80 login-page" ng-class="forgot_password == true ? 'req-pass':''"  >
+        <!--- Login --->
+    	<div class="login" ng-hide="forgot_password == true">
+            <h1 ng-hide="register_success" class="login-text">
+    			Welcome to the JLL Skyline
+    			</br>
+    			<span>Login here or <a href="javascript:void(0);"  ng-click="register_link()" class="register-link">register</a> to enter</span>
+    		</h1>
+            
+            <span class="thanks-page" ng-animate="'highlight'" ng-show="register_success" ng-class="register_success==true ? 'show':''"><h1>Thank you for registering. </br><em>Login</em> here</h1></span>
+    		
+    		<h5 ng-bind-html="setting_data.v_login_form_content | nl2br"></h5>
+    		<section id="contact_us">
+    			<div class="contact_form">
+    				<form action="javascript:void(0);" id="login_form" ng-submit="submitLogin(login_data)">
+    					<div class="half_content">
+                            <div id="password_reset_success" class="success_content_login" style="display: none;"><span style="color: black;">A new password has been sent to the email address provided.</span></div>  
+                            <div class="error_content_login" id="error_content_login" style="display: none;"> All fields are required. </div>
+                            <div class="error_content_login" id="error_content_invalid" style="display: none;"> Invalid email and password. </div>
+                            
+    						<input type="text" name="email" placeholder="email" id="email" class="required" ng-model="login_data.v_username" />
+    
+    						<input type="password" name="required" placeholder="password" id="required" class="required" ng-model="login_data.v_password" />
+    						<input type="submit" class="red_btn" value="Login" /> 
+    					</div>
+    					<div class="clear">
+    						<!---->
+    					</div>
+    				</form>
+    				<a href="javascript:void(0);" ng-click="change_reset_page(true)" class="forgot_pass">Forgot password?</a>
+    			</div>
+    		</section>
+    	</div>
+        
+        <!--- Forgot Password --->
+        <div class="login" ng-show="forgot_password == true">
+            <h1>Request new password</h1>
+            <h5 ng-if="setting_data.v_reset_pass_form_content != ''" ng-bind-html="setting_data.v_reset_pass_form_content | nl2br"></h5>
+            
+            <section id="contact_us">
+                <div class="contact_form">
+                    <form action="" id="reset_password" ng-submit="submit_reset_password(reset_password)">
+                        <div id="error_content_resetpass" class="error_content_login" style="display: none;"></div>   
+                        <div id="password_reset_success" class="success_content_reset" style="display: none; color: black; ">A new password has been sent to the email address provided.</div>  
+                        <div id="error_email_invalid" class="error_content_login" style="display: none;"> Please enter registered email.</div>                                  <div class="half_content">
+                                <input type="text" name="email" placeholder="Your email address" id="email" class="required email"  data-error-message="Email" ng-model="reset_password.email" />
+                                <input type="submit" class="red_btn" value="Request password" />
+                            </div>
+                            <div class="clear"><!----></div>
+                    </form>
+                    <a class="forgot_pass" ng-click="change_reset_page(false)"  href="javascript:void(0);">Back to login</a>
+                </div>
+            </section>
+         </div>
+         
+    	<section class="main-img cf">
+    		<figure>
+    			<img src="images/city-img.jpg" alt="" />
+    		</figure>
+    	</section>
+        <!-- Page Content -->
+    	<div class="top_content" ng-bind-html="setting_data.v_home_page_content"></div>
+    	
+        <div class="video">
+            <div class="title" id="video_title">{{ setting_data.v_video_title }}</div>
+            <figure><a href="#" id="video-link" class="video-link"><img src="images/video-img.jpg"></a>
+                <video id="jll_video" style="display: none;" controls>
+                  <source ng-src="{{ GLOBAL.SITE_URL + GLOBAL.FILE_PATH + setting_data.v_video_file }}" type="video/mp4">              
+                  Your browser does not support the video tag.
+                </video>
+            </figure>
+        </div>	
+        <section id="register_section" ng-hide="forgot_password == true">
+        	<section id="contact_us" class="register_section">
+            	<div class="title">
+        			Register here
+        		</div>
+        		<div class="contact_form">
+        			<form action="javascript:void(0);" ng-submit="submitRegistration(registration)" id="user_registration">
+                        <div class="error_content" id="error_content_required" style="display: none;"> All fields are required.</div>
+                        <div class="error_content" id="error_content_registration" style="display: none;"> All fields are required.</div>
+                        <div class="error_content" id="error_content_email" style="display: none;"> Email already exits. </div>
+                        <div class="error_content" id="error_content_restricted" style="display: none;">{{ GLOBAL.RESTRICT_EMAIL_MSG }} </div>
+                       
+                        <div class="half_content">
+        					<input type="text" name="fname" class="required" data-error-message="First Name" placeholder="First Name" id="fname" ng-model="registration.fname" />
+        					<input type="text" name="lname" class="required" data-error-message="Last Name" placeholder="Last Name" id="lname" ng-model="registration.lname" />
+        				</div>
+        				<input type="text" name="v_company_name" class="required" placeholder="Company" id="v_company_name" ng-model="registration.v_company_name" data-error-message="Company Name" />
+        				<input type="text" name="v_title" class="required" placeholder="Title" id="v_title" ng-model="registration.v_title" data-error-message="Title"/>
+        				
+                        <select selectric data-options="{ maxHeight: 400 }" id="register_industry" name="v_industry" class="option_txt required" ng-model="registration.v_industry" data-error-message="Industry">
+                            <option class="option_txt" value="">-- Select industry --</option>
+                            <option ng-repeat="industrie in industries" class="option_txt" value="{{ industrie }}">{{ industrie }}</option>
+                        </select>
+                
+                        <input type="text" name="v_city" class="required" placeholder="City" id="v_city" ng-model="registration.v_city" data-error-message="City"/>
+                        <input type="text" name="email" class="required email" data-error-message="Email" placeholder="Email" id="email" ng-model="registration.email" data-error-message="Email" />
+        				<div class="half_content">
+        					<input type="password" class="required validate_password" data-error-message="Password" name="password" placeholder="Password" id="password" ng-model="registration.password" />
+        					<input type="password" class="required" name="rpassword" equalto="#password" placeholder="Confirm-password" id="rpassword" ng-model="registration.rpassword" data-error-message="Confirm Password"/>
+        				</div>
+                        <div class="clear"></div>
+                        <div class="terms-conditions cf">
+                            <div class="text-area scrollbar-inner">
+                                <div class="viewport">
+                                    <div class="overview">
+                                        <p><strong>JLL Skyline Terms of Service</strong></p>
+                                        <br/>
+                                        <p>Effective: June 2, 2015</p>
+                                        <p>These Terms of Service ("Terms") govern your access to and use of the services, websites, and applications offered by JLL Skyline (the "Service"). The Service is a privately owned commercial service owned and operated by Jones Lang LaSalle IP, Inc. (“JLL”) and your access to and use of the Service is subject to JLL’s permission in its absolute discretion.  Any access and use that is granted by JLL is conditioned on your acceptance of and compliance with these Terms. By accessing or using the Service you agree to be bound by these Terms.  The Service is intended for JLL clients and prospective clients.</p>
+                                        <p>&nbsp;</p>
+                                        <p><strong>Use of the Service</strong></p>
+                                        <p>&nbsp;</p>
+                                        <p>You may use the Service only if you can form a binding contract with JLL that accepts these Terms, and only in compliance with these Terms and all applicable local, state, national, and international laws, rules and regulations. You must provide us accurate information, including your real name, when you register for an account on JLL Skyline.  JLL is not obligated to grant you access to the Service or approval for an account on JLL Skyline.</p>
+                                        <p>JLL may, without prior notice and for any or no reason in its discretion, change the Service; stop providing the Service or features of the Service, to you or to users generally; create usage limits for the Service; or block or deny you access to the Service at any time without notice.</p>
+                                        <p>You are responsible for safeguarding the password that you use to access the Service and for any activities or actions under your password. We encourage you to use "strong" passwords (that use a combination of upper and lower case letters, numbers and symbols) with your account. JLL will not be liable for any loss or damage arising from your failure to comply with this instruction</p>
+                                        <p>&nbsp;</p>
+                                        <p><strong>Rules</strong></p>
+                                        <p>&nbsp;</p>
+										<p>Subject to these Terms, JLL gives you a personal, worldwide, royalty-free, revocable, non-assignable and non-exclusive license to use the Service as it is provided to you by JLL.</p>
+										<p>You must not do any of the following while accessing or using the Service: (i) use the Service for any unlawful purposes or for promotion of illegal activities; (ii) access or tamper with non-public areas of the Service, JLL’s computer systems, or the technical delivery systems of JLL’s providers; (iii) probe, scan, or test the vulnerability of any system or network or breach or circumvent any security or authentication measures; (iv) access or search or attempt to access or search the Service by any means (automated or otherwise) other than through the currently available, published interfaces that are provided by JLL (and only pursuant to those terms and conditions); (v) crawl or scrape the Service without the prior consent of JLL; or (vi) interfere with or disrupt (or attempt to do so) the access of any user, host or network, including, without limitation, sending a virus, overloading, flooding, spamming, or mail-bombing the Service.</p>
+                                        <p>&nbsp;</p>
+                                        <p><strong>Proprietary Rights</strong></p>
+                                        <p>&nbsp;</p>
+										<p>The text, information, graphics and other data (the “Content”)  presented in the Service was and is compiled, selected, and arranged by JLL through the application of methods and judgment developed and applied with the expenditure of substantial time, effort and money, and constitutes valuable intellectual property and trade secrets of JLL or its licensors.  The Service and its Content are protected by copyright, trademark, and other laws and treaties of both the United States and foreign countries.  Nothing in the Terms gives you a right to use the JLL name or any of the JLL trademarks, logos, domain names, and other distinctive brand features.  Except as otherwise expressly provided in the Service, you will not, without the prior written consent of JLL, sell, transfer, assign, publish, distribute, disseminate, allow access to or convey the Service, or any part, derivation, revision or combination thereof, or republish any portion of the Content on any Internet, Intranet or extranet site or incorporate the Content in any database, compilation, archive or cache. Notwithstanding the foregoing, you may download or copy the Content and may share it with others by means of social media and otherwise, but only for your company’s own use and business purposes, provided that you maintain all copyright and other notices contained therein. Copying or storing of any Content for other than your company’s use and business purposes is expressly prohibited without prior written permission of JLL. You are solely responsible for any such use of the Content.  You will do nothing to imperil the copyright, trade secret, or other proprietary rights in the Service.  Without limitation, you may not make all or any part of the Service available, or permit its availability, to third party search engines.  Any feedback, comments, or suggestions you may provide regarding the Service is entirely voluntary and we will be free to use such feedback, comments or suggestions as we see fit and without any obligation to you.</p>
+                                        <p>&nbsp;</p>
+                                        <p><strong>Links</strong></p>
+                                        <p>&nbsp;</p>
+										<p>The Service may contain links to third-party websites or resources. You acknowledge and agree that we are not responsible or liable for: (i) the availability or accuracy of such websites or resources; or (ii) the content, products, or services on or available from such websites or resources. Links to such websites or resources do not imply any endorsement by JLL of such websites or resources or the content, products, or services available from such websites or resources. You acknowledge sole responsibility for and assume all risk arising from your use of any such websites or resources.</p>
+										<p>&nbsp;</p>
+                                        <p><strong>Disclaimers; Indemnity</strong></p>
+                                        <p>&nbsp;</p>
+										<p>Your access to and use of the Service or any Content is at your own risk. You understand and agree that the Service is provided to you on an "AS IS" and "AS AVAILABLE" basis. Without limiting the foregoing, JLL AND ITS PARTNERS DISCLAIM ANY WARRANTIES, EXPRESS OR IMPLIED, OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.  All information contained in the Service is from sources deemed reliable; however, JLL makes no warranty and disclaim all responsibility and liability for the completeness, accuracy, availability, timeliness, security or reliability of the Service or any Content thereon.  JLL will not be responsible or liable for any harm to your computer system, loss of data, or other harm that results from your access to or use of the Service, or any Content.  We make no warranty that the Service will meet your requirements or be available on an uninterrupted, secure, or error-free basis.  No advice or information, whether oral or written, obtained from JLL or through the Service, will create any warranty not expressly made herein.</p>
+                                        <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, JLL AND ITS AFFILIATES, OFFICERS, EMPLOYEES, AGENTS, PARTNERS AND LICENSORS WILL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL OR PUNITIVE DAMAGES, INCLUDING WITHOUT LIMITATION, LOSS OF PROFITS, DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES, RESULTING FROM (i) YOUR ACCESS TO OR USE OF OR INABILITY TO ACCESS OR USE THE SERVICE; (ii) ANY CONDUCT OR CONTENT OF ANY THIRD PARTY ON THE SERVICE, INCLUDING WITHOUT LIMITATION, ANY DEFAMATORY, OFFENSIVE OR ILLEGAL CONDUCT OF OTHER USERS OR THIRD PARTIES; (iii) ANY CONTENT OBTAINED FROM THE SERVICE; AND (iv) UNAUTHORIZED ACCESS, USE OR ALTERATION OF YOUR TRANSMISSIONS OR CONTENT, WHETHER BASED ON WARRANTY, CONTRACT, TORT (INCLUDING NEGLIGENCE) OR ANY OTHER LEGAL THEORY, WHETHER OR NOT JLL HAS BEEN INFORMED OF THE POSSIBILITY OF SUCH DAMAGE, AND EVEN IF A REMEDY SET FORTH HEREIN IS FOUND TO HAVE FAILED OF ITS ESSENTIAL PURPOSE.</p>			
+                                        <p>Some jurisdictions do not allow the exclusion of certain warranties or the exclusion or limitation of liability for consequential or incidental damages, so the limitations above may not apply to you.</p>
+										<p>If anyone brings a claim against us related to your actions or content on the Service, or actions or content by or from someone using your account, you will indemnify and hold us harmless from and against all damages, losses, and expenses of any kind (including reasonable legal fees and costs) related to such claim.</p>
+										<p>&nbsp;</p>
+                                        <p><strong>General Terms</strong></p>
+                                        <p>&nbsp;</p>
+										<p>These Terms and any action related thereto will be governed by the laws of the State of Illinois without regard to or application of its conflict of law provisions or your state or country of residence. Unless submitted to arbitration as set forth in the following paragraph, all claims, legal proceedings or litigation arising in connection with the Service will be brought solely in Cook County, Illinois, and you consent to the jurisdiction of and venue in such courts and waive any objection as to inconvenient forum.</p>
+										<p>For any claim (excluding claims for injunctive or other equitable relief) under these Terms where the total amount of the award sought is less than $10,000, the party requesting relief may elect to resolve the dispute through binding non-appearance-based arbitration. The party electing such arbitration shall initiate the arbitration through an established alternative dispute resolution ("ADR") provider mutually agreed upon by the parties. The ADR provider and the parties must comply with the following rules: a) the arbitration shall be conducted by telephone, online and/or be solely based on written submissions, as selected by the party initiating the arbitration; b) the arbitration shall not involve any personal appearance by the parties or witnesses unless otherwise mutually agreed by the parties; and c) any judgment on the award rendered by the arbitrator may be entered in any court of competent jurisdiction.</p>
+										<p>These Terms are the entire and exclusive agreement between JLL and you regarding the Service (excluding any services for which you have a separate agreement with JLL that is explicitly in addition or in place of these Terms), and these Terms supersede and replace any prior agreements between JLL and you regarding the Service.</p>	
+                                        <p>The failure of JLL to enforce any right or provision of these Terms will not be deemed a waiver of such right or provision. In the event that any provision of these Terms is held to be invalid or unenforceable, the remaining provisions of these Terms will remain in full force and effect.</p>
+										<p>We may revise these Terms from time to time. The most current version will always be on this page (or such other page as the Service may indicate). If the revision, in our sole discretion, is material we will notify you via posting to our website or e-mail to the email associated with your account. By continuing to access or use the Service after those revisions become effective, you agree to be bound by the revised Terms.</p>
+										<p>The Service is operated and provided by Jones Lang LaSalle IP, Inc., If you have questions about these Terms, please contact us at <a href="mailto:scott.hays@am.jll.com">scott.hays@am.jll.com</a></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="align-left content">
+                                <input type="checkbox" name="accept_terms" id="accept_terms" class="css-checkbox required" placeholder="accept terms & conditions" data-error-message="accept terms & conditions" value="1" />
+                                <label for="accept_terms" class="css-label">&nbsp;I accept the terms and conditions</label>
+                            </div>
+                        </div>                        
+                        
+                        <p style="text-align:left; margin:20px 0 0 30px;">By clicking <strong>"Create account"</strong> you agree to our Terms of Service and Privacy Policy.</p>
+        				
+                        <input type="submit" class="red_btn" value="Create account" />
+                        <span class="register_text_bottum">* Jones Lang LaSalle reserves the right to deny access to the Skyline website.</span>                        
+        				<div class="clear">
+        					<!---->
+        				</div>
+        			</form>
+        		</div>
+        	</section>
+         </section>
+    </section>
+</section>

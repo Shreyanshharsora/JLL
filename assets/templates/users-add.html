@@ -1,0 +1,133 @@
+<div ng-controller="AddUserController">
+<!-- BEGIN MAIN CONTENT -->
+    <div class="row">
+		<div class="col-md-12">
+			<!-- Begin add form -->
+            <div tabindex="-1">
+                
+                <div class="portlet box blue-madison">
+					<div class="portlet-title">
+						<div class="caption">
+							<i class="fa fa-plus"></i>Add User
+						</div>
+						<div class="tools">
+							<a href="javascript:;" class=""></a>
+						</div>
+					</div>
+					<div class="portlet-body form">
+						<!-- BEGIN FORM-->
+						<form id="frmAdd" name="frmAdd" class="form-horizontal" onsubmit="return false">
+							<div class="form-body">
+								<!--h3 class="form-section">Advance validation. <small>Custom radio buttons, checkboxes and Select2 dropdowns</small></h3-->
+								<div class="alert alert-danger display-hide">
+									<button class="close" data-close="alert"></button>
+									You have some form errors. Please check below.
+								</div>
+								<div class="alert alert-success display-hide">
+									<button class="close" data-close="alert"></button>
+									   Record added successfully.
+								</div>
+                                <div class="form-group"></div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">First Name <span class="required"> * </span> </label>
+                                    <div class="col-md-4">
+                                        <input type="text" ng-enter ng-model="add_fields.fname" data-error-message="First Name" name="fname" class="form-control required"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Last Name <span class="required"> * </span> </label>
+                                    <div class="col-md-4">
+                                        <input type="text" ng-enter ng-model="add_fields.lname" data-error-message="Last Name" name="lname" class="form-control required"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Email ID <span class="required"> * </span> </label>
+                                    <div class="col-md-4">
+                                        <input type="text" ng-enter ng-model="add_fields.email" data-error-message="Email" id="email" name="email" class="form-control required email unique"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Password <span class="required"> * </span> </label>
+                                    <div class="col-md-4">
+                                        <input type="password" ng-enter ng-model="add_fields.password" data-error-message="Password" name="password" id="password" class="form-control required validate_password"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Confirm Password <span class="required"> * </span> </label>
+                                    <div class="col-md-4">
+                                        <input type="password" ng-enter ng-model="add_fields.cpassword" data-error-message="Confirm Password" equalTo="#password" name="cpassword" class="form-control required"/>
+                                    </div>
+                                </div>
+								<div class="form-group">
+									<label class="control-label col-md-3">User Type<span class="required"> * </span> </label>
+									<div class="col-md-4">
+										<select class="form-control bs-select add_e_type required" ng-model="add_fields.e_type" name="e_type" data-error-message="User Type">
+                                            <option value="">Select User Type</option>
+											<option value="Admin">Admin</option>
+                                            <option value="Guest">Guest</option>
+										</select>
+									</div>
+								</div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Company Name</label>
+                                    <div class="col-md-4">
+                                        <input type="text" ng-enter ng-model="add_fields.v_company_name" name="v_company_name" class="form-control"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Title</label>
+                                    <div class="col-md-4">
+                                        <input type="text" ng-enter ng-model="add_fields.v_title" name="v_company_name" class="form-control"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+									<label class="control-label col-md-3">Industry</label>
+									<div class="col-md-4">
+										<select class="form-control bs-select add_v_industry " ng-model="add_fields.v_industry" name="v_industry">
+                                            <option value="">Select Industry</option>
+											<option ng-repeat="(key , value) in industries" value="{{value}}">{{ value }}</option>
+										</select>
+									</div>
+								</div>
+                                <div class="form-group">
+									<label class="control-label col-md-3">City</label>
+									<div class="col-md-4">
+                                        <input type="text" ng-enter ng-model="add_fields.v_city" name="v_city" class="form-control"/>
+                                    </div>
+								</div>
+                                
+                                <div class="form-group">
+									<label class="control-label col-md-3">Status<span class="required"> * </span> </label>
+									<div class="col-md-4">
+										<select class="form-control bs-select add_e_status required" ng-model="add_fields.e_status" name="e_status" data-error-message="Status">
+											<option value="">Select Status</option>
+                                            <option value="1">Active</option>
+                                            <option value="0">Inactive</option>
+										</select>
+									</div>
+								</div>
+                            </div>
+							<div class="form-actions">
+								<div class="row">
+									<div class="col-md-offset-3 col-md-9">
+										<button type="submit" class="btn green" ng-click="submit_frm_add(add_fields, 'Save')">Save</button>
+                                        <button type="submit" class="btn green" ng-click="submit_frm_add(add_fields, 'New')">Save & Add New</button>
+										<button type="button" class="btn default" ng-click="clearFormData()">Cancel</button>
+									</div>
+								</div>
+							</div>
+						</form>
+                        
+                            
+						<!-- END FORM-->
+					</div>
+					<!-- END VALIDATION STATES-->
+				</div>
+                        
+            </div>
+            <!-- End add form -->
+            
+		</div>
+	</div>
+<!-- END PAGE CONTENT-->
+</div>

@@ -1,0 +1,29 @@
+<div ng-show="validImage == 1" class="cropping-block">
+    <div ng-if="enableCrop" class="cropArea" ng-class="{'big':size=='big', 'medium':size=='medium', 'small':size=='small'}">
+        <img-crop class="loaded_image" image="imageDataURI"
+                  result-image="$parent.resImageDataURI"
+                  change-on-fly="changeOnFly"
+                  area-type="{{type}}"
+                  area-min-size="selMinSize"
+                  result-image-format="{{resImgFormat}}"
+                  result-image-quality="resImgQuality"
+                  result-image-size="resImgSize"
+                  on-change="onChange($dataURI)"
+                  on-load-begin="onLoadBegin()"
+                  on-load-done="onLoadDone()"
+                  on-load-error="onLoadError()"
+        ></img-crop>
+    </div>
+</div>
+<div ng-show="validImage == 1" style="clear: both; text-align: center; padding: 20px 0 0 0;">
+    <input type="button" ng-click="cropImage()" value="Crop Image" /> &nbsp; 
+    <input type="button" ng-click="cancelImage()" value="Cancel" />
+</div>
+<div ng-show="validImage == 0" class="cropping-block">
+    <div ng-if="enableCrop" class="cropArea" ng-class="{'big':size=='big', 'medium':size=='medium', 'small':size=='small'}">
+        <a class="empty_class" style="position: relative; top: 60px;"><div>{{ error_message }}</div></a>
+    </div>
+</div>
+<div ng-show="validImage == 0" style="clear: both; text-align: center; padding: 20px 0 0 0;">
+    <input type="button" ng-click="cancelImage()" value="OK" />
+</div>

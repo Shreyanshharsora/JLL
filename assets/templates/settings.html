@@ -1,0 +1,317 @@
+<div ng-controller="SettingsController" id="settings">
+<!-- BEGIN MAIN CONTENT -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet box blue-madison">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-cogs"></i>Edit Settings
+                    </div>
+                </div>
+                <div class="portlet-body form">
+					<!-- BEGIN FORM-->
+					<form id="frmEdit" name="frmEdit" class="form-horizontal" onsubmit="return false">
+						<div class="form-body">
+							<!--h3 class="form-section">Advance validation. <small>Custom radio buttons, checkboxes and Select2 dropdowns</small></h3-->
+							<div class="alert alert-danger display-hide">
+								<button class="close" data-close="alert"></button>
+								You have some form errors. Please check below.
+							</div>
+							<div class="alert alert-success display-hide">
+								<button class="close" data-close="alert"></button>
+								Record updated successfully.
+							</div>
+                            <div class="form-group"></div>
+                            <div class="form-group">
+								<label class="control-label col-md-2">Skyline - Help Text <span class="required"> * </span> </label>
+								<div class="col-md-4">
+									<input type="text" ng-enter name="setting[v_skyline_what_is_this_help_text]" value="{{ items.settings.v_skyline_what_is_this_help_text }}" data-error-message="Skyline - Help Text" maxlength="500" class="form-control required"/>
+								</div>
+							</div>
+                            <h3 class="form-section">Email Template - Contact Us</h3>
+                            <div class="form-group">
+								<label class="control-label col-md-2">Admin Email Id <span class="required"> * </span> </label>
+								<div class="col-md-4">
+									<input type="text" ng-enter name="setting[admin_email]" value="{{ items.settings.admin_email }}" data-error-message="Email Id" class="form-control email required"/>
+								</div>
+							</div>
+                            <!--div class="form-group">
+								<label class="control-label col-md-2">Email Template Title <span class="required"> * </span> </label>
+								<div class="col-md-4">
+									<input type="text" ng-enter name="template[v_template_title]" value="{{ items.email_templates.v_template_title }}" data-error-message="Email Template Title" class="form-control required"/>
+								</div>
+							</div -->
+							<div class="form-group">
+								<label class="control-label col-md-2">Email Subject <span class="required"> * </span> </label>
+								<div class="col-md-4">
+									<input type="text" ng-enter name="template[v_template_subject]" value="{{ items.email_templates.v_template_subject }}" data-error-message="Email Template Subject" class="form-control required"/>
+								</div>
+							</div>
+                            <div class="form-group">
+								<label class="control-label col-md-2">Email Template - Body <span class="required">* </span>
+								</label>
+								<div class="col-md-9">
+									<textarea class="form-control required ckeditor" ng-model="items.t_email_content" name="template[t_email_content]" data-error-message="Email Template Body"  rows="6" data-error-container=".help-block" id="email_template_editor">{{ items.email_templates.t_email_content }}</textarea>
+                                   <div id="editor2_error" class="editor2_error help-block"></div>
+
+								</div>
+							</div>
+
+                            <h3 class="form-section">Share Email Template </h3>
+                            <div class="form-group">
+								<label class="control-label col-md-2">Email Subject <span class="required"> * </span> </label>
+								<div class="col-md-4">
+									<input type="text" ng-enter name="share_email_templates[v_share_template_subject]" value="{{ items.share_email_templates.v_template_subject }}" data-error-message="Share Email Template Subject" class="form-control required"/>
+								</div>
+							</div>
+                            <div class="form-group">
+								<label class="control-label col-md-2">Email Template - Body <span class="required">* </span>
+								</label>
+								<div class="col-md-9">
+
+                                    <textarea class="form-control required ckeditor" ng-model="items.t_share_email_content" name="share_email_templates[t_email_content]" data-error-message="Email Template Body"  rows="6" data-error-container=".help-block"  id="share_email_template_editor">{{ items.t_share_email_content.t_email_content }}</textarea>
+
+                                   <div id="editor2_error" class="editor2_error help-block"></div>
+
+								</div>
+							</div>
+
+
+                            <h3 class="form-section">Country List</h3>
+                            <div ng-repeat="item in items.countries">
+                                <div class="form-group">
+    								<label class="control-label col-md-2">Country Name {{ $index+1 }} <span class="required"> * </span> </label>
+    								<div class="col-md-4">
+    									<input type="text" ng-enter name="country[name][]" data-error-message="Country Name" value="{{ item.name }}" class="form-control required"/>
+    								</div>
+    							</div>
+
+                                <div class="form-group">
+    								<label class="control-label col-md-2">Country Abbreviation {{ $index+1 }} <span class="required"> * </span> </label>
+    								<div class="col-md-4">
+    									<input type="text" ng-enter name="country[abbr][]" data-error-message="Country Abbreviation" value="{{ item.abbreviation }}" class="form-control required"/>
+    								</div>
+    							</div>
+
+                                <!--div class="form-group user-custom-logo" ng-if="$index == 0">
+                                    <label class="control-label col-md-2">Country Image<span class="required"> * </span><p>Size:108px X 109px</p></label>
+                                    <div class="col-md-9">
+                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+
+                                                <div ng-if="thumbnailEnable1" class="fileinput-new thumbnail preview_image"  ng-show="thumbnailEnable1 == true">
+                                                    <img src="{{ thumbnailURI1 }}" alt="" style="width:108px" />
+                                                </div>
+                                                <div>
+                                                    <span class="btn default btn-file" ng-click="trigger('#thumbInput1')">
+                                                        <div ng-class="thumbnailEnable1 == false ? 'fileinput-new ng-show-inline-block' : 'fileinput-new ng-hide'" ng-show="thumbnailEnable1 == 'false'" >Select image</div>
+
+                                                        <span ng-class="thumbnailEnable1 == true ? 'ng-show-inline-block' : 'fileinput-exists ng-hide'" ng-if="thumbnailEnable1"> Change </span>
+
+                                                    </span>
+
+                                                    <a ng-if="thumbnailEnable1" href="javascript:;" ng-class="thumbnailEnable1 == true ? 'btn default fileinput-exists  ng-show-inline-block' : 'btn default fileinput-exists ng-hide'" data-dismiss="fileinput" ng-click="removeImage1()" > Remove </a>
+                                                </div>
+                                                 <input type="hidden" name="country[image][]" id="full-image-element-edit1" value="{{ thumbnailURI1 }}" data-error-message="Image" class="form-control required" />
+                                                 <input type="hidden" name="country[image_type][]" value="{{ image_type1 }}" />
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="form-group user-custom-logo" ng-if="$index == 1">
+                                    <label class="control-label col-md-2">Country Image<span class="required"> * </span><p>Size:108px X 109px</p></label>
+                                    <div class="col-md-9">
+                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+
+                                                <div ng-if="thumbnailEnable2" class="fileinput-new thumbnail preview_image"  ng-show="thumbnailEnable2 == true">
+                                                    <img  src="{{ thumbnailURI2 }}" alt="" style="width:108px" />
+                                                </div>
+                                                <div>
+                                                    <span class="btn default btn-file" ng-click="trigger('#thumbInput2')">
+                                                        <div ng-class="thumbnailEnable2 == false ? 'fileinput-new ng-show-inline-block' : 'fileinput-new ng-hide'" ng-show="thumbnailEnable2 == 'false'" >Select image</div>
+
+                                                        <span ng-class="thumbnailEnable2 == true ? 'ng-show-inline-block' : 'fileinput-exists ng-hide'" ng-if="thumbnailEnable2"> Change </span>
+
+                                                    </span>
+
+                                                    <a ng-if="thumbnailEnable2" href="javascript:;" ng-class="thumbnailEnable2 == true ? 'btn default fileinput-exists  ng-show-inline-block' : 'btn default fileinput-exists ng-hide'" data-dismiss="fileinput" ng-click="removeImage2()" > Remove </a>
+                                                </div>
+                                                 <input type="hidden" name="country[image][]" id="full-image-element-edit2" value="{{ thumbnailURI2 }}" data-error-message="Image" class="form-control required" />
+                                                 <input type="hidden" name="country[image_type][]" value="{{ image_type2 }}" />
+                                            </div>
+                                    </div>
+                                </div-->
+                            </div>
+                            <h3 class="form-section">Home Page</h3>
+                            <div class="form-group">
+								<label class="control-label col-md-2">Image Slider - Text <span class="required"> * </span> </label>
+								<div class="col-md-4">
+									<input type="text" ng-enter name="setting[v_homepage_img_rotator_text]" value="{{ items.settings.v_homepage_img_rotator_text }}" data-error-message="Image Slider - Text" class="form-control required"/>
+								</div>
+							</div>
+                            <div class="form-group">
+								<label class="control-label col-md-2">Meta Title <span class="required"> * </span> </label>
+								<div class="col-md-4">
+									<input type="text" ng-enter name="cms[v_meta_title]" value="{{ items.cms.v_meta_title }}" data-error-message="Meta Title" class="form-control required"/>
+								</div>
+							</div>
+                            <div class="form-group">
+								<label class="control-label col-md-2">Meta Keywords <span class="required"> * </span> </label>
+								<div class="col-md-4">
+									<textarea class="form-control required" name="cms[v_meta_keywords]" data-error-message="Meta Keywords" rows="6" data-error-container=".help-block" id="v_meta_keywords">{{ items.cms.v_meta_keywords }}</textarea>
+								</div>
+							</div>
+                            <div class="form-group">
+								<label class="control-label col-md-2">Meta Description <span class="required"> * </span> </label>
+								<div class="col-md-4">
+									<textarea class="form-control required" name="cms[v_meta_description]" data-error-message="Meta Description" rows="6" data-error-container=".help-block" id="v_meta_description">{{ items.cms.v_meta_description }}</textarea>
+								</div>
+							</div>
+                            <h3 class="form-section"> Home Page - Instagram Widget</h3>
+                            <div class="form-group">
+								<label class="control-label col-md-2">Instagram HashTag<span class="required"> * </span> </label>
+								<div class="col-md-4">
+									<input type="text" ng-enter name="setting[v_instagram_hashtag]" maxlength='20' value="{{ items.settings.v_instagram_hashtag }}" data-error-message="Instagram HashTag" class="form-control required"/>
+								</div>
+							</div>
+                            <div class="form-group">
+								<label class="control-label col-md-2">Instagram Client Id<span class="required"> * </span> </label>
+								<div class="col-md-4">
+									<input type="text" ng-enter name="setting[v_instagram_client_id]" value="{{ items.settings.v_instagram_client_id }}" data-error-message="Instagram Client Id" class="form-control required"/>
+								</div>
+							</div>
+                            <div class="form-group">
+								<label class="control-label col-md-2">Instagram Access Token<span class="required"> * </span> </label>
+								<div class="col-md-4">
+									<input type="text" ng-enter name="setting[v_instagram_access_token]" value="{{ items.settings.v_instagram_access_token }}" data-error-message="Instagram Access Token" class="form-control required"/>
+								</div>
+							</div>
+                            <div class="form-group">
+								<label class="control-label col-md-2">Widget Text<span class="required"> * </span> </label>
+								<div class="col-md-4">
+									<input type="text" ng-enter name="setting[v_instagram_widget_text]" maxlength='100'  value="{{ items.settings.v_instagram_widget_text }}" data-error-message="Instagram Widget Text" class="form-control required"/>
+								</div>
+							</div>
+                            <div class="form-group">
+								<label class="control-label col-md-2">Widget - Button 1 - Label<span class="required"> * </span> </label>
+								<div class="col-md-4">
+									<input type="text" ng-enter name="setting[v_instagram_widget_button1_text]" maxlength='20' value="{{ items.settings.v_instagram_widget_button1_text }}" data-error-message="Instagram Widget - Button 1 - Label" class="form-control required"/>
+								</div>
+							</div>
+                            <div class="form-group">
+								<label class="control-label col-md-2">Widget - Button 1 - Link<span class="required"> * </span> </label>
+								<div class="col-md-4">
+									<input type="text" ng-enter name="setting[v_instagram_widget_button1_link]" value="{{ items.settings.v_instagram_widget_button1_link }}" data-error-message="Instagram Widget - Button 1 - Link" class="form-control url required"/>
+								</div>
+							</div>
+                            <div class="form-group">
+								<label class="control-label col-md-2">Widget - Button 2 - Label<span class="required"> * </span> </label>
+								<div class="col-md-4">
+									<input type="text" ng-enter name="setting[v_instagram_widget_button2_text]" maxlength='20' value="{{ items.settings.v_instagram_widget_button2_text }}" data-error-message="Instagram Widget - Button 1 - Label" class="form-control required"/>
+								</div>
+							</div>
+                            <div class="form-group">
+								<label class="control-label col-md-2">Widget - Button 2 - Link<span class="required"> * </span> </label>
+								<div class="col-md-4">
+									<input type="text" ng-enter name="setting[v_instagram_widget_button2_link]" value="{{ items.settings.v_instagram_widget_button2_link }}" data-error-message="Instagram Widget - Button 2 - Link" class="form-control url required"/>
+								</div>
+							</div>
+                            <!--h3 class="form-section"> Home Page (of logged in user)</h3>
+                            <div class="form-group">
+								<label class="control-label col-md-2">Home Page - Learn More - Link<span class="required"> * </span> </label>
+								<div class="col-md-4">
+									<input type="text" ng-enter name="setting[home_page_learn_more_link]" value="{{ items.settings.home_page_learn_more_link }}" data-error-message="Home Page - Learn More - Link" class="form-control url required"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-2">Home Page Content <span class="required">* </span>
+								</label>
+								<div class="col-md-9">
+									<textarea class="form-control required ckeditor" id="home_page_content" name="cms[t_content]" data-error-message="home page content"  rows="6" data-error-container=".help-block" >{{ items.cms.t_content }}</textarea>
+                                   <div id="editor2_error" class="editor2_error help-block"></div>
+
+								</div>
+							</div>
+                            <h3 class="form-section"> Home Page (of non-login user)</h3>
+                            <div class="form-group">
+								<label class="control-label col-md-2">Content above 'Login' form </label>
+								<div class="col-md-6">
+									<textarea name="setting[v_login_form_content]"data-error-message="Content above 'Login' form" class="form-control"> {{ items.settings.v_login_form_content }} </textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-2">Content above 'Reset Password' form
+								</label>
+								<div class="col-md-6">
+									<textarea name="setting[v_reset_pass_form_content]"data-error-message="Content above 'Reset Password' form" class="form-control"> {{ items.settings.v_reset_pass_form_content }} </textarea>
+                                   <div id="editor2_error" class="editor2_error help-block"></div>
+                                </div>
+							</div>
+                            <div class="form-group">
+								<label class="control-label col-md-2">Home Page Content <span class="required">* </span>
+								</label>
+								<div class="col-md-9">
+									<textarea class="form-control required ckeditor" id="v_home_page_content" name="setting[v_home_page_content]" data-error-message="home page content"  rows="6" data-error-container=".help-block" >{{ items.setting.v_home_page_content }}</textarea>
+                                   <div id="editor2_error" class="editor2_error help-block"></div>
+                               	</div>
+							</div>
+                            <div class="form-group">
+								<label class="control-label col-md-2">Video Title<span class="required"> * </span> </label>
+								<div class="col-md-4">
+									<input type="text" ng-enter name="setting[v_video_title]" value="{{ items.settings.v_video_title }}" data-error-message="Video Title" class="form-control required"/>
+								</div>
+							</div>
+                            <!-div class="form-group">
+								<label class="control-label col-md-2">YouTube Video Link<span class="required"> * </span> </label>
+								<div class="col-md-4">
+									<input type="text" ng-enter name="setting[v_video_link]" value="{{ items.settings.v_video_link }}" data-error-message="youtube or vimeo url" class="form-control check-youtube-vimeo-url required"/>
+								</div>
+							</div->
+
+                            <div class="form-group user-custom-logo">
+                                    <label class="control-label col-md-2">Upload Video (mp4)<span class="required"> * </span></label>
+                                    <div class="col-md-9">
+                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                <div ng-show="videoEnable == true" class="fileinput-new thumbnail preview_image"  >
+                                                    <video id="jll_video" controls height="300px" ng-hide="newVideo == true" >
+                                                        <source  ng-src="{{ videoURL }}"  />
+                                                    </video>
+
+                                                    <video id="jll_video1" controls height="300px" ng-show="newVideo == true">
+                                                        <source src="" type="video/mp4" />
+                                                    </video>
+                                                </div>
+                                                <div>
+                                                    <span class="btn default btn-file" ng-click="trigger('#file_upload')">
+                                                        <div ng-class="videoEnable == false ? 'fileinput-new ng-show-inline-block' : 'fileinput-new ng-hide'" ng-show="videoEnable == 'false'" >Upload Video</div>
+
+                                                        <span ng-class="videoEnable == true ? 'ng-show-inline-block' : 'fileinput-exists ng-hide'" ng-if="videoEnable"> Change </span>
+
+                                                    </span>
+
+                                                    <!-a ng-if="videoEnable" href="javascript:;" ng-class="videoEnable == true ? 'btn default fileinput-exists  ng-show-inline-block' : 'btn default fileinput-exists ng-hide'" data-dismiss="fileinput" ng-click="removevideo()" > Remove </a->
+                                                </div>
+                                                 <input type="hidden" name="setting[v_video_file]" id="v_video_file" value="" class="form-control required" />
+
+                                                 <!-input type="hidden" name="items.settings.v_video" value="{{ videoUrlType }}" /->
+                                            </div>
+                                    </div>
+                                </div>
+						</div -->
+						<div class="form-actions">
+							<div class="row">
+								<div class="col-md-offset-2 col-md-9">
+									<button type="submit" class="btn blue-madison" ng-click="submit_frm_edit()" ng-Disabled="buttonDisabled">Submit</button>
+                                     <button ui-sref="/dashboard" class="btn default " type="button">Cancel</button>
+								</div>
+							</div>
+						</div>
+					</form>
+                    <form id="form_name" action="{{ GLOBAL.SITE_URL+'api-admin/settings/upload-video' }}" method="post" enctype="multipart/form-data" style="display: none;">
+                        <input type="file" name="video_upload" id="file_upload" />
+                        <input type="hidden" name="old_video_name" id="old_video_name"/>
+                    </form>
+					<!-- END FORM-->
+				</div>
+            </div>
+        </div>
+    </div>
+</div>

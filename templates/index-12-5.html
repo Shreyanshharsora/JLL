@@ -1,0 +1,176 @@
+<div class="main-block" ng-controller="HomeController">
+	<!--<div class="left-border"></div>
+	<div class="right-border"></div>-->
+	<!-- banner area part -->
+	<div class="banner">
+		<div class="extra-timeline">
+		</div>
+       	<ul class="bxslider" banner-slider pagershow="false">
+			<li ng-repeat="banner in homePageBanners">
+                <div class="item"  ng-style="{ background:'url({{GLOBAL.SITE_URL+GLOBAL.HOME_PAGE_BANNER_IMAGE_PATH + banner.v_image}})' }">
+                  
+					<div class="item-inner">
+						<div class="text-caption">
+							<div class="banner-title">
+								<h1>
+									{{banner.v_title}}
+								</h1>
+							</div>
+							<h5>
+							     {{banner.v_subtext}}
+							</h5>
+                            
+							<div class="dropdown-red" ng-show="banner.e_dropdown_button=='SkylineDropdown'">
+								<a class="red_btn" banner-skyline-dropdown>PICK A SKYLINE <span class="arrow" ></span></a>
+								<div class="dropdown-list">
+									<div class="all-skyline scrollbar-inner">
+										<ul class="">
+											<li class="" ng-repeat="(key,value) in formattedCityArray">
+												{{value}}
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+                            
+                            <div class="dropdown-red-button" ng-show="banner.e_dropdown_button !='SkylineDropdown'">
+								<a class="red_btn" ng-href="{{banner.v_button_link}}">{{banner.v_button_text}}</a>
+							</div>
+                            
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<!-- About box part -->
+    <div class="about-section">
+		<div class="all-about-row">
+			
+            <div class="about-row cf" ng-repeat="array in obj2" ng-class="$index % 2 == 0 ? '': 'about-row-reverse'">
+				<div class="time-line">
+				</div>
+				<div class="about-box">
+					<div class="about-title">
+					  {{obj2[$index][0].v_title}}
+					</div>
+					<figure>
+						<a href="#"><img ng-if="obj2[$index][0].v_image !=''" ng-src="{{GLOBAL.SITE_URL+GLOBAL.HOME_PAGE_CONTENT_IMAGE+obj2[$index][0].v_image}}" alt=""></a>
+                        <a href="#"><img ng-if="obj2[$index][0].v_video_thumbnail !=''" ng-src="{{GLOBAL.SITE_URL+GLOBAL.HOME_PAGE_CONTENT_VIDEO+obj2[$index][0].v_video_thumbnail}}" alt=""></a>
+					</figure>
+					<div class="about-caption">
+						<p>
+							{{obj2[$index][0].v_desc}}
+						</p>
+						<a class="red_btn" ng-href="{{obj2[$index][0].v_link}}">{{obj2[$index][0].v_button_text}}</a>
+					</div>
+				</div>
+				<div class="about-callout">
+					<div class="about-callout-inner">
+						<div class="callout-title">
+						  {{obj2[$index][1].v_title}}
+						</div>
+						<div class="callout-desc">
+							<p>
+								{{obj2[$index][1].v_desc}}
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+            
+		</div>
+	</div>
+    
+    
+    <!--<div class="about-section">
+		<div class="all-about-row" ng-show="GLOBAL.checkId">
+			
+            <div class="about-row cf" ng-repeat="contentBox in homePageContentBoxes | filter: { e_type: 'LoggedOut'} | orderBy :'v_box_no'" ng-class="$index % 2 == 0 ? '': 'about-row-reverse'">
+				<div class="time-line">
+				</div>
+				<div class="about-box" >
+					<div class="about-title">
+						{{contentBox.v_title}}
+					</div>
+					<figure>
+						<a href="#"><img ng-show="contentBox.v_image !=''" ng-src="{{GLOBAL.SITE_URL+GLOBAL.HOME_PAGE_CONTENT_IMAGE+contentBox.v_image}}" alt=""></a>
+                        <a href="#"><img ng-show="contentBox.v_video_thumbnail !=''" ng-src="{{GLOBAL.SITE_URL+GLOBAL.HOME_PAGE_CONTENT_VIDEO+contentBox.v_video_thumbnail}}" alt=""></a>
+					</figure>
+					<div class="about-caption">
+						<p>
+							{{contentBox.v_desc}}
+						</p>
+						<a class="red_btn" ng-href="{{contentBox.v_link}}">{{contentBox.v_button_text}}</a>
+					</div>
+				</div>
+				<div class="about-callout">
+					<div class="about-callout-inner">
+						<div class="callout-title">
+						  {{contentBox.v_title}}
+						</div>
+						<div class="callout-desc">
+							<p>
+								{{contentBox.v_desc}}
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+            
+		</div>
+	</div>-->
+	<!-- Our key part -->
+	<div class="our-keys cf">
+		<div class="key-heading">
+			<h2>
+				5 KEY THEMES SHAPING
+				<br/>
+				THE U.S. SKYLINE
+			</h2>
+		</div>
+		
+        <div class="key-slider">
+			<ul class="bxslider" banner-slider>
+				<li ng-repeat="imagerotator in homePageImageRotator">
+					<div class="key-box">
+						<figure>
+							<img alt="" ng-src="{{GLOBAL.SITE_URL+GLOBAL.HOME_PAGE_IMAGE_ROTATOR_PATH + imagerotator.v_image}}">
+						</figure>
+						<p>
+							{{imagerotator.v_subtext}}
+						</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+                
+	</div>
+	<!-- Instagram part -->
+	<div class="instagram-section cf">
+		<div class="insta-desc">
+			<h3>
+				SEE WHAT
+				<br>
+				<span>
+					#JLLSKYLINES
+				</span>
+				<br>
+				PEOPLE ARE
+				<br>
+				TALKING ABOUT!
+			</h3>
+			<div class="insta-buttons">
+				<a ng-href="{{settingData.v_instagram_widget_button1_link}}" class="red_btn" target="_blank">EXPLORE #JLLSKYLINE</a>
+				<a ng-href="{{settingData.v_instagram_widget_button2_link}}" class="red_btn" target="_blank">FOLLOW US</a>
+			</div>
+		</div>
+		<div class="insta-images">
+			<div class="insta-images-inner cf">
+                <a class="single-insta" data-fancybox-group="thumb" ng-repeat="(key,value) in instagramImages" ng-href="{{ value}}">
+                    <img ng-src="{{value}}" alt="Instagram">
+                </a>           
+			</div>
+		</div>
+	</div>
+</div>

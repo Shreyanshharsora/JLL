@@ -1,0 +1,488 @@
+<div ng-controller="BuildingsAddController">
+    <style> .form-wizard .progress { margin-bottom: 5px; } </style>  
+    <!-- BEGIN MAIN CONTENT -->
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Begin add form -->
+            <div tabindex="-1">
+
+                <div class="portlet box blue-madison" id="form_wizard_1">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-plus"></i> Add Building Information - <span class="step-title">
+                            Step 1 of 2 </span>
+                        </div>						
+                    </div>
+                    <div class="portlet-body form">
+                        <form action="javascript: void(0);" onsubmit="return false" class="form-horizontal" id="frmAdd" name="frmAdd" method="POST">
+                            <div class="form-wizard">
+                                <div class="form-body">
+                                    <ul class="nav nav-pills nav-justified steps" style="margin: 0; padding: 0px 0px 5px 0;">
+                                        <li class="active">
+                                            <a href="javascript: void(0);" id="building_tab" data-target="#tab1" data-toggle="tab" class="step" ng-click="change_tab_number(1)"  >
+                                                <span class="number"> 1 </span>
+                                                <span class="desc"><i class="fa fa-check"></i> Building Details </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;" id="floor_tab" data-toggle="tab" class="step" ng-click="submit_building_frm_add(add_fields,'tab')" >
+                                                <span class="number"> 2 </span>
+                                                <span class="desc"> <i class="fa fa-check"></i> Floor Detail </span>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                    <div id="bar" class="progress progress-striped" role="progressbar">
+                                        <div class="progress-bar progress-bar-success">
+                                        </div>
+                                    </div>
+                                    <div class="tab-content">
+
+                                        <div class="tab-pane active" id="tab1">
+                                            <div class="alert alert-danger display-hide">
+                                                <button class="close" data-close="alert"></button>
+                                                You have some form errors. Please check below.
+                                            </div>
+                                            <div class="alert alert-success display-hide">
+                                                <button class="close" data-close="alert"></button>
+                                                Your form validation is successful!
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Building Name <span class="required"> * </span> </label>
+                                                <div class="col-md-4">
+                                                    <input type="text" ng-enter ng-model="add_fields.v_name" data-error-message="Building Name" name="building[v_name]" class="form-control required"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Building Image<span class="required"> * </span> </label>
+                                                <div class="col-md-4">
+                                                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                        <div>
+                                                            <span class="btn default btn-file" ng-click="trigger('#fileInput')">
+                                                                <div ng-class="enableCrop == false ? 'fileinput-new ng-show-inline-block' : 'fileinput-new ng-hide'" ng-show="enableCrop == false" >Select image</div>
+                                                                <span ng-if="enableCrop"> Change </span>
+                                                            </span>
+                                                            <div ng-show="enableCrop" id="image_name" style="display: inline-block; margin-right: 5px;"></div> 
+                                                            <input type="hidden" name="building[original_image_name]" id="original_image_name" value="" />
+                                                        </div>
+                                                    </div>
+                                                    <input type="hidden" name="building[v_image_url]" ng-model="add_fields.v_image_url" id="full-image-element" value="{{ imageDataURI }}" class="required" data-error-message="Image" />
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">No of Floors <span class="required"> * </span> </label>
+                                                <div class="col-md-4">
+                                                    <input type="text" ng-enter ng-model="add_fields.i_floor_number" data-error-message="Floor" name="building[i_floor_number]" class="form-control required"/>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Display floors <span class="required"> * </span> </label>
+                                                <div class="col-md-4">
+                                                    <input type="text" ng-enter ng-model="add_fields.i_display_no_of_floors" data-error-message="Floor" name="building[i_display_no_of_floors]" class="form-control required"/>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Address 1 <span class="required"> * </span> </label>
+                                                <div class="col-md-4">
+                                                    <input type="text" ng-enter ng-model="add_fields.v_address1" data-error-message="Address 1" name="building[v_address1]" class="form-control required"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Address 2 </label>
+                                                <div class="col-md-4">
+                                                    <input type="text" ng-enter ng-model="add_fields.v_address2" data-error-message="Address 2" name="building[v_address2]" class="form-control"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">City<span class="required"> * </span> </label>
+                                                <div class="col-md-4">
+                                                    <select ng-change="get_floor_height(add_fields.i_city_id); get_order(add_fields.i_city_id);" class="form-control bs-select required select_msg" ng-model="add_fields.i_city_id" name="building[i_city_id]" data-error-message="City">
+                                                        <option value="">Select City</option>
+                                                        <option ng-repeat="(key, value) in cities" value="{{value}}">{{key}}</option>
+                                                    </select>
+                                                </div>
+                                                <input type="hidden" name="building[v_city]" id="city_name" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">State <span class="required"> * </span> </label>
+                                                <div class="col-md-4">
+                                                    <input type="text" ng-enter ng-model="add_fields.v_state" data-error-message="State" name="building[v_state]" class="form-control required"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Zipcode  </label>
+                                                <div class="col-md-4">
+                                                    <input type="text" ng-enter ng-model="add_fields.v_zip" data-error-message="Zip" name="building[v_zip]" class="form-control"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Building Order <span class="required"> * </span> </label>
+                                                <div class="col-md-4">
+                                                    <input type="text" ng-enter ng-model="add_fields.i_order" data-error-message="Building Order" name="building[i_order]" id="order_no" class="form-control required number"/>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Status </label>
+                                                <div class="col-md-4">
+                                                    <select class="form-control bs-select add_e_status" ng-model="add_fields.b_status" name="building[b_status]" data-error-message="Status">
+                                                        <option value="">Select Status</option>
+                                                        <option value="Existing">Existing</option>
+                                                        <option value="Under construction">Under construction</option>
+                                                        <option value="Under renovation">Under renovation</option>
+                                                        <option value="Long-term proposed (>24 months)">Long-term proposed (>24 months)</option>
+                                                        <option value="Short-term proposed (<24 months)">Short-term proposed (<24 months)</option>
+                                                        <option value="Hidden">Hidden</option>
+
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Year built/renovated </label>
+                                                <div class="col-md-4">
+                                                    <input type="text" ng-enter ng-model="add_fields.i_year_built" data-error-message="Year built/renovated" name="building[i_year_built]" class="form-control"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Submarket <span class="required"> * </span> </label>
+                                                <div class="col-md-4">
+                                                    <input type="text" ng-enter ng-model="add_fields.v_submarket" data-error-message="Submarket" name="building[v_submarket]" class="form-control required"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Class <span class="required"> * </span> </label>
+                                                <div class="col-md-4">
+                                                    <select class="form-control bs-select required" ng-model="add_fields.e_class" name="building[e_class]" data-error-message="Class">
+                                                        <option value="">Select Class</option>
+                                                        <option value="Trophy">Trophy</option>
+                                                        <option value="Class A">Class A</option>
+                                                        <option value="Class B">Class B</option>
+                                                        <option value="N/A">N/A</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">RBA(s.f.) <span class="required"> * </span> </label>
+                                                <div class="col-md-4">
+                                                    <input type="text" ng-enter ng-model="add_fields.i_rba" data-error-message="RBA(s.f.)" name="building[i_rba]" class="form-control required number"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Avg. Floor Plate <span class="required"> * </span> </label>
+                                                <div class="col-md-4">
+                                                    <input type="text" ng-enter ng-model="add_fields.i_avg_floor_plate" data-error-message="Avg. Floor Plate" name="building[i_avg_floor_plate]" class="form-control required number"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Total Vacant Surface <span class="required"> * </span> </label>
+                                                <div class="col-md-4">
+                                                    <input type="text" ng-enter ng-model="add_fields.i_total_vacant_sf" data-error-message="Class" name="building[i_total_vacant_sf]" class="form-control required number"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Occupied <span class="required"> * </span> </label>
+                                                <div class="col-md-4">
+                                                    <input type="text" ng-enter ng-model="add_fields.i_occupied" data-error-message="Occupied" name="building[i_occupied]" class="form-control required number"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Direct Vacant Surface <span class="required"> * </span> </label>
+                                                <div class="col-md-4">
+                                                    <input type="text" ng-enter ng-model="add_fields.i_direct_vacant_sf" data-error-message="Direct Vacant Surface" name="building[i_direct_vacant_sf]" class="form-control required digits"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Percent Leased(%) <span class="required"> * </span> </label>
+                                                <div class="col-md-4">
+                                                    <input type="text" ng-enter ng-model="add_fields.i_leased" data-error-message="Percent Leased" name="building[i_leased]" class="form-control required number"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Direct Rent(FS) <span class="required"> * </span> </label>
+                                                <div class="col-md-4">
+                                                    <input type="text" ng-enter ng-model="add_fields.d_rent" data-error-message="Direct Rent(FS)" name="building[d_rent]" class="form-control required"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Owner <span class="required"> * </span> </label>
+                                                <div class="col-md-4">
+                                                    <input type="text" ng-enter ng-model="add_fields.v_owner" data-error-message="Owner" name="building[v_owner]" class="form-control required"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Leed <span class="required"> * </span> </label>
+                                                <div class="col-md-4">
+                                                    <select class="form-control bs-select required select_msg" ng-model="add_fields.i_leed" name="building[i_leed]" data-error-message="Status">
+                                                        <option value="">Select</option>
+                                                        <option value="1">Yes</option>
+                                                        <option value="0">No</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Leed Cert. </label>
+                                                <div class="col-md-4">
+                                                    <select class="form-control bs-select" ng-model="add_fields.e_leed_cert" name="building[e_leed_cert]" data-error-message="Leed Cert">
+                                                        <option value="">Select Leed Cert</option>
+                                                        <option value="Certified">Certified</option>
+                                                        <option value="Silver">Silver</option>
+                                                        <option value="Gold">Gold</option>
+                                                        <option value="Platinum">Platinum</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Is Default Selected on City Detail Page? <span class="required"> * </span> </label>
+                                                <div class="col-md-4">
+                                                    <select class="form-control bs-select required" ng-model="add_fields.is_default" name="building[is_default]" data-error-message="option">
+                                                        <option value="">Select</option>
+                                                        <option value="1">Yes</option>
+                                                        <option value="0">No</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group last">
+                                                <label class="control-label col-md-3">Status <span class="required"> * </span></label>
+                                                <div class="col-md-4">
+                                                    <select data-error-message="Status" name="building[status]" ng-model="add_fields.e_status"  class="form-control bs-select add_e_status ng-pristine ng-valid required">
+                                                        <option value="">Select status</option>
+            											<option value="1">Active</option>
+                                                        <option value="0">Inactive</option>
+            										</select>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-actions">
+                                                <div class="row">
+                                                    <div class="col-md-offset-3 col-md-9">
+                                                        <a href="javascript:void(0);" class="btn default button-next" ng-click="submit_building_frm_add(add_fields,'continue')"> Continue <i class="m-icon-swapright m-icon-white"></i> </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="tab-pane" id="tab2">
+
+                                            <div class="form-title building_graph">
+                                                <h4><label>Floor Height: </label> {{ floor_height }}em &nbsp; <a ng-click="edit_floor_height();" href="javascript: void(0);"><i class="fa fa-edit"></i></a></h4>
+                                                <h4 style="margin-top: -10px;" >{{ tab1_building_address }}</h4>
+                                                <div id="building" class="building">
+                                                    <img id="image_1" alt="" src="" class="mask_img" />
+                                                    <img ng-if="add_fields.i_city_id != ''" id="city_grid_image" height="" width="" alt="" ng-src="{{ GLOBAL.SITE_URL+GLOBAL.CITY_BACKGROUND_IMAGE_PATH+all_cities_data[add_fields.i_city_id].v_background_image_url }}" class="img2" style="opacity: 0.5;" />
+                                                    <div class="floors" id="floors">
+                                                        <div ng-repeat="row in data_rows | reverse" id="floor-{{ data_rows.length-$index }}" class="floor_div clearfix" style="height:{{ floor_height }}em;"></div>
+                                                    </div>
+                                                    <!--a href="javascript:void(0);" class="btn default button-prev" style="margin: 1% 2%; margin: 20% 0; width: 165px;" ng-click="apply_result()" > Apply Changes </a-->
+                                                </div>
+                                                <div class="legends" style="margin:0 10px 10px">
+                                                    <div class="key_content">
+                                                        <span ng-repeat="(key , value) in unit_assets"><label class="colorbut" rel="{{ value.v_color }}" style="background-color: {{ value.v_color }}; "></label><span style="vertical-align: middle; margin-left: 10px;">{{ value.v_name }}</span></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="building_matrix" >
+                                                <!--div class="legends">
+                                                    <div class="key_content">
+                                                        <span ng-repeat="(key , value) in unit_assets"><label style="background-color: {{ value.v_color }}; "></label><span style="vertical-align: middle; margin-left: 10px;">{{ value.v_name }}</span></span>
+                                                    </div>
+                                                </div-->
+                                                <!--h4> Floor</h4-->                
+                                                <div ng-repeat="row in data_rows">
+                                                    <div ng-class="$index%2 == 0 ? 'main_floor_div' : 'main_floor_div even_floor'" style="float: left; width:100%;" id="floor_{{ $index+1 }}" rel="{{ $index+1 }}"  >
+                                                        <label class="control-label col-md-1" style="font-weight: bold; width:12px;"> {{ $index+1 }}</label>
+                                                        <div style="display:inline-block; max-width: 100%; width: 92%;" class="main_unit_box">
+                                                           
+                                                            <div class="col-lg-8 col-md-12 p0">    
+                                                                <div class="form-group floor added_opt unit_box" ng-repeat="input in inputs[$index+1]">
+    
+                                                                    <div class="col-md-6 col-sm-5 col-xs-5 small_bx" style="padding: 0 3px 0 15px;">
+                                                                        <select class="form-control bs-select change_color select_{{ $parent.$index+1 }}_{{ $index+1 }}" name="unit[{{($parent.$index+1)}}][unit_{{($parent.$index+1)}}][]" ng-blur="apply_result($parent.$index+1)" >
+                                                                            <option ng-repeat="(key , value) in list_unit_assets" value="{{key}}" rel="{{value.color}}">{{ value.name }}</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col-md-6 col-sm-6 col-xs-7 small_two_bx" style="  padding: 0 10px 0 15px;">
+                                                                        <input type="text" class="form-control unit_value_{{ $parent.$index+1 }}_{{ $index+1 }}" rel="{{ $index+1 }}" name="unit[{{($parent.$index+1)}}][unit_amount_{{$parent.$index+1}}][]" ng-keyup="check_sum('floor_'+($parent.$index+1),$event)" />
+                                                                    </div>
+                                                                    <div class="col-md-1 delete_con" ng-click="removeInput($parent.$index+1, $index)">
+                                                                        <img ng-src="{{GLOBAL.ASSET_URL}}img/remove-icon-small.png" style="vertical-align: baseline; cursor: pointer;" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="unit_add_more" style="float: left; width: 4%; margin-top: 5px;">
+                                                                    <img ng-src="{{ GLOBAL.ADMIN_ASSET_URL+'img/plus_alt.png' }}" ng-click="addInput($index+1)" />
+                                                                </div>
+                                                                <div class="clearfix"><!----></div>
+                                                            </div>
+                                                            
+                                                            
+                                                            
+                                                            <div class="col-md-12 col-lg-4">
+                                                                <!-- Default div for left and right margin -->
+                                                                <div class="form-group col-md-6 p0 floor unit_box margin_group" style="margin: 0; max-width: auto;">
+                                                                    <div class="col-md-6 col-sm-6 col-xs-6 p0">
+                                                                        <label class="form-control" style="border: none;">Left</label>
+                                                                        <select style="display: none;" class="form-control bs-select change_color select_{{ $index+1 }}_{{ inputs[$index+1].length+1 }}" name="unit[{{($index+1)}}][unit_{{($index+1)}}][]" >
+                                                                            <option value="L" rel="#FFFFFF" style="background-color: #FFFFFF;">L</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col-md-5  col-sm-5 col-xs-6" style="padding:0 10px 0 5px">
+                                                                        <input type="text" class="form-control left_margin_value unit_value_{{ $index+1 }}_{{ inputs[$index+1].length+1 }}" rel="1" name="unit[{{($index+1)}}][unit_amount_{{$index+1}}][]" ng-keyup="check_sum('floor_'+($index+1),$event)" ng-focus="check_value($event)" ng-blur="apply_to_all_floors($event, $index+1)" ng-blur="apply_result($index+1)" />
+                                                                    </div>
+                                                                </div>
+    
+                                                                <div class="form-group floor p0 col-md-6 unit_box margin_group" style="margin: 0; max-width: auto;">
+                                                                    <div class="col-md-6 col-sm-6 col-xs-6 p0">
+                                                                        <label tabindex="2" class="form-control" style="border: none;">Right</label>
+                                                                        <select style="display: none;" class="form-control bs-select change_color select_{{ $index+1 }}_{{ inputs[$index+1].length+2 }}" name="unit[{{($index+1)}}][unit_{{($index+1)}}][]" >
+                                                                            <option value="R" rel="#FFFFFF" style="background-color: #FFFFFF;">R</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col-md-5 col-sm-5 col-xs-6" style="padding:0 10px 0 5px">
+                                                                        <input type="text" class="form-control right_margin_value unit_value_{{ $index+1 }}_{{ inputs[$index+1].length+2 }}" rel="2" name="unit[{{($index+1)}}][unit_amount_{{$index+1}}][]" ng-keyup="check_sum('floor_'+($index+1),$event)" ng-focus="check_value($event)" ng-blur="apply_to_all_floors($event, $index+1)" ng-blur="apply_result($index+1)" />
+                                                                    </div>
+                                                                </div>
+                                                                <!-- Default div for left and right margin -->
+                                                                <div class="clearfix"><!----></div> 
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="clear"></div>
+                                            <div class="form-actions">
+                                                <div class="row">
+                                                    <div class="col-md-offset-3 col-md-9">
+                                                        <a href="javascript:void(0);" class="btn default button-prev" ng-click="back_to_building_information()" > <i class="m-icon-swapleft"></i> Back </a>
+                                                        <a href="javascript:void(0);" class="btn green button-next" ng-click="submit_floor_frm_add()"> Save <i class="m-icon-swapright m-icon-white"></i> </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                               
+                                <input type="hidden" name="plain_image" id="plain_image" />
+                                <img id="building_plain_image" src="" style="display: none;" />
+                                <input type="hidden" name="original_image_width" id="original_image_width" />
+                            </div>
+                        </form>
+                        <form id="form_name" action="{{ GLOBAL.API_URL+'/employee/upload-for-ie' }}" method="post" enctype="multipart/form-data">
+                            <input type="file" name="file_upload" id="fileInput" style="display: none;" />
+                        </form>
+                        <div id="generate_building_image" style="display: none;"></div>
+                        <div id="generate_building_image2" style="display: none;"></div>
+                        <img id="image1" style="display: none;" />
+                        <img id="image2" style="display: none;" />
+                        <canvas id="myCanvas" height="" width=""></canvas>
+                        <canvas id="canvas1" height="" width=""></canvas>
+                        <form id="floorHeightForm" method="post" class="form-horizontal" style="display: none;" ng-submit="change_floor_height(new_floor_height)" >
+                            <div class="form-group">
+                                <label class="col-xs-3 control-label">Floor Height</label>
+                                <div class="col-xs-8">
+                                    <input type="text" class="form-control" name="floor_height" id="floor_height" ng-model="new_floor_height" />
+                                    <div class="bootbox_error error_required" style="display: none;">Floor height required.</div>
+                                    <div class="bootbox_error error_exceeded" style="display: none;">Floor height exceeded.</div>
+                                </div>
+                            </div>
+                        
+                            <div class="form-group">
+                                <div class="col-xs-5 col-xs-offset-3">
+                                    <button type="submit" class="btn btn-default">Change</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <!-- End add form -->
+            <script type="text/javascript">
+                $(document).ready(function(){
+                    $('#canvas1').css('display','none');
+                    $('#myCanvas').css('display','none');
+                    $('a[data-toggle="tab"]').click(function(e){
+                        e.preventDefault();
+                    });
+                });
+                function adjustImage(iArray) {
+                    var imageData = iArray.data;        
+                             
+                    for (var i = 0; i < imageData.length; i+= 4) {
+                        if(imageData[i] > 254 && imageData[i+1] >= 254 && imageData[i+2] >= 254){
+                            imageData[i+3] = 0;
+                        }
+                    }        
+                    return iArray;            
+                }
+                function generate_image(imageW, imageH, left_pixel, right_pixel, zoom){
+                    //setTimeout(function(){
+                        $('#generate_building_image2').html2canvas({
+                            onrendered: function (canvas) { 
+                                $('#canvas1').css('display','block');
+                    		    $('#plain_image').val(canvas.toDataURL("image/png")); 
+                                $('#building_plain_image').attr('src',canvas.toDataURL("image/png")); 
+                                $('#generate_building_image2').html('').hide();
+                                
+                                var img = document.getElementById("building_plain_image");
+                                var ctx = canvas.getContext("2d");
+                                ctx.drawImage(img,0,0);            
+                                var imgData = ctx.getImageData(0, 0, canvas1.width, canvas1.height);   
+                                
+                                function adjustImage1(iArray) {
+                                    var imageData = iArray.data;
+                                    for (var i = 0; i < imageData.length; i+= 4) {
+                                        if (imageData[i] < 230 && imageData[i] > 150 && imageData[i+1] < 230 && imageData[i+1] > 150 && imageData[i+2] < 230 && imageData[i+2] > 150) { 
+                                            imageData[i] = 150;
+                                            imageData[i+1] = 150;
+                                            imageData[i+2] = 160;
+                                            imageData[i+3] = 0;                        
+                                        } 
+                                        else if (imageData[i] > 250 && imageData[i+1] < 20 && imageData[i+2] < 20) { 
+                                            imageData[i] = 255;
+                                            imageData[i+1] = 0;
+                                            imageData[i+2] = 0;
+                                            imageData[i+3] = 0;
+                                        }
+                                        else if (imageData[i] < 20 && imageData[i+1] < 20 && imageData[i+2] > 250) { 
+                                            imageData[i] = 0;
+                                            imageData[i+1] = 0;
+                                            imageData[i+2] = 255;
+                                            imageData[i+3] = 0;
+                                        }
+                                        else if (imageData[i] < 20 && imageData[i+1]< 20 && imageData[i+2] < 20) { 
+                                            imageData[i] = 0;
+                                            imageData[i+1] = 0;
+                                            imageData[i+2] = 0;
+                                            imageData[i+3] = 0;
+                                        }
+                                    }
+                                    return iArray;
+                                }                         
+                                ctx.putImageData(adjustImage1(imgData), 0, 0);
+                                $('#plain_image').val(canvas.toDataURL("image/png"));
+                                $('#building_plain_image').attr("src",canvas.toDataURL("image/png"));                    
+                 		     }          
+                        });
+                    //}, 2000);
+                }
+                
+            </script>
+        </div>
+    </div>
+    <!-- END PAGE CONTENT-->
+</div>

@@ -1,0 +1,106 @@
+<div ng-controller="InstagramImageController">
+	<!-- BEGIN MAIN CONTENT -->
+    <div class="row">
+		<div class="col-md-12">
+
+            <!-- Begin edit form -->
+            <div tabindex="-1">
+
+                <div class="portlet box blue-madison">
+    				<div class="portlet-title">
+    					<div class="caption">
+    						<i class="fa fa-eye"></i>View Detail of Custom Skyline
+						</div>
+					</div>
+
+                    <div class="portlet-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-success  display-hide">
+									<button class="close" data-close="alert"></button>
+                					{{ success_msg }}
+								</div>
+
+                                <div class="alert alert-danger display-hide">
+									<button class="close" data-close="alert"></button>
+                					{{ success_msg }}
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group row">
+									<label class="control-label col-md-2 bold">Username</label>
+									<label class="control-label col-md-9" ng-bind="edit_fields.user.fname+' '+edit_fields.user.lname "></label>
+								</div>
+								<div class="form-group row">
+									<label class="control-label col-md-2 bold">Title</label>
+									<!-- <a target="_blank" href="{{GLOBAL.SITE_URL +'my-skyline/'+edit_fields.v_slug }}"><label class="control-label col-md-9 link" ng-bind="edit_fields.v_title"></label></a> -->
+									<label class="control-label col-md-9" ng-bind="edit_fields.user.fname+' '+edit_fields.v_title "></label>
+								</div>
+								<div class="form-group row">
+									<label class="control-label col-md-2 bold">Abbreviated Name</label>
+									<label class="control-label col-md-9" ng-bind="edit_fields.v_abbreviated_name" ></label>
+								</div>
+								<div class="form-group row">
+									<label class="control-label col-md-2 bold">Short Description</label>
+									<label class="control-label col-md-9" ng-bind="edit_fields.v_short_desc"></label>
+								</div>
+								<div class="form-group row">
+									<label class="control-label col-md-2 bold">Long Description</label>
+									<label class="control-label col-md-9" ng-bind-html="edit_fields.v_long_desc | nl2br" ></label>
+								</div>
+								<div class="form-group row">
+									<label class="control-label col-md-2 bold">No of Buildings </label>
+									<label class="control-label col-md-9" ng-bind="edit_fields.skylineBuildingCount"></label>
+								</div>
+								<div class="form-group row">
+									<label class="control-label col-md-2 bold">Created Date</label>
+									<label class="control-label col-md-9" ng-bind="edit_fields.updated_at | dateFormat"></label>
+								</div>
+								<div class="form-group row">
+									<label class="control-label col-md-12 bold">Notes</label>
+								</div>
+								<div class="form-group row" ng-if="edit_fields.notes.length > 0">
+									<div class="col-md-12">
+										<table border="1" class="table table-striped table-bordered table-hover dataTable no-footer">
+											<thead>
+												<tr>
+                                                    <th width="50%">Title</th>
+													<th width="15%">Created Date</th>
+													<th width="15%">Action</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr ng-repeat="note in edit_fields.notes" id="tableRow_{{note.id}}">
+													<td ng-bind-html="note.v_note | nl2br"></td>
+													<td ng-bind="note.created_at | dateFormat"></td>
+													<td>
+														<a class="btn btn-xs default" ng-click="delete_btn_note(note.id);" href="javascript:void(0);"><i class="icon-trash"></i> Delete </a>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div class="form-group row" ng-if="edit_fields.notes.length <=0">
+									<div class="col-md-12">No notes found</div>
+								</div>
+
+							</div>
+						</div>
+
+
+
+						<div class="row">
+							<div class="col-md-12">
+								<a class="btn btn-xs default" ui-sref="/custom-skyline">Back </a>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- END PAGE CONTENT-->
+</div>

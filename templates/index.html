@@ -1,0 +1,149 @@
+<div class="main-block" ng-controller="HomeController">
+	<!--<div class="left-border"></div>
+	<div class="right-border"></div>-->
+	<!-- banner area part -->
+	<div class="banner">
+		<div class="extra-timeline"></div>
+       	<ul class="bxslider" pagershow="false">
+			<li ng-repeat="banner in homePageBanners">
+                <!--  ng-style=" background:'url({{GLOBAL.SITE_URL+GLOBAL.HOME_PAGE_BANNER_IMAGE_PATH + banner.v_image}})'" -->
+                <div class="item" ng-style="{ background:'url({{GLOBAL.SITE_URL+GLOBAL.HOME_PAGE_BANNER_IMAGE_PATH + banner.v_image}})' }">
+					<!--img class="img_data" src="{{GLOBAL.SITE_URL+GLOBAL.HOME_PAGE_BANNER_IMAGE_PATH + banner.v_image}}" /-->
+					<div class="item-inner">
+						<div class="text-caption">
+						    <div class="only-caption">
+                                <div class="banner-title">
+                                    <h1>
+                                        {{banner.v_title}}
+                                    </h1>
+                                </div>
+                                <h5>&nbsp;{{banner.v_subtext}}&nbsp;</h5>
+                            </div>
+							<!--div class="dropdown-red" ng-show="banner.e_dropdown_button=='SkylineDropdown'" -->
+							<div class="dropdown-red" ng-if="GLOBAL.checkId" ng-show="banner.e_dropdown_button=='SkylineDropdown'">
+								<a class="red_btn" banner-skyline-dropdown >PICK A SKYLINE <span class="arrow" ></span></a>
+								<div class="dropdown-list">
+									<div class="all-skyline scrollbar-inner">
+										<ul class="">
+											<li class="" ng-repeat="city  in cities"  ng-click="get_city_detail_home(city.v_slug)">
+												{{city.v_name}}
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="dropdown-red-button" ng-if="!GLOBAL.checkId" ng-show="banner.e_dropdown_button=='SkylineDropdown'">
+								<a class="red_btn" ng-click="openUrl(GLOBAL.SITE_URL+'register')">Register</a>
+							</div>
+							<div class="dropdown-red-button" ng-show="banner.e_dropdown_button !='SkylineDropdown'">
+								<a class="red_btn" ng-click="openUrl(banner.v_button_link)">{{ banner.v_button_text }}</a>
+							</div>                            
+						</div>
+					</div>
+				</div>
+				</li>
+		</ul>
+	</div>
+
+	<!-- About box part -->
+    <div class="about-section">
+		<div class="all-about-row">
+
+            <div class="about-row cf" ng-repeat="array in obj2" ng-class="$index % 2 == 0 ? '': 'about-row-reverse'">
+				<div class="time-line">
+				</div>
+				<div class="about-box">
+					<div class="about-title">
+					   <a ng-href="{{ obj2[$index][0].v_link }}" ng-attr-target="{{obj2[$index][0].e_link_open == 'NewTab' ? '_blank' : '_self'}}">{{obj2[$index][0].v_title}}</a>
+					</div>
+					<figure>
+						<a ng-href="{{ obj2[$index][0].v_link }}" ng-attr-target="{{ obj2[$index][0].e_link_open == 'NewTab' ? '_blank' : '_self'}}">
+                            <img ng-if="obj2[$index][0].v_image !=''" ng-src="{{GLOBAL.SITE_URL+GLOBAL.HOME_PAGE_CONTENT_IMAGE+obj2[$index][0].v_image}}" alt="">
+                        </a>
+
+                        <a href="#">
+                            <img ng-if="obj2[$index][0].v_video_thumbnail !=''" ng-src="{{GLOBAL.SITE_URL+GLOBAL.HOME_PAGE_CONTENT_VIDEO+obj2[$index][0].v_video_thumbnail}}" alt="">
+                        </a>
+
+                         <a ng-if="obj2[$index][0].v_video_thumbnail !=''" fancybox-media rel="media-gallery" class="btn-watch-video" ng-href="{{GLOBAL.SITE_URL+GLOBAL.HOME_PAGE_CONTENT_VIDEO+obj2[$index][0].v_video}}">
+                            <img alt="" ng-src="images/video-play2.png">
+                        </a>
+					</figure>
+					<div class="about-caption">
+						<p>
+							{{obj2[$index][0].v_desc}}
+						</p>
+						<a ng-if="obj2[$index][0].v_image !='' && obj2[$index][0].v_button_text != ''" class="red_btn" ng-href="{{obj2[$index][0].v_link}}" ng-attr-target="{{ obj2[$index][0].e_link_open == 'NewTab' ? '_blank' : '_self'}}">{{obj2[$index][0].v_button_text}}</a>
+
+                        <a ng-if="obj2[$index][0].v_video_thumbnail !='' && obj2[$index][0].v_button_text != ''" fancybox-media rel="media-gallery" class="btn-watch-video red_btn" ng-href="{{GLOBAL.SITE_URL+GLOBAL.HOME_PAGE_CONTENT_VIDEO+obj2[$index][0].v_video}}">
+                           {{obj2[$index][0].v_button_text}}
+                        </a>
+					</div>
+				</div>
+				<div class="about-callout">
+					<div class="about-callout-inner">
+						<div class="callout-title">
+							<a ng-href="{{ obj2[$index][1].v_link }}" ng-attr-target="{{ obj2[$index][1].e_link_open == 'NewTab' ? '_blank' : '_self'}}">{{obj2[$index][1].v_title}}</a>
+						</div>
+						<div class="callout-desc">
+							<p>
+								{{obj2[$index][1].v_desc}}
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Our key part -->
+	<div class="our-keys cf">
+		<div class="key-heading">
+			<h2>
+				{{settingData.v_homepage_img_rotator_text}}
+			</h2>
+		</div>
+        <div class="key-slider">
+			<ul class="bxslider">
+				<li ng-repeat="imagerotator in homePageImageRotator">
+					<div class="key-box">
+						<figure ng-if="imagerotator.v_image_link != '' && imagerotator.v_image_link != null">
+                                <a ng-if="GLOBAL.checkId" ng-href="{{ imagerotator.v_image_link }}" target="{{ imagerotator.v_image_link.indexOf(GLOBAL.SITE_URL) > -1 ? '_parent' : '_blank' }}">
+                                    <img alt="" ng-src="{{GLOBAL.SITE_URL + GLOBAL.HOME_PAGE_IMAGE_ROTATOR_PATH + imagerotator.v_image }}" class="image-rotator" />
+                                </a> 
+								<a ng-if="!GLOBAL.checkId" ng-href="{{GLOBAL.SITE_URL}}register">
+                                    <img alt="" ng-src="{{GLOBAL.SITE_URL + GLOBAL.HOME_PAGE_IMAGE_ROTATOR_PATH + imagerotator.v_image }}" class="image-rotator" />
+                                </a>
+                        </figure>
+                        <figure ng-if="imagerotator.v_image_link == '' || imagerotator.v_image_link === null">
+                            <img alt="" ng-src="{{GLOBAL.SITE_URL + GLOBAL.HOME_PAGE_IMAGE_ROTATOR_PATH + imagerotator.v_image }}" class="image-rotator" />
+                        </figure>
+						<p>
+							{{imagerotator.v_subtext}}
+						</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<!-- Instagram part -->
+	<div class="instagram-section cf">
+		<div class="insta-desc">
+			<h3>
+                {{settingData.v_instagram_widget_text}}
+			</h3>
+			<div class="insta-buttons">
+				<a ng-href="{{settingData.v_instagram_widget_button1_link}}" class="red_btn" target="_blank">{{settingData.v_instagram_widget_button1_text}}</a>
+				<a ng-href="{{settingData.v_instagram_widget_button2_link}}" class="red_btn" target="_blank">{{settingData.v_instagram_widget_button2_text}}</a>
+			</div>
+		</div>
+		<div class="insta-images">
+			<div class="insta-images-inner cf">
+                <a class="single-insta" data-fancybox-group="thumb" ng-repeat="(key,value) in instagramImages" ng-href="{{ value}}">
+                    <img ng-src="{{value}}" alt="Instagram">
+				</a>
+			</div>
+		</div>
+	</div>
+</div>

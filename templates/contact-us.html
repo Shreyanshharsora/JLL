@@ -1,0 +1,49 @@
+<section>
+    <section ng-controller="ContactUsController" id="jll_facts" class="mb80 main-block login-page contactUs register contact-us-page">
+        <section id="contact_us" class="pt0">
+                <div class="title">
+                    Want to know how these insights impact your business? Ask a JLL expert.
+                </div>
+                <div class="contact_form">
+
+                    <div class="success_content" id="success_content" style="display: none;">Your contact detail submitted successfully.</div>
+                    <div class="error_content" id="error_content" style="display: none;">All fields are required.</div>
+                    <div class="error_content" id="error_content_email" style="display: none;">Please enter valid email id.</div>
+                    <div class="error_content" id="bot_content" style="display: none;">You are a bot!</div>
+
+                    <form id="contactUsFrm" name="contactUsFrm" method="post" ng-submit="submit_contact_us(contact_us)">
+                        <div class="full_content">
+                            <select selectric data-options="{ maxHeight: 400 }" id="contact_market" ng-model="contact_us.contact.market" name="market" class="option_txt required">
+                                <option class="option_txt" value="">-- Select your market --</option>
+                                <option class="option_txt" ng-repeat="city in cities" value="{{ city }}">{{ city }}</option>
+                            </select>
+                        </div>
+                        <div class="full_content">
+                            <input type="text" ng-model="contact_us.contact.contact_name" name="contact_name" placeholder="Name" id="contact_name" class="required" />
+                        </div>
+                        <div class="full_content">
+                            <input type="text" ng-model="contact_us.contact.title" name="title" placeholder="Title" id="contact_title" class="required" />
+                        </div>
+                        <div class="half_content">
+                            <input type="text" ng-model="contact_us.contact.email" name="email" placeholder="Email" id="contact_email" class="required email" />
+                            <input type="text" ng-model="contact_us.contact.phone" name="phone" placeholder="Phone" id="contact_phone" class="required" />
+                        </div>
+                        <div class="full_content">
+                            <input type="text" ng-model="contact_us.contact.company" name="company" placeholder="Company" id="contact_company" class="required" />
+                        </div>
+                        <div class="full_content">
+                            <select selectric data-options="{ maxHeight: 250, responsive: true }" id="contact_industry" ng-model="contact_us.contact.industry" name="industry" class="option_txt required">
+                                <option class="option_txt" value="">-- Industry --</option>
+                                 <option class="option_txt" ng-repeat="industry in industries" value="{{ industry }}">{{ industry }}</option>
+                            </select>
+                        </div>
+                        <div class="full_content">
+                            <input type="text" ng-model="contact_us.contact.fname" name="fname" class="fname" id="fname" style="display:none"/>
+                       </div>
+                        <input type="submit" class="red_btn" value="Submit" />
+                        <div class="clear"><!----></div>
+                    </form>
+                </div>
+            </section>
+    </section>
+</section>

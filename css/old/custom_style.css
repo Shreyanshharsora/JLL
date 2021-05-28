@@ -1,0 +1,578 @@
+.mt0{margin-top: 0 !important; }
+.mb0{margin-bottom: 0 !important; }
+.ml0{margin-left: 0 !important; }
+.mr0{margin-right: 0 !important; }
+
+.mt5{margin-top: 5px !important; }
+.mb5{margin-bottom: 5px !important; }
+.ml5{margin-left: 5px !important; }
+.mr5{margin-right: 5px !important; }
+
+header .pick_container .pick_slider .item a span{ display: block; min-height: 40px; }
+input.fname { height: 0px !important; margin: 0 !important; width: 0px !important; visibility: hidden; }
+.social_bar{ display: block; margin-top: 20px; padding-top: 15px; position: absolute; text-align: center; width: 100%; left: 0; }
+#city_main .city_right .close_btn{ top: -50px; }
+#building_map{ width: 100%; }
+.contact-us-page #contact_us .contact_form select{font-family: 'Open Sans', sans-serif; font-weight: 400;font-size:21px;}
+.custom-cms-page .contact_form form#contactUsFrm select{font-family: 'Open Sans', sans-serif; font-weight: 400;font-size:21px;}
+.register-page #contact_us .contact_form select{font-family: 'Open Sans', sans-serif; font-weight: 400;font-size:21px;}
+.selectric .label,.selectricItems li{font-family: 'Open Sans', sans-serif; font-weight: 400;font-size:21px;}
+
+@media (max-width:767px) {
+    #city_main .city_right .building_map{ left: -2%; }
+    #building_map{ width: 98%; }
+    .arrow.bounce.animated{ display: none; }
+    #city_right_inner_div{ min-hight: 560px !important; }
+    .selectric .label,.selectricItems li{font-family: 'Open Sans', sans-serif; font-weight: 400;font-size:21px;}
+    .contact-us-page #contact_us .contact_form select{padding:0 20px;}
+    .custom-cms-page .contact_form form#contactUsFrm select{padding:0 20px;}
+    .register-page #contact_us .contact_form select{padding:0 20px;}
+    /*.selectric .label,.selectricItems li{padding:0 20px;}*/
+}
+
+@media (min-width:1024px) and (max-width:1249px){
+    /*#city_main .city_left .bottom_text .right_btm { border-left: 0 none; border-top: 1px solid #ccc; box-sizing: border-box; display: block; margin: 0 auto; padding: 15px 0; width: 96%; }
+    #city_main .city_left .bottom_text .left_btm{ width: 100%; }
+    #city_main .city_left .bottom_text .right_btm .right_lnks .grey_btn{ margin-top: 10px; margin-bottom: 0px; }
+    #city_main .red_btn{ margin-top: 10px; margin-bottom: 0px; }*/
+}
+
+@media (min-width:1024px) and (max-width:1897px){
+    /*#city_main .city_left .bottom_text .right_btm .right_lnks .grey_btn{ margin-bottom: 0px; margin-top: 0px; }
+    #city_main .red_btn{ margin-bottom: 0px; margin-top: 10px; }*/
+}
+
+@media (min-width:768px) and (max-width:992px){
+     #city_main .city_left .bottom_text .right_btm .right_lnks .grey_btn{ margin-right: 20px; margin-bottom: 0px; }
+    #city_main .red_btn{ margin-bottom: 0px; }
+    /*#city_car .aggregate-statistic { min-height: 131px;}*/
+}
+@media (min-width:993px) and (max-width:1024px){
+    /*#city_car .aggregate-statistic { min-height: 182px;}*/
+}
+
+@media (min-width:641px) and (max-width:767px) {
+    /*#city_car .aggregate-statistic { min-height: 187px;}  */
+}
+
+@media (max-width:640px) {
+    /*#city_car .aggregate-statistic { min-height: 200px;}  */
+	#city_main .red_btn.download-btn-mobile {
+		display: inline-block !important;
+		max-width: 140px ;
+		font-size: 10px !important;
+		line-height: 1.2 !important;
+		text-transform: none !important;
+		padding-top: 6px !important;
+		text-align: center !important;
+		 height: 35px !important;
+	}
+}
+
+
+#city_main .selectric .button{ font: 20px/0 a; }
+header{ height: 56px; }
+.selectric .button:hover{ color: #BC141A; }
+#city_main .city_right .city_detail ul{ padding-bottom: 0px; }
+header .pick_container .pick_slider .item a{ padding: 0px; }
+#city_main #city_car .fact-carousel:after, #city_main #city_car .fact-carousel:before{ /*width: 0px;*/ }
+.fancybox-overlay{ z-index: 100001 !important; }
+.fancybox-wrap{ z-index: 100002 !important; }
+.selectricWrapper{ margin: 24px auto 0; }
+#contact_industry{ margin-top: 24px; }
+#error_content_registration .error { box-shadow:none !important; font-size: 14px; }
+#error_content_registration .error { text-align: left; }
+.pc_link { line-height:40px; }
+#error_content_password .error, #error_content_resetpass .error { box-shadow:none !important; }
+.register_text_bottum{ float: left;font-style: italic;margin-left: 4%; padding-top: 10px; font-size: 12px;clear:both; }
+.change_password_title{ margin: 0; }
+/*.change_password_template#change_password { padding: 0 !important; padding: 30px 0 !important;}*/
+.success_content_login{border:1px solid rgb(204,204,204);border-radius:10px;box-shadow:0 0 10px rgb(132,237,132);box-sizing:border-box;color:rgb(0,183,0);font-size:13px;margin:10px 0 15px 0;padding:15px;width:100%;}
+.success_content_reset{border:1px solid rgb(204,204,204);border-radius:10px;box-shadow:0 0 10px rgb(132,237,132);box-sizing:border-box;color:rgb(0,183,0);font-size:13px;margin:10px 0 10px 0;padding:15px;width:100%;}
+textarea,#change_password .contact_form input[type= "text"], #change_password .contact_form input[type= "password"]{background:#fff none repeat scroll 0 0;border:1px solid #c8c8c8;border-radius:6px;box-shadow:0 1px 0 #222 inset;box-sizing:border-box;display:inline-block;font-size:21px;font-weight:600;height:60px;margin:24px auto 0;padding:0 20px;position:relative;text-align:left;transition:all 0.5s ease 0s;width:100%;}
+#change_password .error_content{border:1px solid #ccc;border-radius:10px;box-shadow:0 0 10px #f5acac;box-sizing:border-box;color:#cf2026;font-size:13px;margin:0 auto 20px;padding:15px;width:100%;}
+#change_password .success_content { border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 0 10px #84ed84; box-sizing: border-box; color: #00b700; font-size: 13px; margin: 0 auto 20px; padding: 15px; width: 92%; }
+#change_password .contact_form { margin: 0 auto; max-width: 700px; padding: 0; text-align: center; }
+#change_password .contact_form input[type="submit"] { cursor: pointer; float: left; font-size: 26px; margin-left: 4%; margin-top: 24px; }
+#change_pass .success_content, #change_pass .error_content { margin: 15px auto 0; }
+#change_pass .success_content , #change_pass .error_content{ margin:15px auto 0px; }
+#change_password .change_password_title { width: 100%; }
+#contact_us #reset_password { padding-bottom: 10px; }
+#contact_us #login_form { padding-bottom: 10px; }
+
+header { z-index:9999 !important; }
+header { z-index:9999 !important; }
+.banner .text-caption{display: block; position: relative; z-index: 99 !important;}
+/*#jll_video {display: none; height: 580px }*/
+.generic_page {padding: 86px 0 20px; min-height: calc(100vh - 50px); }
+#full_wrapper {min-height: calc(100vh - 50px); }
+
+.login-register a.active { color: white;}
+#register_section #contact_us { padding: 0 !important; }
+.contactUs #contact_us {
+    padding: 0 !important;
+}
+
+@media (max-width: 640px) {
+    .generic_page {padding: 50px 0 20px; min-height: calc(100vh - 40px);}
+    #full_wrapper {padding: 40px 0 20px; min-height: calc(100vh - 40px);}
+    .register #contact_us .contact_form .full_content select{height:60px}
+    #sucess_header_custom_skyline .viewcustomskyline.skylineBuilding a.red_btn.button {max-width:240px !important; margin-left:12px !important}
+    .city_right .nav.nav-pills li a {font-size: 13px !important;}
+}
+
+@media (max-width: 590px) {
+    #skyline_edit input[type="text"]{float:left;}
+    #skyline_edit .edit_btn{clear: both;}
+    #skyline_edit input[type="button"] {margin-top: 10px;display: block;float: left;margin-right: 6px;}
+}
+@media (min-width: 767px) and (max-width:860px) {
+    #skyline_edit input[type="text"]{float:left;}
+    #skyline_edit .edit_btn{clear: both;}
+    #skyline_edit input[type="button"] {margin-top: 10px;display: block;float: left;margin-right: 6px;}
+}
+
+@media (min-width: 1200px) {
+
+    .mobile-edit-icon{
+        display:none;
+    }
+}
+
+#scrollbar2 .viewport{ height: auto; }
+#city_main { padding-top: 55px; }
+/*#scrollbar2 .viewport .bg_temp{ background: auto; height: auto; }*/
+#city_main .city_left .city_lists ul li { height: auto !important; }
+#city_main .display-none { display: none; }
+#city_main .city_left .city_lists ul li.first{ padding-left:0px; padding-right:0px;/*padding-left:30px; padding-right:30px;*/ }
+
+/*
+*:not(html) {
+    -webkit-transform: translate3d(0, 0, 0);
+}*/
+.city_lists { -webkit-overflow-scrolling: touch; }
+.city_lists { -webkit-transform: translate3d(0, 0, 0); }
+
+.download-pdf-btn { background: #bc141a none repeat scroll 0 0; border-radius: 5px; color: #ffffff; display: inline-block; text-align: center; font-size: 10px; padding: 5px 10px; text-decoration: none; transition: all 0.5s ease 0s; }
+
+
+.main-footer ul li.active,.main-footer ul li a.active,.main-footer ul li.active a{
+    color: #fff;
+    cursor: pointer;
+    pointer-events: none;
+}
+
+a:not(.forgot_pass):focus, a:not(.forgot_pass):hover {
+    text-decoration: none !important;
+}
+
+.required.error{
+    border:1px solid rgb(207, 32, 38) !important;
+}
+.selectric .label{
+    font-weight: normal;
+    text-align: left;
+}
+
+.change_password_template .contact_form  #change_pass .full_content input[type="password"]{
+    border: 1px solid #5a5a5a;
+    border-radius: 0;
+    box-shadow: none;
+    font-family: 'Open Sans', sans-serif; font-weight: 400;
+    height: 54px;
+    margin-bottom: 20px;
+    margin-top: 0;
+}
+.change_password_template .contact_form  #change_pass .red_btn{
+    background-color: #d22723;
+    border-radius: 0;
+    border: 1px solid #d22723 !important;
+    color: #ffffff;
+    display: inline-block;
+    font-family: 'Open Sans', sans-serif; font-weight: 700;
+    font-size: 16px;
+    height: 44px;
+    letter-spacing: 1px;
+    line-height: 43px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    text-transform: none;
+    vertical-align: top;
+    width: 100%;
+    max-width: none;
+}
+.change_password_template .contact_form  #change_pass .red_btn:hover{
+    background-color: #000;
+    border: 1px solid #000 !important;
+}
+.generic_page .right_lnks .red_btn.scroll_to_contact_us:hover{
+    background-color: #000;
+}
+#change_pass .success_content, #change_pass .error_content{
+    margin:0 auto 20px;
+    clear:both;
+}
+#change_pass .error_content .help-block{
+    margin-top:0px;
+    margin-bottom:5px;
+}
+
+/* Custom skyline */
+
+#city_right_inner_div .scrollbar-inner > .scroll-element.scroll-y {width: 6px !important;}
+.selectric {border: 1px solid #5a5a5a; border-radius: 0; box-shadow: none;}
+#skyline_edit {display: inline;}
+#skyline_edit input[type="text"]{ background: rgb(255, 255, 255) none repeat scroll 0 0; border: 1px solid rgb(200, 200, 200); border-radius: 0; box-shadow: none; box-sizing: border-box;  display: inline-block; font-size: 16px; font-weight: 600;  height: 35px; margin: 0; padding: 0 10px; position: relative; text-align: left; transition: all 0.5s ease 0s; width: 225px;vertical-align:top}
+#skyline_edit input[type=button]{padding: 7px 50px; vertical-align: unset; height: 35px; border-radius: 0px;}
+#skyline_title {display: inline; }
+#skyline_title h2{vertical-align: middle !important;}
+
+.edit_skyline_info input[type="text"], .edit_skyline_info input[type="password"], .edit_skyline_info textarea{background: rgb(255, 255, 255) none repeat scroll 0 0; border: 1px solid rgb(200, 200, 200); border-radius: 0; box-shadow: none; box-sizing: border-box;  display: inline-block; font-size: 14px; font-weight: 600; height: 60px; margin: 0; padding: 0 5px; position: relative; text-align: left; transition: all 0.5s ease 0s; width:225px; height: 35px;}
+
+.edit_skyline_info .skyline_long_desc textarea{ height: 75px; width: 96%;}
+.edit_skyline_info .edit-skyline-info-button input[type="button"]{font-weight: bold; height: 35px !important; border-radius: 0px !important;}
+.edit_skyline_info .edit-skyline-info-button input[type=button]{width: 109px !important;}
+.custom-skyline .right_btm .right_lnks { max-width:40% !important;}
+
+
+
+.custom-skyline .right_btm .desc textarea{ border-radius: 0 !important; box-shadow: none !important; padding:0 10px; width:100%; font-size: 14px; font-weight: 600;}
+
+#contact_us .contact_form select {
+    width: 92% !important;
+    height: 60px;
+    border: 1px solid #5a5a5a;
+    text-align: center;
+    border-radius: 0 !important;
+}
+
+
+.loca-market .city_right .city_detail {height: 480px !important;}
+
+@media (min-width:1500px) {
+    /*#city_main .city_left .bottom_text .right_btm p{max-width:75% !important;}
+    #city_main .city_left .bottom_text .right_btm .right_lnks{max-width:24% !important;}     */
+}
+
+@media (min-width:767px) {
+    /*#city_main .city_left .bottom_text .right_btm .right_lnks .grey_btn {border-radius:0;padding:8px 3px 8px 8px !important;}*/
+    #city_main .city_left .bottom_text .left_btm h3 { font-size:24px;line-height: 28px;}
+    #city_main .city_left .bottom_text .left_btm p {font-size:12px ;line-height:16px;}
+    /*#city_main .bottom_text .red_btn {font-family: 'Open Sans', sans-serif; font-weight: 700; height:35px !important; line-height:35px!important;font-size:14px !important;max-width:140px!important; border-radius:0;background-color:#d22723;letter-spacing:1px;}
+    #city_main .bottom_text .red_btn.download-btn{padding:5px 5px!important;line-height:1.2!important;font-size:10px!important;}*/
+    .register-page #contact_us .contact_form .full_content select{font-family: 'Open Sans', sans-serif; font-weight: 400;padding:0 20px;font-size:21px;}
+    .contact-us-page #contact_us .contact_form select{font-family: 'Open Sans', sans-serif; font-weight: 400;padding:0 20px;font-size:21px;}
+    .custom-cms-page .contact_form form#contactUsFrm select{font-family: 'Open Sans', sans-serif; font-weight: 400;padding:0 20px;font-size:21px;}
+    .selectric .label,.selectricItems li{font-family: 'Open Sans', sans-serif; font-weight: 400;font-size:21px;padding:6px 0}
+}
+
+@media (max-width:360px) {
+    #city_main .drop-down-skyline > .red_btn { padding:4px 5px 3px !important;}
+    .selectricWrapper .selectric p{
+        line-height: 40px;
+
+    }
+    .custom_skyline_page #city_main #city_car .top_title{
+        padding-bottom:50px;
+    }
+    .custom_skyline_page #city_main #city_car .owl-dots{
+        top:-60px;
+    }
+}
+
+@media (max-width:480px){
+    .register #contact_us .contact_form .full_content select{margin-top: 24px; height: 40px; }
+    .contact-us-page #contact_us .contact_form select{font-size:15px;height: 40px;}
+    .register-page #contact_us .contact_form select{font-size:15px;height: 40px;}
+    .custom-cms-page .contact_form form#contactUsFrm select{font-size:15px;height: 40px;}
+    .selectric .label,.selectricItems li{font-size:15px;height: 40px;}
+}
+.terms-conditions{
+    margin-top:24px !important;
+}
+.dropdown-red.local .dropdown-list ul li a{color: #d22723;font-family: 'Open Sans', sans-serif; font-weight: 400;font-size: 14px;}
+.all-skyline.local ,.all-skyline.local.scrollbar-inner{height:100px;}
+.dropdown-red.local  .scroll-wrapper:after{background:none;display:none}
+.all-skyline.local.header.scroll-wrapper:after{background:none;display:none}
+.edit-skyline-desc .input-label{
+    float: left;
+    font-family: 'Open Sans', sans-serif; font-weight: 400;
+    font-size: 21px;
+    font-weight: normal;
+    text-align: left;
+    width: 100%;
+}
+
+/*.edit-skyline-desc input[type="submit"], .edit-skyline-desc input[type="button"] {
+	border: medium none;
+    border-radius: 0;
+    font-family: 'Open Sans', sans-serif; font-weight: 400;
+    font-size: 16px;
+    margin: 0 0 10px;
+    text-transform: capitalize;
+    width: 100%;
+    background-color: rgb(210, 39, 35);
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    display: inline-block;
+    float: left;
+    height: 54px;
+    letter-spacing: 1px;
+    line-height: 53px;
+	max-width: 220px;
+    padding: 0;
+    text-align: center;
+    vertical-align: top;
+}*/
+/*
+.edit-skyline-desc input[type="submit"] {
+    margin-right: 10px !important;
+}
+*/
+.edit-skyline-desc #contact_us { padding: 0 !important;}
+
+.skylineCloseButton {cursor: pointer;}
+
+/*#city_main .custom-skyline .right_lnks a.red_btn{ width:50px !important;}*/
+
+#contact_us .contact_form input[type="submit"]{border:1px solid #d22723!important;}
+#contact_us .contact_form input[type="submit"]:hover{border:1px solid #000!important;}
+/*Register page*/
+.register-page .register_section .contact_form select{margin-top:24px;}
+.fancybox-wrap .contact_form input[type="submit"], .fancybox-wrap .contact_form input[type="button"], .fancybox-wrap .contact_form button {text-transform: uppercase;}
+
+/*.fancybox-wrap #change_password input[type="submit"], .fancybox-wrap #change_password input[type="button"], .fancybox-wrap #change_password button {text-transform: uppercase;}*/
+
+.add-new-note .error_content{
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgb(245, 172, 172);
+    box-sizing: border-box;
+    color: rgb(207, 32, 38);
+    font-size: 13px;
+    margin: 20px auto 20px;
+    padding: 15px;
+    width: 98%;
+}
+.displaynone{
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: absolute !important;
+    visibility: hidden !important;
+    width: 0 !important;
+}
+tags-input .tags .input {
+    border: 0 !important;
+    outline: 0;
+    margin: 2px !important;
+    padding: 0 0 0 5px !important;
+    float: left;
+    height: 26px !important;
+    font-family: 'Open Sans', sans-serif !important; 
+    font-weight: 400;
+    font-size: 14px !important;
+    transition:none !important;
+}
+tags-input .tags{
+    box-shadow:none
+}
+tags-input .tags .tag-item {
+    background: #d22723 none repeat scroll 0 0;
+    color: #fff;
+}
+tags-input .tags .tag-item .remove-button{
+    color:#fff;
+}
+tags-input .tags.focused{
+    box-shadow:none;
+}
+.red_btn.save_note{
+    border-radius:0px !important;
+}
+.red_btn.save_note:hover{
+    background-color:#000 !important;
+    border-color:#000 !important ;
+}
+
+.add_new_customskyline_html_header #contact_us{
+    padding:0px !important;
+}
+/*
+.scroll-wrapper.all-skyline-header.scrollbar-inner{
+    height:100px;
+}
+
+.sucess_header_custom_skyline .dropdown-red-header {
+    position: static;
+    display: inline-block;
+    vertical-align: top;
+    max-width: 220px;
+    width: 100%;
+}
+
+.sucess_header_custom_skyline .dropdown-red-header > .red_btn {
+    border-radius: 0;
+    color: #ffffff;
+    display: block;
+    font-family: 'Open Sans', sans-serif; font-weight: 400;
+    font-size: 16px;
+    height: auto;
+    line-height: 50px;
+    margin: 0;
+    max-width: none;
+    padding: 0 12px;
+    position: relative;
+    text-align: left;
+    width: 100%;
+     letter-spacing: 0 !important;
+    text-transform: none !important;
+}
+
+.sucessCustomSkyline .dropdown-red-header > .red_btn:before {
+    background-image: url("../images/arrow-down-fill.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    content: "";
+    height: 50px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 38px;
+}*/
+.viewcustomskyline.skylineBuilding a.red_btn { border: medium none; display: inline-block; height: auto; line-height: 50px; padding: 0; max-width: 220px; width: 100%; font-size: 16px; }
+
+#city_main .city_right .city_detail h3.city-name-title{
+    font-family:'Times New Roman', Times, Georia, serif;
+}
+
+.viewcustomskyline.skylineBuilding .dropdown-red{
+    max-width:240px !important;
+    /*text-transform:uppercase;*/
+}
+.viewcustomskyline.skylineBuilding button.red_btn,#sucess_header_custom_skyline .viewcustomskyline.skylineBuilding a.red_btn{
+    max-width: 240px !important;
+    margin-right: 10px;
+    text-transform: none;
+}
+.viewcustomskyline.skylineBuilding .dropdown-red .dropdown-list{
+    width:240px !important;
+}
+#sucess_header_custom_skyline .skylineBuilding .dropdown-red .dropdown-list ul li{
+    text-align:left;
+}
+.custom_skyline_page .red_btn,.loca-market .red_btn{
+    background-color: #d22724 !important;
+}
+.custom_skyline_page .red_btn:hover,.loca-market .red_btn:hover{
+    background-color:#bc141a !important;
+}
+.custom_skyline_page .city_right .scroll-wrapper:after{
+    display:none !important;
+}
+#city_main .red_btn.download-btn-mobile{
+    font-family: 'Open Sans', sans-serif !important; font-weight: 700;
+}
+#city_main .city_right .add-new-note .submit-button input:hover{
+    background-color:#000 !important;
+}
+.custom_skyline_page .notes-list {
+    margin-top: 40px;
+    font-family: 'Open Sans', sans-serif; font-weight: 400;
+    font-weight: bold;
+}
+.custom_skyline_page .city_right .notes-list .note-created-date{
+    font-size:14px !important;
+}
+.custom_skyline_page .city_right .notes-list p.para{
+    font-size:12px !important;
+    margin-top:5px;
+}
+
+#skyline_edit input[type="button"]{
+    font-family: 'Open Sans', sans-serif; font-weight: 700;
+    padding:0 44px;
+}
+@media (min-width: 767px) and (max-width:1199px) {
+    .custom-skyline .left_btm_custom .edit-icon{
+        right: 25px !important;
+        top: 25px !important;
+    }
+    #city_main .city_left .bottom_text .right_btm p.desc{
+        max-width:100% !important;
+    }
+    .custom_skyline_page #skyline_title{
+        display: inline-block !important;
+        float: none;
+        text-align: center;
+        width: 100%;
+    }
+    .custom_skyline_page .city_left .top_ctrl h2{
+        display:inline-block !important;
+    }
+    .custom_skyline_page #skyline_title.ng-hide{
+        display:none !important;
+    }
+
+    .custom_skyline_page .city_right .nav li a{
+        font-size: 13px !important;
+    }
+
+    .mobile-edit-icon {
+        position: absolute;
+        right: 25px;
+        display:inline-block;
+        cursor: pointer;
+    }
+    .custom-skyline .right_btm .right_lnks{
+        max-width:100% !important;
+        text-align:left;
+        padding:0 !important;
+    }
+    .custom-skyline .right_lnks .edit-icon {
+        display:none;
+    }
+}
+
+/*.loca-market .align-right .key_content a.tip:hover,.custom_skyline_page .align-right .key_content a.tip:hover{
+    background-color:#fff !important;
+} */
+
+/*#city_car .aggregate-statistic { height: 105px !important;}*/
+
+#skyline_edit .error_content {
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+    box-shadow: 0 0 10px #F5ACAC;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    color: #cf2026;
+    font-size: 13px;
+    width: 225px;
+    margin-bottom: 20px;
+}
+#addNewCustomskyline .red_btn {max-width:100% !important;}
+#errroFancyBox .red_btn { border: medium none; border-radius: 0; font-size: 16px; margin: 0 0 10px; max-width: 100%;text-transform: capitalize;width: 100%; font-family: 'Open Sans', sans-serif; font-weight: 700; text-align: center; background-color: rgb(210, 39, 35);}
+
+#delete_skyline_confirm .red_btn.confirm,
+#delete_building_confirm .red_btn.confirm,
+#addBuildingToSkyline .red_btn.confirm,
+#delete_note_confirm .red_btn.confirm{ width: 49%; float: left; margin: 0; }
+
+#delete_skyline_confirm .red_btn,
+#delete_building_confirm .red_btn,
+#addBuildingToSkyline .red_btn,
+#delete_note_confirm .red_btn{ width: 49%; float: right; margin: 0; padding: 10px 0; max-width: none;}
+
+#city_main .selectricItems { left:3px }
+@media (max-width:480px) {
+    #city_main .selectricItems { left:0 }
+    #skyline_edit input[type="text"] {margin-top: 10px;}
+}
+
+.remove-building {padding-top: 20px;padding-bottom: 05px;}
+.remove-building a{font-size: 14px;color: #6c6c6c;}
+.remove-building a:hover{text-decoration: underline !important;}
+ul#custom_skyline_list_head a{ color: #c2c2c2 !important; cursor:default;}

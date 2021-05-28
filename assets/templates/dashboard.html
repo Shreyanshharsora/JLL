@@ -1,0 +1,140 @@
+<!-- BEGIN MAIN CONTENT -->
+<div data-ng-controller="DashboardController">
+	<!-- BEGIN DASHBOARD STATS -->
+	<div class="row">
+		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" >
+			<div class="dashboard-stat blue-madison" ng-click="got_to_url('/users')">
+				<div class="visual">
+					<i class="icon-user"></i>
+				</div>
+				<div class="details">
+					<div class="number">
+						{{ totalRecord.User  }}
+					</div>
+					<div class="desc">
+						Total Users
+					</div>
+				</div>
+				<a class="more" ui-sref="/users">
+				View more <i class="m-icon-swapright m-icon-white"></i>
+				</a>
+			</div>
+		</div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" >
+			<div class="dashboard-stat purple-plum" ng-click="got_to_url('/cms')">
+				<div class="visual">
+					<i class="icon-doc"></i>
+				</div>
+				<div class="details">
+					<div class="number">
+						{{ totalRecord.Cms }}
+					</div>
+					<div class="desc">
+						Total Pages
+					</div>
+				</div>
+				<a class="more" ui-sref="/cms">
+				View more <i class="m-icon-swapright m-icon-white"></i>
+				</a>
+			</div>
+		</div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" >
+			<div class="dashboard-stat red-intense" ng-click="got_to_url('/cities')">
+				<div class="visual">
+					<i class="fa fa-globe"></i>
+				</div>
+				<div class="details">
+					<div class="number">
+						{{ totalRecord.City }}
+					</div>
+					<div class="desc">
+						Total City
+					</div>
+				</div>
+				<a class="more" ui-sref="/cities">
+				View more <i class="m-icon-swapright m-icon-white"></i>
+				</a>
+			</div>
+		</div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" >
+			<div class="dashboard-stat grey-gallery" ng-click="got_to_url('/buildings')">
+				<div class="visual">
+					<i class="fa fa-building"></i>
+				</div>
+				<div class="details">
+					<div class="number">
+						{{ totalRecord.Building }}
+					</div>
+					<div class="desc">
+						Total Building
+					</div>
+				</div>
+				<a class="more" ui-sref="/buildings">
+				View more <i class="m-icon-swapright m-icon-white"></i>
+				</a>
+			</div>
+		</div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" >
+			<div class="dashboard-stat green-haze" ng-click="got_to_url('/unit-status')">
+				<div class="visual">
+					<i class="fa fa-cube"></i>
+				</div>
+				<div class="details">
+					<div class="number">
+						{{ totalRecord.UnitStatus }}
+					</div>
+					<div class="desc">
+						Total Unit Status
+					</div>
+				</div>
+				<a class="more" ui-sref="/unit-status">
+				View more <i class="m-icon-swapright m-icon-white"></i>
+				</a>
+			</div>
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" >
+			<div class="dashboard-stat yellow-casablanca" ng-click="got_to_url('/national-asset')">
+				<div class="visual">
+					<i class="fa fa-flag-checkered"></i>
+				</div>
+				<div class="details">
+					<div class="number">
+						{{ totalRecord.NationalAsset }}
+					</div>
+					<div class="desc">
+						Total National Assets
+					</div>
+				</div>
+				<a class="more" ui-sref="/national-asset">
+				View more <i class="m-icon-swapright m-icon-white"></i>
+				</a>
+			</div>
+		</div>
+        
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" >
+			<div class="dashboard-stat blue-hoki" ng-click="got_to_url('/city-asset')">
+				<div class="visual">
+					<i class="fa fa-cubes"></i>
+				</div>
+				<div class="details">
+					<div class="number">
+						{{ totalRecord.CityAsset }}
+					</div>
+					<div class="desc">
+						Total City Assets
+					</div>
+				</div>
+				<a class="more" ui-sref="/city-asset">
+				View more <i class="m-icon-swapright m-icon-white"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+	<!-- END DASHBOARD STATS -->	
+</div>
+<!-- END MAIN CONTENT -->
+<!-- BEGIN MAIN JS & CSS -->
+<script>
+	
+</script>
+<!-- BEGIN MAIN JS & CSS -->

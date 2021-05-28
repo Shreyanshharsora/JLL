@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js" data-ng-app="app"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js" data-ng-app="app"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" data-ng-app="app">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+<base href="{{ BASE_HREF_ADMIN }}" />
+<title data-ng-bind="$state.current.data.pageTitle + ' | {{ SITE_NAME }}'"></title>
+
+<meta charset="utf-8"/>
+<meta name="robots" content="noindex, nofollow" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!--<meta content="width=device-width, initial-scale=1" name="viewport"/>-->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<meta content="" name="description"/>
+<meta content="" name="author"/>
+
+<!-- BEGIN GLOBAL MANDATORY STYLES -->
+<!--<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css"/>-->
+<link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+<link href="{{ ADMIN_ASSET_URL }}plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+<link href="{{ ADMIN_ASSET_URL }}plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
+<link href="{{ ADMIN_ASSET_URL }}plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<link href="{{ ADMIN_ASSET_URL }}plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+<link href="{{ ADMIN_ASSET_URL }}plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css"/>
+<!-- END GLOBAL MANDATORY STYLES -->
+<link href="{{ ADMIN_ASSET_URL }}plugins/dropzone/css/dropzone.css" rel="stylesheet"/>
+
+<!-- BEGIN DYMANICLY LOADED CSS FILES(all plugin and page related styles must be loaded between GLOBAL and THEME css files ) -->
+<link id="ng_load_plugins_before"/>
+<!-- END DYMANICLY LOADED CSS FILES -->
+
+
+<!-- BEGIN PAGE LEVEL STYLES -->
+<link rel="stylesheet" type="text/css" href="{{ ADMIN_ASSET_URL }}plugins/select2/select2.css"/>
+<link rel="stylesheet" type="text/css" href="{{ ADMIN_ASSET_URL }}plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css"/>
+<link rel="stylesheet" type="text/css" href="{{ ADMIN_ASSET_URL }}plugins/bootstrap-markdown/css/bootstrap-markdown.min.css" />
+<link rel="stylesheet" type="text/css" href="{{ ADMIN_ASSET_URL }}plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css"/>
+<link rel="stylesheet" type="text/css" href="{{ ADMIN_ASSET_URL }}plugins/bootstrap-datepicker/css/datepicker.css"/>
+<link rel="stylesheet" type="text/css" href="{{ ADMIN_ASSET_URL }}plugins/bootstrap-datepicker/css/datepicker3.css"/>
+<link rel="stylesheet" type="text/css" href="{{ ADMIN_ASSET_URL }}plugins/bootstrap-fileinput/bootstrap-fileinput.css"/>
+<link rel="stylesheet" type="text/css" href="{{ ADMIN_ASSET_URL }}plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css"/>
+<link rel="stylesheet" type="text/css" href="{{ ADMIN_ASSET_URL }}plugins/bootstrap-daterangepicker/daterangepicker-bs3.css"/>
+<link rel="stylesheet" type="text/css" href="{{ ADMIN_ASSET_URL }}plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"/>
+<link rel="stylesheet" type="text/css" href="{{ ADMIN_ASSET_URL }}plugins/bootstrap-colorpicker/css/colorpicker.css"/>
+
+<!--link rel="stylesheet" type="text/css" href="{{ ADMIN_ASSET_URL }}css/demo.html5imageupload.css"/-->
+<link rel="stylesheet" type="text/css" href="{{ ADMIN_ASSET_URL }}plugins/fancybox/source/jquery.fancybox.css?v=2.1.2" media="screen" />
+<link href="{{ ADMIN_ASSET_URL }}css/animations.css" rel="stylesheet" type="text/css"/>
+<!-- BEGIN THEME STYLES -->
+<!-- DOC: To use 'rounded corners' style just load 'components-rounded.css' stylesheet instead of 'components.css' in the below style tag -->
+<link href="{{ ADMIN_ASSET_URL }}css/components.css" id="style_components" rel="stylesheet" type="text/css"/>
+<link href="{{ ADMIN_ASSET_URL }}css/plugins.css" rel="stylesheet" type="text/css"/>
+<link href="{{ ADMIN_ASSET_URL }}css/layout.css" rel="stylesheet" type="text/css"/>
+<link href="{{ ADMIN_ASSET_URL }}css/themes/default.css" rel="stylesheet" type="text/css" id="style_color"/>
+<link href="{{ ADMIN_ASSET_URL }}css/custom.css{{ ADMIN_CSS_VERSION }}" rel="stylesheet" type="text/css"/>
+<!-- END THEME STYLES -->
+
+<link rel="shortcut icon" href="{{ SITE_URL }}images/favicon.ico"/>
+<!-- To initialize constants in javascript -->
+<script type="text/javascript">
+	var objConstant = {};
+    <br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined index: user in \\192.168.1.254\PUBLIC_HTML\projects\chris_monnat\skyline\protected\app\views\admin\dashboard.blade.php on line <i>67</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.1105</td><td bgcolor='#eeeeec' align='right'>152416</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='\\192.168.1.254\PUBLIC_HTML\projects\chris_monnat\skyline\protected\app\views\admin\dashboard.blade.php' bgcolor='#eeeeec'>..\dashboard.blade.php<b>:</b>0</td></tr>
+</table></font>
+<br />
+<font size='1'><table class='xdebug-error xe-warning' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Warning: Invalid argument supplied for foreach() in \\192.168.1.254\PUBLIC_HTML\projects\chris_monnat\skyline\protected\app\views\admin\dashboard.blade.php on line <i>67</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.1105</td><td bgcolor='#eeeeec' align='right'>152416</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='\\192.168.1.254\PUBLIC_HTML\projects\chris_monnat\skyline\protected\app\views\admin\dashboard.blade.php' bgcolor='#eeeeec'>..\dashboard.blade.php<b>:</b>0</td></tr>
+</table></font>
+<br />
+<font size='1'><table class='xdebug-error xe-fatal-error' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Fatal error: Class 'Auth' not found in \\192.168.1.254\PUBLIC_HTML\projects\chris_monnat\skyline\protected\app\views\admin\dashboard.blade.php on line <i>76</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.1105</td><td bgcolor='#eeeeec' align='right'>152416</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='\\192.168.1.254\PUBLIC_HTML\projects\chris_monnat\skyline\protected\app\views\admin\dashboard.blade.php' bgcolor='#eeeeec'>..\dashboard.blade.php<b>:</b>0</td></tr>
+</table></font>
+PHP Notice:  Undefined index: user in \\192.168.1.254\PUBLIC_HTML\projects\chris_monnat\skyline\protected\app\views\admin\dashboard.blade.php on line 67
+PHP Stack trace:
+PHP   1. {main}() \\192.168.1.254\PUBLIC_HTML\projects\chris_monnat\skyline\protected\app\views\admin\dashboard.blade.php:0
+PHP Warning:  Invalid argument supplied for foreach() in \\192.168.1.254\PUBLIC_HTML\projects\chris_monnat\skyline\protected\app\views\admin\dashboard.blade.php on line 67
+PHP Stack trace:
+PHP   1. {main}() \\192.168.1.254\PUBLIC_HTML\projects\chris_monnat\skyline\protected\app\views\admin\dashboard.blade.php:0
+PHP Fatal error:  Class 'Auth' not found in \\192.168.1.254\PUBLIC_HTML\projects\chris_monnat\skyline\protected\app\views\admin\dashboard.blade.php on line 76
+PHP Stack trace:
+PHP   1. {main}() \\192.168.1.254\PUBLIC_HTML\projects\chris_monnat\skyline\protected\app\views\admin\dashboard.blade.php:0

@@ -1,0 +1,84 @@
+<!-- BEGIN MAIN CONTENT -->
+<div data-ng-controller="LoginController">
+	<!-- BEGIN LOGO -->
+	<div class="logo">
+		<a href="index.html">
+			<img src="{{ GLOBAL.SITE_URL }}images/logo.png" alt=""/>
+		</a>
+	</div>
+	<!-- END LOGO -->
+	<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+	<div class="menu-toggler sidebar-toggler">
+	</div>
+	<!-- END SIDEBAR TOGGLER BUTTON -->
+	<!-- BEGIN LOGIN -->
+	<div class="content">
+		<!-- BEGIN LOGIN FORM -->
+		<form class="login-form" id="login-form" name="login-form" ng-submit="submitLogin()" method="post" onsubmit="return false">
+	        <h3 class="form-title">Login to your account</h3>
+	        <div class="alert alert-danger display-hide">
+	            <button class="close" data-close="alert"></button>
+	            <span>Invalid Email Id and Password. </span>
+	        </div>
+	        <div class="alert alert-success display-hide">
+				<button class="close" data-close="alert"></button>
+				Reset password link has been successfully sent to your email id.
+			</div>
+	        <div class="form-group">
+	            <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+	            <label class="control-label visible-ie8 visible-ie9">Email Id</label>
+	            <div class="input-icon">
+	                <i class="fa fa-user"></i>
+	                <input class="form-control placeholder-no-fix required" type="text" data-error-message="Email Id" autocomplete="off" ng-enter placeholder="Email Id" ng-model="v_username" name="v_username" id="v_username"/>
+	            </div>
+	        </div>
+	        <div class="form-group">
+	            <label class="control-label visible-ie8 visible-ie9">Password</label>
+	            <div class="input-icon">
+	                <i class="fa fa-lock"></i>
+	                <input class="form-control placeholder-no-fix required" type="password" data-error-message="Password" autocomplete="off" ng-enter placeholder="Password" ng-model="v_password" name="v_password"/>
+	            </div>
+	        </div>
+	        <div class="form-actions cf">
+	            <label class="checkbox">
+	            <input type="checkbox" name="remember" class="remember" ng-model="remember" value="1" id="remember" ng-checked="remember"/> Remember me </label>
+	            <button ngEnter type="submit" class="btn green-haze pull-right">
+	            Login <i class="m-icon-swapright m-icon-white"></i>
+	            </button>
+	        </div>       
+	        <div class="forget-password">
+	            <h4>Forgot your password ?</h4>
+	            <p>no worries, click <a href="javascript:;" data-ng-click="loadForgotPassword()" id="forget-password">here </a>to reset your password.</p>
+	        </div>        
+	    </form>
+	    <!-- END LOGIN FORM -->
+	    <!-- BEGIN FORGOT PASSWORD FORM -->
+	    <form class="forget-form" name="forget-pass-form"  onsubmit="return false" ng-submit="submitForgotPassword()" id="forget-form" action="" method="post">
+	        <h3>Forget Password ?</h3>
+	        <p>Enter your e-mail address below to reset your password.</p>        
+	        <div class="alert alert-danger display-hide">
+	            <button class="close" data-close="alert"></button>
+	            <span>Please enter registered email.</span>
+	        </div>
+	        <div class="form-group">
+	            <div class="input-icon">
+	                <i class="fa fa-envelope"></i>
+	                <input class="form-control email required placeholder-no-fix" id="v_email" type="text" autocomplete="off" data-error-message="Email Id" ng-enter ng-model="email" placeholder="Email Id" name="v_email"/>
+	            </div>
+	        </div>
+	        <div class="form-actions">
+	            <button type="button" id="back-btn" data-ng-click="loadLogin()" class="btn">
+	            <i class="m-icon-swapleft"></i> Back </button>
+	            <button type="submit" class="btn green-haze pull-right">
+	            Submit <i class="m-icon-swapright m-icon-white"></i>
+	            </button>
+	        </div>
+	    </form>
+		<!-- END FORGOT PASSWORD FORM -->	
+	</div>
+	<!-- END LOGIN -->
+	<!-- BEGIN COPYRIGHT -->
+	<div class="copyright">
+		 {{ currentYear }} &copy; {{ GLOBAL.SITE_NAME }}.
+	</div>
+</div>

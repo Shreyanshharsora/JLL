@@ -1,0 +1,191 @@
+<div ng-controller="HomePageContentController">
+<!-- BEGIN MAIN CONTENT -->
+    <div class="row">
+		<div class="col-md-12">
+			<!-- Begin add form -->
+            <div tabindex="-1">
+
+                <div class="portlet box blue-madison">
+					<div class="portlet-title">
+						<div class="caption">
+							<i class="fa fa-plus"></i>Edit Content Box Information
+						</div>
+						<div class="tools">
+							<a href="javascript:;" class=""></a>
+						</div>
+					</div>
+					<div class="portlet-body form">
+						<!-- BEGIN FORM-->
+						<form id="frmEdit" name="frmEdit" class="form-horizontal" onsubmit="return false">
+							<div class="form-body">
+								<!--h3 class="form-section">Advance validation. <small>Custom radio buttons, checkboxes and Select2 dropdowns</small></h3-->
+								<div class="alert alert-danger display-hide">
+									<button class="close" data-close="alert"></button>
+									You have some form errors. Please check below.
+								</div>
+								<div class="alert alert-success display-hide">
+									<button class="close" data-close="alert"></button>
+									   Record updated successfully.
+								</div>
+                                <div class="form-group"></div>
+
+                                <div class="form-group">
+									<label class="control-label col-md-2">Content will display</label>
+									<div class="col-md-4">
+										<span class="textView" ng-if="edit_fields.e_type == 'LoggedOut'">Before Login</span>
+                                        <span class="textView" ng-if="edit_fields.e_type == 'LoggedIn'">After Login</span>
+									</div>
+								</div>
+
+                                <div class="form-group">
+									<label class="control-label col-md-2">Content Box #</label>
+									<div class="col-md-4">
+										<span class="textView"  ng-bind="edit_fields.v_box_asc_no"></span>
+									</div>
+								</div>
+
+                                <div class="form-group">
+									<label class="control-label col-md-2">Title <span class="required"> * </span> </label>
+									<div class="col-md-4">
+										<input class="form-control required"  ng-enter ng-model="edit_fields.v_title" data-error-message="Title" name="v_title" id="v_title" maxlength=50>
+									</div>
+								</div>
+
+                                <div class="form-group" ng-show="edit_fields.v_box_no % 2 !=0 ">
+									<label class="control-label col-md-2">Image / Video</label>
+									<div class="col-md-4 radio-list">
+										<label class="radio-inline">
+										<input type="radio" name="optionsRadios" ng-model="selectedType.name" value="Image"> Image </label>
+										<label class="radio-inline">
+										<input type="radio" name="optionsRadios" ng-model="selectedType.name" value="Video"> Video</label>
+									</div>
+								</div>
+
+                                <div class="form-group user-custom-logo" ng-if="selectedType.name=='Image' && edit_fields.v_box_no % 2 !=0 ">
+                                    <label class="control-label col-md-2"> Image  <span class="required"> * </span></label>
+
+                                    <div class="col-md-9" >
+                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                <div ng-class="enableCropGrid == false ? 'fileinput-new thumbnail ng-show' : 'fileinput-new thumbnail ng-hide'" class="fileinput-new thumbnail"  ng-show="enableCropGrid == false">
+                                                     <img src="http://www.placehold.it/110x110/EFEFEF/AAAAAA&amp;text=no+image" alt="" />
+                                                </div>
+                                                <!--div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div-->
+                                                <div ng-if="enableCropGrid" class="fileinput-new thumbnail preview_image_grid"  ng-show="enableCropGrid == true" style="width: 200px; border: none; padding: 0px;">
+                                                    <img style="height: auto !important; max-width: 200px !important;" id="img_preview_edit_grid" src="{{ imageDataURIGrid }}" alt="" />
+                                                    </div>
+                                               <div>
+                                                    <span class="btn default btn-file" ng-click="trigger('#fileInputGrid')">
+                                                        <div ng-class="enableCropGrid == false ? 'fileinput-new ng-show-inline-block' : 'fileinput-new ng-hide'" ng-show="enableCropGrid == 'false'" >Select image</div>
+
+                                                        <span ng-class="enableCropGrid == true ? 'ng-show-inline-block' : 'fileinput-exists ng-hide'" ng-if="enableCropGrid"> Change </span>
+
+                                                    </span>
+
+                                                    <a ng-if="enableCropGrid" href="javascript:;" ng-class="enableCropGrid == true ? 'btn default fileinput-exists  ng-show-inline-block' : 'btn default fileinput-exists ng-hide'" data-dismiss="fileinput" ng-click="removeImageGrid()" > Remove </a>
+                                                </div>
+                                                 <input type="hidden" name="v_image" id="full-image-element-edit" value="{{ edit_fields.v_image }}" ng-model="edit_fields.v_image" data-error-message="Image" class="form-control required" />
+                                                 <input type="hidden" id="transparent_background_image" name="transparent_background_image" value="" />
+                                            </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" ng-if="selectedType.name=='Video' && edit_fields.v_box_no % 2 !=0">
+									<label class="control-label col-md-2">YouTube Video Link  <span class="required"> * </span></label>
+									<div class="col-md-4">
+										<input class="form-control required check-youtube-vimeo-url" ng-enter ng-model="edit_fields.v_video" data-error-message="youtube  or vimeo video link" name="v_video" id="v_video">
+									</div>
+								</div>
+
+                                <!--<div class="form-group" ng-if="selectedType=='Video' && edit_fields.v_box_no % 2 !=0 && videoThumbnail != ''">
+									<label class="control-label col-md-2">Video Thumbnail</label>
+									<div class="col-md-4">
+										<img ng-src="{{videoThumbnail}}">
+									</div>
+								</div>-->
+
+                                <div class="form-group">
+									<label class="control-label col-md-2">Description  <span class="required"> * </span> </label>
+									<div class="col-md-4">
+										<textarea class="form-control required"  ng-enter ng-model="edit_fields.v_desc" data-error-message="Description" name="v_desc" rows="6" id="v_desc" maxlength=200></textarea>
+									</div>
+								</div>
+
+                                <div class="form-group" ng-show="edit_fields.v_box_no % 2 !=0">
+									<label class="control-label col-md-2">Button Text </label>
+									<div class="col-md-4">
+										<input class="form-control"  ng-enter ng-model="edit_fields.v_button_text" data-error-message="Button Text" name="Button Text" id="v_button_text" maxlength="15">
+									</div>
+								</div>
+
+                                <div class="form-group">
+									<label class="control-label col-md-2">Link </label>
+									<div class="col-md-4">
+										<input class="form-control"  ng-enter ng-class="{'required': ((edit_fields.v_button_text !='' && edit_fields.v_button_text !=NULL)) }" ng-model="edit_fields.v_link" data-error-message="Link" name="v_link" id="v_link" maxlength="255">
+									</div>
+								</div>
+
+                                <!--<div class="form-group last">
+                                    <label class="control-label col-md-2">Type <span class="required"> * </span></label>
+                                    <div class="col-md-4">
+                                        <select data-error-message="Status" name="status" ng-model="edit_fields.e_type"  class="form-control bs-select add_e_status ng-pristine ng-valid required">
+                                            <option value="">Select Type</option>
+											<option value="LoggedOut">Logged Out</option>
+                                            <option value="LoggedIn">Logged In</option>
+										</select>
+                                    </div>
+                                </div>-->
+
+                                <div class="form-group">
+									<label class="control-label col-md-2">Link will open</label>
+									<div class="col-md-4 radio-list">
+										<label class="radio-inline">
+										<input type="radio" name="linkTypeOptions" ng-model="linkType.name" value="NewTab"> Open in new tab </label>
+										<label class="radio-inline">
+										<input type="radio" name="linkTypeOptions" ng-model="linkType.name" value="CurrentTab"> Open in current tab</label>
+									</div>
+								</div>
+
+                                <div class="form-group last">
+                                    <label class="control-label col-md-2">Status <span class="required"> * </span></label>
+                                    <div class="col-md-4">
+                                        <select data-error-message="Status" name="e_status" ng-model="edit_fields.e_status"  class="form-control bs-select add_e_status ng-pristine ng-valid required">
+                                            <option value="">Select status</option>
+											<option value="1">Active</option>
+                                            <option value="0">Inactive</option>
+										</select>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-actions">
+								<div class="row">
+									<div class="col-md-offset-3 col-md-9">
+                                        <input type="hidden" name="edit_id" ng-model="edit_fields.id" value="{{ edit_fields.id }}" />
+										<button type="submit" class="btn green" ng-click="submit_frm_edit(edit_fields)">Submit</button>
+										<button type="button" class="btn default" ng-click="clearFormData('edit')">Cancel</button>
+									</div>
+								</div>
+							</div>
+						</form>
+                        <!-- END FORM-->
+                        <form id="form_name" action="{{ GLOBAL.API_URL+'/employee/upload-for-ie' }}" method="post" enctype="multipart/form-data">
+                            <input type="file" name="file_upload" id="fileInput" style="display: none;" />
+                        </form>
+
+                        <form id="form_name_grid" action="{{ GLOBAL.API_URL+'/employee/upload-for-ie' }}" method="post" enctype="multipart/form-data">
+                            <input type="file" name="file_upload_grid" id="fileInputGrid" style="display: none;" />
+                        </form>
+					</div>
+					<!-- END VALIDATION STATES-->
+				</div>
+
+            </div>
+            <!-- End add form -->
+
+		</div>
+	</div>
+    <canvas id="canvas1"></canvas>
+<!-- END PAGE CONTENT-->
+</div>

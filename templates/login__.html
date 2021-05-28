@@ -1,0 +1,116 @@
+<!-- //http://jsbin.com/egatas/latest -->
+<section id="jll_facts" class="mb80 login-page" ng-class="forgot_password == true ? 'req-pass':''">
+    <!--- Login --->
+	<div class="login" ng-hide="forgot_password == true">
+        <h1 ng-hide="register_success">
+			Welcome to the JLL Skyline
+			</br>
+			Login here or
+			<a href="javascript:void(0);"  ng-click="register_link()" class="register-link">register</a>
+			to enter
+		</h1>
+        <br />
+        <span class="thanks-page" ng-show="register_success"><h1>Thank you for registering. </br><em>Login</em> here</h1></span>
+		
+		<h5 ng-bind-html="setting_data.v_login_form_content | nl2br"></h5>
+		<section id="contact_us">
+			<div class="contact_form">
+				<form action="javascript:void(0);" id="login_form" ng-submit="submitLogin(login_data)">
+					<div class="half_content">
+                        <div id="password_reset_success" class="success_content" style="display: none;">Your new password send your email.</div>  
+                        <div class="error_content_login" id="error_content_login" style="display: none;"> All fields are required. </div>
+                        <div class="error_content_login" id="error_content_invalid" style="display: none;"> Invalid email and password. </div>
+                        
+						<input type="text" name="email" placeholder="Email address" id="email" class="required" ng-model="login_data.v_username" />
+
+						<input type="password" name="required" placeholder="Password" id="required" class="required" ng-model="login_data.v_password" />
+						<input type="submit" class="red_btn" value="Login" /> 
+					</div>
+					<div class="clear">
+						<!---->
+					</div>
+				</form>
+				<a href="javascript:void(0);" ng-click="forgot_password()" class="forgot_pass">Forgot password?</a>
+			</div>
+		</section>
+	</div>
+    
+    <!--- Forgot Password --->
+    <div class="login" ng-show="forgot_password == true">
+        <h1>Request Your Password</h1>
+        <h5 ng-bind-html="setting_data.v_reset_pass_form_content | nl2br"></h5>
+        
+        <section id="contact_us">
+            <div class="contact_form">
+                <form action="" id="reset_password" ng-submit="submit_reset_password(reset_password)">
+                <div id="error_content_resetpass" class="error_content_login" style="display: none;"></div>   
+                <div id="password_reset_success" class="success_content" style="display: none;">Your new password send your email.</div>  
+                <div id="error_email_invalid" class="error_content_login" style="display: none;"> Please enter registered email.</div>            
+                    <div class="half_content">
+                        <input type="text" name="email" placeholder="Your Email address" id="email" class="required email"  data-error-message="Email" ng-model="reset_password.email" />
+                        <input type="submit" class="red_btn" value="Request Password">
+                    </div>
+                    <div class="clear"><!----></div>
+                </form>
+                <a href="javascript:void(0);"  ng-click="$scope.forgot_password = false"  class="forgot_pass">Back to login</a>
+                
+            </div>
+        </section>
+     </div>
+     
+	<section class="main-img cf">
+		<figure>
+			<img src="images/city-img.jpg" slt="">
+		</figure>
+	</section>
+    <!-- Page Content -->
+	<div class="top_content" ng-bind-html="setting_data.v_home_page_content"></div>
+	
+    <div class="video" ng-show="setting_data.v_video_link != ''">
+		<div class="title">
+		{{ setting_data.v_video_title }}
+		</div>
+        <figure id="iframe_tag">
+        {{ setting_data.v_video_link }}
+        {{ setting_data.v_video_link | getVideoId }}
+            <!--iframe class="video-link" ng-src="{{ video_link }}" frameborder="0" allowfullscreen /></iframe-->           
+        </figure>
+	</div>
+    <section id="register_section" ng-hide="forgot_password == true">
+    	<section id="contact_us" class="register_section">
+        	<div class="title">
+    			Lorem ipsm douerl goest heout
+    		</div>
+    		<div class="contact_form">
+    			<form action="javascript:void(0);" ng-submit="submitRegistration(registration)" id="user_registration">
+                    <div class="error_content" id="error_content_registration" style="display: none;"> All fields are required.</div>
+                    <div class="error_content" id="error_content_email" style="display: none;"> Email already exits. </div>
+                    <div class="error_content" id="error_content_restricted" style="display: none;"> This email restricted. </div>
+                    <!--div id="error_content" class="error_content" style="display: none;">You have some form errors. Please check below.<br /></div-->
+                    <div class="half_content">
+    					<input type="text" name="fname" class="required" data-error-message="First Name" placeholder="First Name" id="fname" ng-model="registration.fname" />
+    					<input type="text" name="lname" class="required" data-error-message="Last Name" placeholder="Last Name" id="lname" ng-model="registration.lname" />
+    				</div>
+    				<input type="text" name="v_company_name" class="required" placeholder="Company" id="v_company_name" ng-model="registration.v_company_name" />
+    				<input type="text" name="v_title" class="required" placeholder="Title" id="v_title" ng-model="registration.v_title" />
+    				
+                    <select selectric data-options="{ maxHeight: 400 }" id="contact_industry" name="v_industry" class="option_txt required" ng-model="registration.v_industry">
+                        <option class="option_txt" value="">-- Select industry --</option>
+                        <option ng-repeat="industrie in industries" class="option_txt" value="{{ industrie }}">{{ industrie }}</option>
+                    </select>
+            
+                    <input type="text" name="v_city" class="required" placeholder="City" id="v_city" ng-model="registration.v_city" />
+                    <input type="text" name="email" class="required email" data-error-message="Email" placeholder="Email" id="email" ng-model="registration.email" />
+    				<div class="half_content">
+    					<input type="password" class="required validate_password" data-error-message="Password" name="password" placeholder="Password" id="password" ng-model="registration.password" />
+    					<input type="password" class="required" name="rpassword" equalto="#password" placeholder="Confirm-password" id="rpassword" ng-model="registration.rpassword" />
+    				</div>
+    				<input type="submit" class="red_btn" value="Create Account" />
+    				<div class="clear">
+    					<!---->
+    				</div>
+    			</form>
+    		</div>
+    	</section>
+     </section>
+</section>

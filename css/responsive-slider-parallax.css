@@ -1,0 +1,104 @@
+.responsive-slider-parallax { max-width: 100%; position: relative }
+.responsive-slider-parallax .slides-container { position: relative; overflow: hidden; background-size: cover; background-position: 0 0 }
+.responsive-slider-parallax .slides-container ul { list-style-type: none; padding: 0; margin: 0; white-space: nowrap; font-size: 0 }
+.responsive-slider-parallax .slides-container ul li { display: inline-block; width: 100%; padding: 0; margin: 0; background: 0 0 }
+.responsive-slider-parallax .slides-container ul li .slide-body { display: inline-block; position: relative; width: 100%; height: 600px; font-size: 14px }
+.responsive-slider-parallax .slides-container ul li .slide-body img { max-width: 100% }
+.responsive-slider-parallax .slides-container ul li .slide-body .container { height: 100% }
+.responsive-slider-parallax .slides-container ul li .slide-body .container .wrapper { position: relative; height: 100% }
+.responsive-slider-parallax .slides-container ul li .slide-body .caption { position: absolute; color: #fff; text-shadow: 0 1px 0 #000; white-space: normal }
+.responsive-slider-parallax .slides-container ul li .slide-body .caption.header { top: 28%; left: 8% }
+.responsive-slider-parallax .slides-container ul li .slide-body .caption.header h2 { font-size: 40px; background: #F60; padding: 0 3px }
+.responsive-slider-parallax .slides-container ul li .slide-body .caption.header h2 i { font-size: 35px }
+@media (min-width:481px) and (max-width:767px) {
+.responsive-slider-parallax .slides-container ul li .slide-body .caption.header h2 { font-size: 25px; line-height: 25px }
+.responsive-slider-parallax .slides-container ul li .slide-body .caption.header h2 i { font-size: 20px }
+}
+@media (max-width:480px) {
+.responsive-slider-parallax .slides-container ul li .slide-body .caption.header h2 { font-size: 16px; line-height: 16px }
+.responsive-slider-parallax .slides-container ul li .slide-body .caption.header h2 i { font-size: 14px }
+}
+.responsive-slider-parallax .slides-container ul li .slide-body .caption.sub { text-shadow: none; bottom: -8px; right: -20px; font-weight: 700; font-family: Cuprum, sans-serif; color: #000; padding: 0 3px; background: #fff }
+@media (min-width:481px) and (max-width:767px) {
+.responsive-slider-parallax .slides-container ul li .slide-body .caption.sub { font-size: 11px; line-height: 11px; bottom: 0; right: -10px }
+}
+@media (max-width:480px) {
+.responsive-slider-parallax .slides-container ul li .slide-body .caption.sub { font-size: 10px; line-height: 10px; bottom: 0; right: 0 }
+}
+.responsive-slider-parallax .slides-container ul li .slide-body .caption.img-html5 { top: 12%; right: 8%; width: 30% }
+.responsive-slider-parallax .slides-container ul li .slide-body .caption.img-html5 img { max-width: 100% }
+.responsive-slider-parallax .slides-container ul li .slide-body .caption.img-css3 { top: 58%; right: 12%; width: 10% }
+.responsive-slider-parallax .slides-container ul li .slide-body .caption.img-css3 img { max-width: 100% }
+.responsive-slider-parallax .slides-container ul li .slide-body .caption.img-bootstrap { top: 56%; right: 12%; width: 11% }
+.responsive-slider-parallax .slides-container ul li .slide-body .caption.img-bootstrap img { max-width: 100% }
+.responsive-slider-parallax .slides-container ul li .slide-body .caption.img-twitter { top: 20%; right: 12%; width: 11% }
+.responsive-slider-parallax .slides-container ul li .slide-body .caption.img-twitter img { max-width: 100% }
+.responsive-slider-parallax .slides-container ul li .slide-body .caption.img-jquery { top: 55%; right: 12%; width: 33% }
+.responsive-slider-parallax .slides-container ul li .slide-body .caption.img-jquery img { max-width: 100% }
+
+.responsive-slider-parallax .slides-container ul li .slide-body .caption.car_hire { top:15%; right: 0; width: 50% }
+.responsive-slider-parallax .slides-container ul li .slide-body .header.car_hire_desc { top: 28%; left: 0; width: 49% }
+.responsive-slider-parallax .slides-container ul li .slide-body .header.car_hire_desc span { font-size: 41px; line-height: 44px; color: #231f20; text-transform: uppercase; font-family: Museo-700 }
+.responsive-slider-parallax .slides-container ul li .slide-body .header.car_hire_desc .caption { font-size: 42px; line-height: 46px; color: #888388; position: static; background: 0 0; font-family: 'helvetica_neueregular', Helvetica, Arial, sans-serif; font-weight: 300 }
+
+.responsive-slider-parallax .slides-container ul li .slide-body .caption.catchbuddy { top: 1%; right: 0; width: 55% }
+.responsive-slider-parallax .slides-container ul li .slide-body .header.catchbuddy_desc { top: 28%; left: 0; width: 49% }
+.responsive-slider-parallax .slides-container ul li .slide-body .header.catchbuddy_desc span { font-size: 41px; line-height: 44px; color: #231f20; text-transform: uppercase; font-family: Museo-700 }
+.responsive-slider-parallax .slides-container ul li .slide-body .header.catchbuddy_desc .caption { font-size: 42px; line-height: 46px; color: #888388; position: static; background: 0 0; font-family: 'helvetica_neueregular', Helvetica, Arial, sans-serif; font-weight: 300 }
+.responsive-slider-parallax .slides-container ul li .slide-body .caption.img_bootstrap { left: 0; width: 45%; right: auto; top: auto;/*bottom:-10px;*/ bottom: 44%; }
+.responsive-slider-parallax .slides-container ul li .slide-body .header.img_bootstrap_desc { top: 28%; right: 0; width: 50%; left: auto }
+.responsive-slider-parallax .slides-container ul li .slide-body .header.img_bootstrap_desc h2 { font-size: 45px; line-height: 48px; color: #231f20; background: 0 0; font-family: Museo-300 }
+.responsive-slider-parallax .slides-container ul li .slide-body .header.img_bootstrap_desc .caption { font-size: 46px; line-height: 48px; color: #231f20; position: static; background: 0 0; font-family: 'helvetica_neueregular', Helvetica, Arial, sans-serif; font-weight: 300 }
+.responsive-slider-parallax .slides-container ul li .slide-body .caption.notion_note { top: 0; right: 3%; width: 43% }
+.responsive-slider-parallax .slides-container ul li .slide-body .header.notion_note_desc { top: 28%; left: 0; width: 52%; text-shadow: none }
+.responsive-slider-parallax .slides-container ul li .slide-body .header.notion_note_desc h2 { background: 0 0; font-size: 36px; line-height: 40px; font-family: Museo-300 }
+@media (min-width:980px) and (max-width:1200px) {
+.responsive-slider-parallax .slides-container ul li .slide-body { height: 600px }
+.responsive-slider-parallax .slides-container ul li .slide-body .caption.img_bootstrap, .responsive-slider-parallax .slides-container ul li .slide-body .header.catchbuddy_desc, .responsive-slider-parallax .slides-container ul li .slide-body .header.notion_note_desc, .responsive-slider-parallax .slides-container ul li .slide-body .header.car_hire_desc { left: 50px }
+.responsive-slider-parallax .slides-container ul li .slide-body .caption.img_bootstrap { width: 40% }
+.responsive-slider-parallax .slides-container ul li .slide-body .caption.catchbuddy, .responsive-slider-parallax .slides-container ul li .slide-body .caption.notion_note { width: 40%; right: 40px }
+.responsive-slider-parallax .slides-container ul li .slide-body .caption.car_hire{ width: 45%; right: 40px}
+.responsive-slider-parallax .slides-container ul li .slide-body .header.img_bootstrap_desc { right: 40px; width: 45% }
+}
+@media (min-width:768px) and (max-width:979px) {
+.responsive-slider-parallax .slides-container ul li .slide-body { height: 400px }
+.responsive-slider-parallax .slides-container ul li .slide-body .caption.img_bootstrap, .responsive-slider-parallax .slides-container ul li .slide-body .header.catchbuddy_desc, .responsive-slider-parallax .slides-container ul li .slide-body .header.car_hire_desc, .responsive-slider-parallax .slides-container ul li .slide-body .header.notion_note_desc { left: 50px }
+.responsive-slider-parallax .slides-container ul li .slide-body .caption.img_bootstrap { width: 40% }
+.responsive-slider-parallax .slides-container ul li .slide-body .header.car_hire_desc .caption, .responsive-slider-parallax .slides-container ul li .slide-body .header.car_hire_desc span, .responsive-slider-parallax .slides-container ul li .slide-body .header.catchbuddy_desc .caption, .responsive-slider-parallax .slides-container ul li .slide-body .header.catchbuddy_desc span, .responsive-slider-parallax .slides-container ul li .slide-body .header.img_bootstrap_desc .caption, .responsive-slider-parallax .slides-container ul li .slide-body .header.img_bootstrap_desc h2 { font-size: 30px; line-height: 34px }
+.responsive-slider-parallax .slides-container ul li .slide-body .header.notion_note_desc h2 { font-size: 26px; line-height: 30px }
+.responsive-slider-parallax .slides-container ul li .slide-body .caption.catchbuddy, .responsive-slider-parallax .slides-container ul li .slide-body .caption.notion_note { width: 35%; right: 40px; top:6%;}
+.responsive-slider-parallax .slides-container ul li .slide-body .caption.car_hire{ width: 45%; right: 40px}
+.responsive-slider-parallax .slides-container ul li .slide-body .header.img_bootstrap_desc { right: 40px; width: 45% }
+}
+@media (min-width:481px) and (max-width:767px) {
+.responsive-slider-parallax .slides-container ul li .slide-body { height: 220px }
+.responsive-slider-parallax .slides-container ul li .slide-body .header.car_hire_desc .caption, .responsive-slider-parallax .slides-container ul li .slide-body .header.car_hire_desc span, .responsive-slider-parallax .slides-container ul li .slide-body .header.catchbuddy_desc .caption, .responsive-slider-parallax .slides-container ul li .slide-body .header.catchbuddy_desc span, .responsive-slider-parallax .slides-container ul li .slide-body .header.img_bootstrap_desc .caption, .responsive-slider-parallax .slides-container ul li .slide-body .header.img_bootstrap_desc h2, .responsive-slider-parallax .slides-container ul li .slide-body .header.notion_note_desc h2 { font-size: 20px; line-height: 24px }
+.responsive-slider-parallax .slider-control.left, .responsive-slider-parallax .slider-control.right { display: none }
+.responsive-slider-parallax .slides-container ul li .slide-body .caption.catchbuddy, .responsive-slider-parallax .slides-container ul li .slide-body .caption.car_hire { width: 120px; top: 10% }
+.responsive-slider-parallax .slides-container ul li .slide-body .caption.img_bootstrap { width: 200px }
+.responsive-slider-parallax .slides-container ul li .slide-body .caption.notion_note { width: 125px; top: 5% }
+}
+@media (max-width:480px) {
+.responsive-slider-parallax .slides-container ul li .slide-body { height: 190px }
+.responsive-slider-parallax .slides-container ul li .slide-body .header.car_hire_desc .caption, .responsive-slider-parallax .slides-container ul li .slide-body .header.car_hire_desc span, .responsive-slider-parallax .slides-container ul li .slide-body .header.catchbuddy_desc .caption, .responsive-slider-parallax .slides-container ul li .slide-body .header.catchbuddy_desc span, .responsive-slider-parallax .slides-container ul li .slide-body .header.img_bootstrap_desc .caption, .responsive-slider-parallax .slides-container ul li .slide-body .header.img_bootstrap_desc h2 { font-size: 14px; line-height: 18px }
+.responsive-slider-parallax .slides-container ul li .slide-body .header.notion_note_desc h2 { font-size: 14px; line-height: 18px; font-weight: 400 }
+.responsive-slider-parallax .slides-container ul li .slide-body .header.car_hire_desc { top: 20% }
+.responsive-slider-parallax .slides-container ul li .slide-body .caption.car_hire { width: 150px; top: 15% }
+.responsive-slider-parallax .slides-container ul li .slide-body .header.catchbuddy_desc { top: 20% }
+.responsive-slider-parallax .slides-container ul li .slide-body .caption.catchbuddy { width: 100px; top: 10% }
+.responsive-slider-parallax .slides-container ul li .slide-body .caption.img_bootstrap { width: 140px }
+.responsive-slider-parallax .slides-container ul li .slide-body .caption.notion_note { width: 90px; top: 5% }
+.responsive-slider-parallax .slides-container ul li .slide-body .header.catchbuddy_desc, .responsive-slider-parallax .slides-container ul li .slide-body .header.car_hire_desc { width: 55%; }
+.responsive-slider-parallax .slides-container ul li .slide-body .header.notion_note_desc { width: 60%; }
+}
+.responsive-slider-parallax .slider-control { position: absolute; font-size: 20px; color: #000; top: 40%; background-color: #fff; padding: 10px }
+.responsive-slider-parallax .slider-control.left { height: 56px; width: 56px; background: url(../images/banner-nav.png) left top no-repeat; left: 28px; padding: 0; border-radius: 0; top: 50%; margin-top: -28px }
+.responsive-slider-parallax .slider-control.left:hover { background-position: left bottom }
+.responsive-slider-parallax .slider-control.right { height: 56px; width: 56px; background: url(../images/banner-nav.png) right top no-repeat; right: 28px; padding: 0; border-radius: 0; top: 50%; margin-top: -28px }
+.responsive-slider-parallax .slider-control.right:hover { background-position: right bottom }
+@media (max-width:480px) {
+.responsive-slider-parallax .slider-control.left, .responsive-slider-parallax .slider-control.right { display: none }
+}
+.responsive-slider-parallax .pages { position: absolute; bottom: 0; left: 0; width: 100%; text-align: center }
+.responsive-slider-parallax .pages .page { display: inline-block; color: transparent; width: 5px; height: 5px; border: 3px solid #fff; border-radius: 50%; opacity: .5 }
+.responsive-slider-parallax .pages .page.active { opacity: 1 }
